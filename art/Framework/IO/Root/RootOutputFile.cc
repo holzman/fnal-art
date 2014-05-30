@@ -56,6 +56,22 @@ using namespace cet;
 using namespace std;
 using art::rootNames::metaBranchRootName;
 
+namespace {
+  void insert_md_row(sqlite3_stmt * stmt,
+                     std::pair<std::string, std::string> const & kv)
+  {
+    std::string const & theName  (kv.first);
+    std::string const & theValue (kv.second);
+    sqlite3_bind_text(stmt, 1, theName.c_str(),
+                      theName.size() + 1, SQLITE_STATIC);
+    sqlite3_bind_text(stmt, 2, theValue.c_str(),
+                      theValue.size() + 1, SQLITE_STATIC);
+    sqlite3_step(stmt);
+    sqlite3_reset(stmt);
+    sqlite3_clear_bindings(stmt);
+  }
+}
+
 namespace art {
 
   RootOutputFile::RootOutputFile(RootOutput *om, string const& fileName)
@@ -83,13 +99,16 @@ namespace art {
     pHistory_(0),
     eventTree_(static_cast<EventPrincipal *>(0),
                filePtr_, InEvent, pEventAux_, pEventProductProvenanceVector_,
-               om_->basketSize(), om_->splitLevel(), om_->treeMaxVirtualSize()),
+               om_->basketSize(), om_->splitLevel(), om_->treeMaxVirtualSize(),
+               om_->saveMemoryObjectThreshold()),
     subRunTree_(static_cast<SubRunPrincipal *>(0),
                 filePtr_, InSubRun, pSubRunAux_, pSubRunProductProvenanceVector_,
-                om_->basketSize(), om_->splitLevel(), om_->treeMaxVirtualSize()),
+                om_->basketSize(), om_->splitLevel(), om_->treeMaxVirtualSize(),
+                om_->saveMemoryObjectThreshold()),
     runTree_(static_cast<RunPrincipal *>(0),
              filePtr_, InRun, pRunAux_, pRunProductProvenanceVector_,
-             om_->basketSize(), om_->splitLevel(), om_->treeMaxVirtualSize()),
+             om_->basketSize(), om_->splitLevel(), om_->treeMaxVirtualSize(),
+             om_->saveMemoryObjectThreshold()),
     treePointers_(),
     dataTypeReported_(false),
     metaDataHandle_(filePtr_.get(), "RootFileDB", SQLITE_OPEN_CREATE | SQLITE_OPEN_READWRITE)
@@ -268,7 +287,7 @@ namespace art {
     sqlite3_exec(metaDataHandle_,
                  "BEGIN TRANSACTION; " // +
                  "DROP TABLE IF EXISTS FileCatalog_metadata; " // +
-                 "CREATE TABLE FileCatalog_metadata(ID PRIMARY KEY," //+
+                 "CREATE TABLE FileCatalog_metadata(ID INTEGER PRIMARY KEY," //+
                  "                                  Name, Value); " // +
                  "COMMIT;",
                  0,
@@ -281,17 +300,14 @@ namespace art {
     sqlite3_prepare_v2(metaDataHandle_,
                        "INSERT INTO FileCatalog_metadata(Name, Value) VALUES(?, ?);",
                        -1, &stmt, NULL);
-    for ( auto const & nvp : md ) {
-      std::string const & theName  (nvp.first);
-      std::string const & theValue (nvp.second);
-      sqlite3_bind_text(stmt, 1, theName.c_str(),
-               theName.size() + 1, SQLITE_STATIC);
-      sqlite3_bind_text(stmt, 2, theValue.c_str(),
-               theValue.size() + 1, SQLITE_STATIC);
-      sqlite3_step(stmt);
-      sqlite3_reset(stmt);
-      sqlite3_clear_bindings(stmt);
+    for ( auto const & kv : md ) {
+      insert_md_row(stmt, kv);
     }
+    // Add our own specific information:
+    insert_md_row(stmt, { "file_format", "artroot" });
+    insert_md_row(stmt, { "file_format_era", getFileFormatEra() });
+    insert_md_row(stmt, { "file_format_version",
+          std::to_string(getFileFormatVersion()) });
     sqlite3_finalize(stmt);
     sqlite3_exec(metaDataHandle_, "END TRANSACTION;", 0, 0, SQLErrMsg());
   }

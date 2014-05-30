@@ -17,7 +17,7 @@
 
 #include "art/Framework/Core/Frameworkfwd.h"
 #include "art/Framework/Core/OutputModule.h"
-#include "art/Framework/IO/PostCloseFileRenamer.h"
+#include "art/Framework/IO/FileStatsCollector.h"
 #include "boost/scoped_ptr.hpp"
 #include "cpp0x/array"
 #include "fhiclcpp/ParameterSet.h"
@@ -40,7 +40,8 @@ private:
     int const& compressionLevel() const {return compressionLevel_;}
     int const& basketSize() const {return basketSize_;}
     int const& splitLevel() const {return splitLevel_;}
-    int const& treeMaxVirtualSize() const {return treeMaxVirtualSize_;}
+    int64_t const& treeMaxVirtualSize() const {return treeMaxVirtualSize_;}
+    int64_t const & saveMemoryObjectThreshold() const { return saveMemoryObjectThreshold_; }
     bool const& fastCloning() const {return fastCloning_;}
     DropMetaData const& dropMetaData() const {return dropMetaData_;}
     bool const& dropMetaDataForDroppedData() const {return dropMetaDataForDroppedData_;}
@@ -112,14 +113,16 @@ private:
     int const compressionLevel_;
     int const basketSize_;
     int const splitLevel_;
-    int const treeMaxVirtualSize_;
+    int64_t const treeMaxVirtualSize_;
+    int64_t const saveMemoryObjectThreshold_;
     bool fastCloning_;
     DropMetaData dropMetaData_;
     bool dropMetaDataForDroppedData_;
     std::string const moduleLabel_;
     int inputFileCount_;
     boost::scoped_ptr<RootOutputFile> rootOutputFile_;
-    PostCloseFileRenamer fileRenamer_;
+    FileStatsCollector fstats_;
+    std::string const filePattern_;
     std::string tmpDir_;
     std::string lastClosedFileName_;
   };
