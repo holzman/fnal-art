@@ -67,7 +67,7 @@ find_package(CLHEP 2.1.2.2 REQUIRED)
 
 # Need to implement
 # Could ROOT supply it (or just TSQLiteServer?)
-find_package(sqlite3 3.7.8 REQUIRED)
+find_package(SQLite3 3.7.8 REQUIRED)
 
 # Cross check with what ROOT supply - ideally would like component
 # based checks.
