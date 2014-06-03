@@ -55,18 +55,22 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FNALCore_CXX_FLAGS}")
 # Other issues - could ROOT supply some of these, e.g. sqlite3
 # gccxml, tbb?
 # Need to implement
-find_package(cppunit 1.12.1 REQUIRED)
 
 # Is supplied by CMake, but no version checking, so need to check
-find_package(GCCXML 0.9.0 REQUIRED)
+# Also, this is only used "behind the scenes" via ROOT's genreflex script
+# never directly, so strictly speaking it's ROOT's responsibility
+# to handle this for us.
+#find_package(GCCXML 0.9.0 REQUIRED)
 
 # CLHEP supplies a CMake project config...
 find_package(CLHEP 2.1.2.2 REQUIRED)
 
 # Need to implement
+# Could ROOT supply it (or just TSQLiteServer?)
 find_package(sqlite3 3.7.8 REQUIRED)
 
-# Cross check with what ROOT supply
+# Cross check with what ROOT supply - ideally would like component
+# based checks.
 find_package(ROOT 5.34.00 REQUIRED)
 
 # Need to implement
@@ -83,7 +87,13 @@ include(BuildPlugins)
 #add_subdirectory (art)
 
 # testing
-#add_subdirectory(test)
+option(ART_ENABLE_TESTING "Built unit tests for art" OFF)
+if(ART_ENABLE_TESTING)
+  # cppunit *only* needed for testing
+  enable_testing()
+  find_package(cppunit 1.12.1 REQUIRED)
+  add_subdirectory(test)
+endif()
 
 # ups - table and config files
 #add_subdirectory(ups)
