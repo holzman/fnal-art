@@ -42,7 +42,7 @@ include(CheckCXXCompilerFlag)
 # Required Third Party
 # - Core library(ies), which will supply us with Boost
 # For now use FNALCore, easy switch out to multi modules later if needed
-find_package(FNALCore REQUIRED)
+find_package(FNALCore 1.0.0 REQUIRED)
 
 # TODO: FNALCore needs to tell us about the Boost it used.
 
