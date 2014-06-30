@@ -45,7 +45,6 @@ include(CheckCXXCompilerFlag)
 find_package(FNALCore 1.0.0 REQUIRED)
 
 # TODO: FNALCore needs to tell us about the Boost it used.
-
 # FNALCore provides an interface to the C++ standard, so use its flags
 # Could also check for compiler/stdlib compatiblity.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FNALCore_CXX_FLAGS}")

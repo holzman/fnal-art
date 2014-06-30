@@ -6,15 +6,11 @@ set(CMAKE_MODULE_PATH
 include(ReflexTools_t)
 
 # project name
-add_library(test_Integration
-  SHARED
-  ToySource.cc
-)
-
-target_link_libraries(test_Integration
+art_make_library(SOURCE ToySource.cc
+  LIBRARIES art_Framework_IO_Sources
   art_Framework_Core
   ${FHICLCPP}
-)
+  )
 
 set_source_files_properties(MixFilterTestETS_module.cc
   PROPERTIES COMPILE_DEFINITIONS ART_TEST_EVENTS_TO_SKIP_CONST=0
@@ -48,10 +44,10 @@ simple_plugin(DropTestAnalyzer            "module"  NO_INSTALL USE_BOOST_UNIT )
 simple_plugin(DropTestParentageFaker      "module"  NO_INSTALL )
 simple_plugin(FailingAnalyzer             "module"  NO_INSTALL )
 simple_plugin(FailingProducer             "module"  NO_INSTALL )
-simple_plugin(FlushingGenerator           "source"  NO_INSTALL art_Framework_IO_Sources )
+simple_plugin(FlushingGenerator           "source"  NO_INSTALL )
 simple_plugin(FlushingGeneratorTest       "module"  NO_INSTALL )
 simple_plugin(FlushingGeneratorTestFilter "module"  NO_INSTALL )
-simple_plugin(GeneratorTest               "source"  NO_INSTALL art_Framework_IO_Sources )
+simple_plugin(GeneratorTest               "source"  NO_INSTALL )
 simple_plugin(InFlightConfiguration       "service" NO_INSTALL USE_BOOST_UNIT art_Framework_Services_Registry art_Framework_Services_UserInteraction art_Framework_Services_System_PathSelection_service )
 simple_plugin(IntProducer                 "module"  NO_INSTALL )
 simple_plugin(IntTestAnalyzer             "module"  NO_INSTALL )
@@ -91,8 +87,8 @@ simple_plugin(TestProvenanceDumper        "module"  NO_INSTALL USE_BOOST_UNIT )
 simple_plugin(TestResultAnalyzer          "module"  NO_INSTALL )
 simple_plugin(TestServiceUsingService     "module"  NO_INSTALL USE_BOOST_UNIT )
 simple_plugin(Throwing                    "service" NO_INSTALL )
-simple_plugin(ToyRawFileInput             "source"  NO_INSTALL USE_BOOST_UNIT test_Integration art_Framework_IO_Sources )
-simple_plugin(ToyRawInput                 "source"  NO_INSTALL USE_BOOST_UNIT test_Integration art_Framework_IO_Sources )
+simple_plugin(ToyRawFileInput             "source"  NO_INSTALL USE_BOOST_UNIT test_Integration )
+simple_plugin(ToyRawInput                 "source"  NO_INSTALL USE_BOOST_UNIT test_Integration )
 simple_plugin(ToyRawInputTester           "module"  NO_INSTALL )
 simple_plugin(ToyRawProductAnalyzer       "module"  NO_INSTALL )
 simple_plugin(U_S                         "module"  NO_INSTALL ALLOW_UNDERSCORES )
@@ -845,18 +841,35 @@ cet_test(SAM_metadata HANDBUILT
   --sam-application-family "Ethel"
   --sam-application-version "v0.00.01a"
   --sam-file-type "MC"
+  --sam-run-type "MCChallenge"
   --sam-data-tier "The one with the thickest frosting"
+  --sam-group "MyGang"
   DATAFILES
   fcl/SAMMetadata_w.fcl
 )
 
-cet_test(SAM_metadata_verify HANDBUILT
+set(date_regex "[0-9][0-9][0-9][0-9]-[01][0-9]-[0-3][0-9]T[0-2][0-9]:[0-5][0-9]:[0-5][0-9](,[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9])?")
+
+# Pipe the output of sam_metadata_dumper through the following perl
+# command to get a suitable regex:
+#
+# perl -wne 'BEGIN { print "^"; }; chomp; s&([\[\]\.])&\\\\${1}&g; s&\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:,\d{9})?&\${date_regex}&g; s&"&\\"&g; print "$_\\n"; END { print "\$\n"; }'
+
+cet_test(SAM_metadata_verify_hr HANDBUILT
+  TEST_EXEC sam_metadata_dumper
+  TEST_ARGS -H -s ../SAM_metadata.d/out.root
+  TEST_PROPERTIES DEPENDS SAM_metadata
+  PASS_REGULAR_EXPRESSION
+  "^\nFile catalog metadata from file \\.\\./SAM_metadata\\.d/out\\.root:\n\n 1: applicationFamily   Ethel\n 2: applicationVersion  v0\\.00\\.01a\n 3: fileType            MC\n 4: run_type            MCChallenge\n 5: group               MyGang\n 6: process_name        SAMMetadataW\n 7: testMetadata        success!\n 8: dataTier            The one with the thickest frosting\n 9: streamName          o1\n10: file_format         artroot\n11: file_format_era     ART_2011a\n12: file_format_version 6\n13: start_time          ${date_regex}\n14: end_time            ${date_regex}\n15: runs                \\[ \\[ 1, 0, \"MCChallenge\" \\] \\]\n16: event_count         1\n17: first_event         \\[ 1, 0, 1 \\]\n18: last_event          \\[ 1, 0, 1 \\]\n-------------------------------\n$"
+  )
+
+cet_test(SAM_metadata_verify_JSON HANDBUILT
   TEST_EXEC sam_metadata_dumper
   TEST_ARGS -s ../SAM_metadata.d/out.root
   TEST_PROPERTIES DEPENDS SAM_metadata
   PASS_REGULAR_EXPRESSION
-  "\n\n 1: applicationFamily   Ethel\n 2: applicationVersion  v0\\.00\\.01a\n 3: file_type           MC\n 4: process_name        SAMMetadataW\n 5: testMetadata        success!\n 6: dataTier            The one with the thickest frosting\n 7: streamName          o1\n 8: file_format         artroot\n 9: file_format_era     ART_2011a\n10: file_format_version 5\n-"
-)
+  "^{\n  \"\\.\\./SAM_metadata\\.d/out\\.root\": {\n    \"applicationFamily\": \"Ethel\",\n    \"applicationVersion\": \"v0\\.00\\.01a\",\n    \"file_type\": \"MC\",\n    \"run_type\": \"MCChallenge\",\n    \"group\": \"MyGang\",\n    \"process_name\": \"SAMMetadataW\",\n    \"testMetadata\": \"success!\",\n    \"data_tier\": \"The one with the thickest frosting\",\n    \"data_stream\": \"o1\",\n    \"file_format\": \"artroot\",\n    \"file_format_era\": \"ART_2011a\",\n    \"file_format_version\": 6,\n    \"start_time\": \"${date_regex}\",\n    \"end_time\": \"${date_regex}\",\n    \"runs\": \\[ \\[ 1, 0, \"MCChallenge\" \\] \\],\n    \"event_count\": 1,\n    \"first_event\": \\[ 1, 0, 1 \\],\n    \"last_event\": \\[ 1, 0, 1 \\]\n  }\n}\n$"
+  )
 
 cet_test(GeneratorSource_t HANDBUILT
   TEST_EXEC art
@@ -1011,14 +1024,21 @@ cet_test(TestMetadata_plugin_t HANDBUILT
   fcl/TestMetadata_Plugin_t.fcl
 )
 
-cet_test(TestMetadata_verify HANDBUILT
+cet_test(TestMetadata_verify_hr HANDBUILT
+  TEST_EXEC sam_metadata_dumper
+  TEST_ARGS -H -s ../TestMetadata_plugin_t.d/out.root
+  TEST_PROPERTIES DEPENDS TestMetadata_plugin_t
+  PASS_REGULAR_EXPRESSION
+  "^\nFile catalog metadata from file \\.\\./TestMetadata_plugin_t\\.d/out\\.root:\n\n 1: fileType            unknown\n 2: process_name        DEVEL\n 3: key1                value1\n 4: key2                value2\n 5: file_format         artroot\n 6: file_format_era     ART_2011a\n 7: file_format_version 6\n 8: start_time          ${date_regex}\n 9: end_time            ${date_regex}\n10: event_count         1\n11: first_event         \\[ 1, 0, 1 \\]\n12: last_event          \\[ 1, 0, 1 \\]\n-------------------------------\n$"
+  )
+
+cet_test(TestMetadata_verify_JSON HANDBUILT
   TEST_EXEC sam_metadata_dumper
   TEST_ARGS -s ../TestMetadata_plugin_t.d/out.root
   TEST_PROPERTIES DEPENDS TestMetadata_plugin_t
   PASS_REGULAR_EXPRESSION
-  "\n\n1: process_name        DEVEL\n2: key1                value1\n3: key2                value2\n4: file_format         artroot\n5: file_format_era     ART_2011a\n6: file_format_version 5\n-"
-)
-
+  "^{\n  \"\\.\\./TestMetadata_plugin_t\\.d/out\\.root\": {\n    \"file_type\": \"unknown\",\n    \"process_name\": \"DEVEL\",\n    \"key1\": \"value1\",\n    \"key2\": \"value2\",\n    \"file_format\": \"artroot\",\n    \"file_format_era\": \"ART_2011a\",\n    \"file_format_version\": 6,\n    \"start_time\": \"${date_regex}\",\n    \"end_time\": \"${date_regex}\",\n    \"event_count\": 1,\n    \"first_event\": \\[ 1, 0, 1 \\],\n    \"last_event\": \\[ 1, 0, 1 \\]\n  }\n}\n$"
+  )
 
 add_subdirectory(event-shape)
 add_subdirectory(high-memory)
