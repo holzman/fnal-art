@@ -70,10 +70,15 @@ find_package(SQLite3 3.7.8 REQUIRED)
 
 # Cross check with what ROOT supply - ideally would like component
 # based checks.
-find_package(ROOT 5.34.00 REQUIRED)
+find_package(ROOT 5.34.00 REQUIRED Reflex)
 
 # Need to implement
 find_package(TBB 4.1.0 REQUIRED)
+
+#-----------------------------------------------------------------------
+# Set up paths for all subbuilds
+#
+include_directories(${PROJECT_SOURCE_DIR})
 
 # macros for art_dictionary and simple_plugin
 #include(ArtDictionary)
@@ -83,7 +88,7 @@ find_package(TBB 4.1.0 REQUIRED)
 #add_subdirectory(tools)
 
 # source
-#add_subdirectory(art)
+add_subdirectory(art)
 
 # testing
 option(ART_ENABLE_TESTING "Built unit tests for art" OFF)
