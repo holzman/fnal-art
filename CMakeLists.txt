@@ -59,7 +59,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FNALCore_CXX_FLAGS}")
 # Also, this is only used "behind the scenes" via ROOT's genreflex script
 # never directly, so strictly speaking it's ROOT's responsibility
 # to handle this for us.
-#find_package(GCCXML 0.9.0 REQUIRED)
+find_package(GCCXML 0.9.0 REQUIRED)
 
 # CLHEP supplies a CMake project config...
 find_package(CLHEP 2.1.2.2 REQUIRED)
@@ -73,25 +73,25 @@ find_package(SQLite3 3.7.8 REQUIRED)
 find_package(ROOT 5.34.00 REQUIRED)
 
 # Need to implement
-find_package(tbb 4.1.0 REQUIRED)
+find_package(TBB 4.1.0 REQUIRED)
 
 # macros for art_dictionary and simple_plugin
-include(ArtDictionary)
-include(BuildPlugins)
+#include(ArtDictionary)
+#include(BuildPlugins)
 
 # tools (first)
 #add_subdirectory(tools)
 
 # source
-#add_subdirectory (art)
+#add_subdirectory(art)
 
 # testing
 option(ART_ENABLE_TESTING "Built unit tests for art" OFF)
 if(ART_ENABLE_TESTING)
   # cppunit *only* needed for testing
   enable_testing()
-  find_package(cppunit 1.12.1 REQUIRED)
-  add_subdirectory(test)
+  find_package(CppUnit 1.12.1 REQUIRED)
+  #add_subdirectory(test)
 endif()
 
 # ups - table and config files
