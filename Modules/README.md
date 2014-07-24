@@ -73,6 +73,21 @@ Stuff from CetBuildTools
     - Uses `find_tbb_offloads` as in `cet_make_library`.
     - Can specify the `USE_BOOST_UNIT` to compile/link to Boost.Unit...
   - If plugin to be installed, then its destination is `${flavorqual_dir}/lib`
+- `cet_make_library` : `CBT::CetMake.cmake`
+  - Basically a wrapper around `add_library/target_link_libraries/install`
+  - Plus a flag to handle NO_INSTALL (i.e. alocal/test library)
+  - Plus a flag to handle adding a static library as well.
+  - Takes a source list, so no globbing.
+  - It uses some command `find_tbb_offloads`. Appears that this checks
+    sources for something, then modifies LINK_FLAGS property of target
+    if check suceeds. Cannot find command to check what it does though...
+  - Some odd processing of the LIBRARIES list (what it gets linked to).
+    All libs are added, but some are converted to upper case names. Not
+    at all clear why this is done.
+  - Calls `cet_add_to_library_list` with library name as argument.
+    That just adds the name to an internally cached list variable.
+  - If installed, destination is set to "product" based paths.
+
 
 Stuff from Art
 --------------
@@ -122,19 +137,4 @@ Stuff from Art
      followed by any further `DICT_LIBRARIES`.
    - A call is then made to `art_dictionary`, with
      `art_make_dict_libraries` if it exists.
-- `cet_make_library` : `CBT::CetMake.cmake`
-  - Basically a wrapper around `add_library/target_link_libraries/install`
-  - Plus a flag to handle NO_INSTALL (i.e. alocal/test library)
-  - Plus a flag to handle adding a static library as well.
-  - Takes a source list, so no globbing.
-  - It uses some command `find_tbb_offloads`. Appears that this checks
-    sources for something, then modifies LINK_FLAGS property of target
-    if check suceeds. Cannot find command to check what it does though...
-  - Some odd processing of the LIBRARIES list (what it gets linked to).
-    All libs are added, but some are converted to upper case names. Not
-    at all clear why this is done.
-  - Calls `cet_add_to_library_list` with library name as argument.
-    That just adds the name to an internally cached list variable.
-  - If installed, destination is set to "product" based paths.
-
 
