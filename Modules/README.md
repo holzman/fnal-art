@@ -40,8 +40,15 @@ art/Utilities
 -------------
 Calls `art_make`, `install_headers` and `install_source`.
 
-Location of CMake Functions/Macros
-==================================
+Location/Purpose of CMake Functions/Macros
+==========================================
+Using the above section on Usage, try and drill down through the layers
+of calls and see what underlying CMake functionality is actually wrapped.
+List ordering at any point may be arbitrary, though would like to
+aim from lowest to highest calls.
+
+Stuff from CetBuildTools
+------------------------
 - `install_headers` : `CBT::InstallSource.cmake`
   - Globbing with hardcoding, relies of directory structure to function,
     nothing more than wrapper around `install(FILES ...)`.
@@ -49,6 +56,30 @@ Location of CMake Functions/Macros
   - Basically performs the task that a basic CPack setup should do.
     May install generated sources as well, but no real need to do
     this.
+- `simple_plugin` : `CBT::BasicPlugin.cmake`
+  - Basically a wrapper around `add_library`, `target_link_libraries` and
+    `install`.
+  - Name of plugin either set directly as `<name>_<type>` or derived
+    from the path to the directory where it was called from.
+    - Makes it sensitive to directory names, as these can't have
+      underscores for the derived name to work
+  - Always have one source file to generate one plugin.
+    - source file expected to be named `<name>_<type>.cc`
+    - call to `aad_library` with derived target names and this file,
+      always a SHARED library type.
+  - Then creates list of libraries to link to
+    - uses supplied libs, and copies code from `cet_make_library`
+      to process items in the based on path/name/uppercase.
+    - Uses `find_tbb_offloads` as in `cet_make_library`.
+    - Can specify the `USE_BOOST_UNIT` to compile/link to Boost.Unit...
+  - If plugin to be installed, then its destination is `${flavorqual_dir}/lib`
+
+Stuff from Art
+--------------
+- `_art_simple_plugin` : `ArtMake.cmake`
+  - Basically a wrapper around `simple_plugin`
+  - Takes `file`, `type` and list of link libraries as input and
+    adapts these to the interface of `simple_plugin`
 - `art_make_library` : `ArtMake.cmake`
   - Basically a wrapper around `cet_make_library`.
   - Can supply a name for the library, otherwise derived from current
