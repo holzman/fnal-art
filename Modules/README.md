@@ -87,7 +87,7 @@ Stuff from CetBuildTools
   - Calls `cet_add_to_library_list` with library name as argument.
     That just adds the name to an internally cached list variable.
   - If installed, destination is set to "product" based paths.
-
+- `build_dictionary` : `CBT::BuildDictionary.cmake`
 
 Stuff from Art
 --------------
@@ -95,6 +95,9 @@ Stuff from Art
   - Basically a wrapper around `simple_plugin`
   - Takes `file`, `type` and list of link libraries as input and
     adapts these to the interface of `simple_plugin`
+- `check_class_version` : `CheckClassVersion.cmake`
+- `art_dictionary` : `ArtDictionary.cmake`
+  - Wraps calls to `build_dictionary` and `check_class_version`
 - `art_make_library` : `ArtMake.cmake`
   - Basically a wrapper around `cet_make_library`.
   - Can supply a name for the library, otherwise derived from current
