@@ -95,7 +95,28 @@ Stuff from Art
   - Basically a wrapper around `simple_plugin`
   - Takes `file`, `type` and list of link libraries as input and
     adapts these to the interface of `simple_plugin`
-- `check_class_version` : `CheckClassVersion.cmake`
+- `check_class_version` : [`CheckClassVersion.cmake`](CheckClassVersion.cmak)
+  - Inclusion of `CheckClassVersion.cmake` results in a check for Python
+    support in ROOT via running `root-config`. This sets a variable
+    later used to protect the call to `checkClassVersion`
+  - Wraps the [`checkClassVersion`](../tools/checkClassVersion) script
+    inside `add_custom_target`
+    - NB: [the CMake script in tools](../tools/CMakeLists.txt) uses
+      `cet_script` to make an imported target for `checkClassVersion`
+  - Takes LIBRARIES arg, but using this results in FATAL_ERROR (not supported yet...)
+  - Takes UPDATE_IN_PLACE option which if set results in "-G" argument
+    being passed to `checkClassVersion` script
+  - Relies on local variable `dictname` being set prior to macro
+    invocation (does FATAL_ERROR if not set), so can only be called
+    after a `build_dictionary` call.
+  - Custom target only created if earlier check on ROOT Python support
+    was successful
+    - Runs `checkClassVersion` script using any passed down arguments,
+      a "-l" argument set to path to `lib<dictname>_dict` and a "-x"
+      argument set to `classes_def.xml` which must be in the source
+      directory from which the macro was invoked.
+    - Target gets dependencies on `classes_def.xml`, `<dictname>_dict`
+      `art_Framework_Core` and `checkClassVersion`
 - `art_dictionary` : `ArtDictionary.cmake`
   - Wraps calls to `build_dictionary` and `check_class_version`
 - `art_make_library` : `ArtMake.cmake`
