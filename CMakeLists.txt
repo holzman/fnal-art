@@ -105,5 +105,13 @@ endif()
 # CMake modules
 #add_subdirectory(Modules)
 
+#-----------------------------------------------------------------------
+# Documentation
+#
+option(ART_BUILD_DOCS "Build documentation for Art" ON)
+if(ART_BUILD_DOCS)
+  add_subdirectory(doc)
+endif()
+
 # packaging utility
 #include(UseCPack)
