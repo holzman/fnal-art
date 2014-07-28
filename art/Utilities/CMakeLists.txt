@@ -51,6 +51,8 @@ set(art_UTILITIES_HEADERS
   vectorTransform.h
   Verbosity.h
   WrappedClassName.h
+  )
+set(art_UTILITIES_DETAIL_HEADERS
   detail/math_private.h
   detail/metaprogramming.h
   )
@@ -82,6 +84,7 @@ set(art_UTILITIES_SOURCES
 add_library(art_Utilities
   SHARED
   ${art_UTILITIES_HEADERS}
+  ${art_UTILITIES_DETAIL_HEADERS}
   ${art_UTILITIES_SOURCES}
   )
 # No usage requirements for Root dirs, so add them here,
@@ -99,3 +102,20 @@ target_link_libraries(art_Utilities
   LINK_PRIVATE
    ${ROOT_Reflex_LIBRARY}
   )
+
+install(TARGETS art_Utilities
+  EXPORT ArtLibraries
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  COMPONENT Runtime
+  )
+install(FILES ${art_UTILITIES_HEADERS}
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Utilities
+  COMPONENT Development
+  )
+install(FILES ${art_UTILITIES_DETAIL_HEADERS}
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Utilities/detail
+  COMPONENT Development
+  )
+
