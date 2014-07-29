@@ -87,6 +87,12 @@ add_library(art_Utilities
   ${art_UTILITIES_DETAIL_HEADERS}
   ${art_UTILITIES_SOURCES}
   )
+set_target_properties(art_Utilities
+  PROPERTIES
+    VERSION ${art_VERSION}
+    SOVERSION ${art_SOVERSION}
+  )
+
 # No usage requirements for Root dirs, so add them here,
 # but due to Root's broken CMake config file, this won't
 # work directly.

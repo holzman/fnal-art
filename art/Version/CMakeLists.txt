@@ -10,7 +10,15 @@ add_library(art_Version SHARED
   GetReleaseVersion.h
   ${CMAKE_CURRENT_BINARY_DIR}/GetReleaseVersion.cc
   )
+set_target_properties(art_Version
+  PROPERTIES
+    VERSION ${art_VERSION}
+    SOVERSION ${art_SOVERSION}
+  )
 
+#-----------------------------------------------------------------------
+# Install lib and dev
+#
 install(TARGETS art_Version
   EXPORT ArtLibraries
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
