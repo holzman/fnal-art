@@ -13,7 +13,12 @@ project(art)
 #
 # The following numbers are *arbitrary* for now. Remember that
 # VERSION and SOVERSION do not neccessarily evolve in sync
+# - Hard code version plus splits (derive one from t'other later)
 set(art_VERSION "1.0.0")
+set(art_VERSION_MAJOR 1)
+set(art_VERSION_MINOR 0)
+set(art_VERSION_PATCH 0)
+
 set(art_SOVERSION "1.0.0")
 
 # - We can also use a postfix to distinguish the debug lib from
@@ -113,5 +118,8 @@ if(ART_BUILD_DOCS)
   add_subdirectory(doc)
 endif()
 
-# packaging utility
-#include(UseCPack)
+#-----------------------------------------------------------------------
+# Package for Source and Binary
+#
+include(ArtCPack)
+
