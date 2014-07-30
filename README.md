@@ -59,6 +59,7 @@ $ make install
 Status
 ======
 - No dictionary libraries built yet
+- Build of `art_Framework_Services_Registry`
 - Build of `art_Persistency_Common`
 - Build of `art_Persistency_Provenance`
 - Build of `art_Persistency_RootDB`
