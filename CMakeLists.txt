@@ -119,6 +119,37 @@ if(ART_BUILD_DOCS)
 endif()
 
 #-----------------------------------------------------------------------
+# Install support files - usage from install tree only...
+#
+configure_package_config_file(
+  Modules/artConfig.cmake.in
+  ${CMAKE_CURRENT_BINARY_DIR}/artConfig.cmake
+  INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/art-${art_VERSION}
+  PATH_VARS
+    CMAKE_INSTALL_INCLUDEDIR
+    CMAKE_INSTALL_LIBDIR
+  )
+
+write_basic_package_version_file(
+  ${CMAKE_CURRENT_BINARY_DIR}/artConfigVersion.cmake
+  VERSION ${art_VERSION}
+  COMPATIBILITY AnyNewerVersion
+  )
+
+install(FILES
+  ${CMAKE_CURRENT_BINARY_DIR}/artConfig.cmake
+  ${CMAKE_CURRENT_BINARY_DIR}/artConfigVersion.cmake
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/art-${art_VERSION}
+  COMPONENT Development
+  )
+
+install(EXPORT ArtLibraries
+  DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/art-${art_VERSION}
+  NAMESPACE art::
+  COMPONENT Development
+  )
+
+#-----------------------------------------------------------------------
 # Package for Source and Binary
 #
 include(ArtCPack)

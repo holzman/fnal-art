@@ -1,0 +1,17 @@
+# - art CMake package configuration file
+# Minimal for now
+
+# - API/ABI details
+set(art_VERSION @art_VERSION@)
+
+@PACKAGE_INIT@
+
+set_and_check(art_INCLUDE_DIRS "@PACKAGE_CMAKE_INSTALL_INCLUDEDIR@/art")
+
+# - Third-party details/refinds
+
+# - Import targets
+include("${CMAKE_CURRENT_LIST_DIR}/ArtLibraries.cmake")
+
+
+
