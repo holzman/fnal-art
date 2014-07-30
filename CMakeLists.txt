@@ -78,6 +78,7 @@ find_package(SQLite3 3.7.8 REQUIRED)
 find_package(ROOT 5.34.00 REQUIRED
   Core
   Cint
+  Cintex
   Reflex
   RIO
   Thread

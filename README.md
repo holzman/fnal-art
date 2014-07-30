@@ -58,6 +58,7 @@ $ make install
 
 Status
 ======
+- Build of `art_Persistency_Provenance`
 - Build of `art_Persistency_RootDB`
 - Generate and install minimal CMake support files so that client projects
   can use Art via CMake's `find_package` command.

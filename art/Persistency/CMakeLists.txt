@@ -4,7 +4,7 @@
 # build Persistency libraries
 #add_subdirectory (CLHEPDictionaries)
 #add_subdirectory (Common)
-#add_subdirectory (Provenance)
+add_subdirectory(Provenance)
 add_subdirectory(RootDB)
 #add_subdirectory (StdDictionaries)
 #add_subdirectory (WrappedStdDictionaries)
