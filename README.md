@@ -58,6 +58,9 @@ $ make install
 
 Status
 ======
+- Generate and install minimal CMake support files so that client projects
+  can use Art via CMake's `find_package` command.
+- Build of `art_Ntuple`
 - Build of `art_Utilities`
 - Build of `art_Version`
 - FindXXX.cmake modules supplied for SQLite, TBB, and CPPUnit.
