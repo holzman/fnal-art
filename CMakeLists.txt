@@ -75,7 +75,13 @@ find_package(SQLite3 3.7.8 REQUIRED)
 
 # Cross check with what ROOT supply - ideally would like component
 # based checks.
-find_package(ROOT 5.34.00 REQUIRED Reflex)
+find_package(ROOT 5.34.00 REQUIRED
+  Core
+  Cint
+  Reflex
+  RIO
+  Thread
+  )
 
 # Need to implement
 find_package(TBB 4.1.0 REQUIRED)
