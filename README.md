@@ -58,6 +58,8 @@ $ make install
 
 Status
 ======
+- No dictionary libraries built yet
+- Build of `art_Persistency_Common`
 - Build of `art_Persistency_Provenance`
 - Build of `art_Persistency_RootDB`
 - Generate and install minimal CMake support files so that client projects
@@ -66,3 +68,4 @@ Status
 - Build of `art_Utilities`
 - Build of `art_Version`
 - FindXXX.cmake modules supplied for SQLite, TBB, and CPPUnit.
+
