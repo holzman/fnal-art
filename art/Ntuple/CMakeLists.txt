@@ -19,7 +19,7 @@ target_include_directories(art_Ntuple
 target_link_libraries(art_Ntuple ${SQLite3_LIBRARIES})
 
 # Set any additional properties
-set_target_properties(art_Version
+set_target_properties(art_Ntuple
   PROPERTIES
    VERSION ${art_VERSION}
    SOVERSION ${art_SOVERSION}
