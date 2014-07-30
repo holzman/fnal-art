@@ -11,7 +11,7 @@ add_library(art_Ntuple SHARED ${art_Ntuple_HEADERS} Transaction.cc)
 
 # Describe library include interface
 target_include_directories(art_Ntuple
-  INTERFACE
+  PUBLIC
    ${SQLite3_INCLUDE_DIRS}
    )
 
