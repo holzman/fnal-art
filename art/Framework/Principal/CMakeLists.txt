@@ -71,6 +71,7 @@ target_link_libraries(art_Framework_Principal
   art_Utilities
   art_Persistency_Common
   art_Framework_Services_Registry
+  FNALCore::FNALCore
   ${CLHEP_LIBRARIES}
   )
 
