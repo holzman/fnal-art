@@ -27,6 +27,8 @@ Requirements
 ------------
 - CMake 2.8.11 or above
 - C++0X/11 compliant compiler (GCC, Clang)
+  - NB: Full list of needed C++11 features not fully determined
+  - Usage of FNALCore does not guarantee this
 - [FNALCore](https://github.com/LBNE/FNALCore) library
   - Correct installation of this will also provide [Boost](http://www.boost.org)
 - [GCCXML](http://gccxml.github.io/HTML/Index.html) 0.9.0 or higher
@@ -59,6 +61,10 @@ $ make install
 Status
 ======
 - No dictionary libraries built yet
+- Build of `art_Framework_Principal`
+  - Discovered that this makes use of art/Persistency/Common/PtrVector.h
+    which uses [ref-qualified](http://en.cppreference.com/w/cpp/language/member_functions) member functions. With GNU compilers, this is only
+    supported with GCC 4.8 and higher.
 - Build of `art_Framework_Services_Registry`
 - Build of `art_Persistency_Common`
 - Build of `art_Persistency_Provenance`

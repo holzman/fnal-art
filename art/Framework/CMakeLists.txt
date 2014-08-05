@@ -3,5 +3,5 @@
 #add_subdirectory (EventProcessor)
 #add_subdirectory (IO)
 #add_subdirectory (Modules)
-#add_subdirectory (Principal)
+add_subdirectory(Principal)
 add_subdirectory(Services)
