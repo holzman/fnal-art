@@ -2,5 +2,5 @@
 add_subdirectory(FileServiceInterfaces)
 #add_subdirectory (Optional)
 add_subdirectory(Registry)
-#add_subdirectory (System)
+add_subdirectory(System)
 #add_subdirectory (UserInteraction)

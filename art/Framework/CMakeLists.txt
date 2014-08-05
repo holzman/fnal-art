@@ -163,12 +163,12 @@ add_subdirectory(Principal)
 #     - TrivialFileDelivery (service plugin)
 #     - TrivialFileTransfer (service plugin)
 # - (subdir) System (all service plugins)
-#   - CurrentModule -> art_Persistency_Provenance
-#   - FileCatalogMetadata
-#   - FloatingPointControl
+#   - CurrentModule -> art_Persistency_Provenance (BUILT)
+#   - FileCatalogMetadata (BUILT)
+#   - FloatingPointControl (BUILT)
 #   - PathSelection -> art_Framework_Core
 #   - ScheduleContext -> art_Framework_Core
-#   - TriggerNameService
+#   - TriggerNameService (BUILT)
 # - (subdir) art_Framework_Services_UserInteraction
 #   - links to
 #     - art_Framework_Core

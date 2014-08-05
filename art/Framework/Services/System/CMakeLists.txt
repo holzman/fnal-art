@@ -1,12 +1,93 @@
+# - Build art_Framework_Services_System plugins
+# All service plugins, so require linking to art_Framework_Services_Registry
+set(art_Framework_Services_System_HEADERS)
+set(art_Framework_Services_System_TARGETS)
+
+# - CurrentModule
+add_library(art_Framework_Services_System_CurrentModule_service
+  SHARED
+  CurrentModule.h
+  CurrentModule_service.cc
+  )
+list(APPEND art_Framework_Services_System_HEADERS CurrentModule.h)
+list(APPEND art_Framework_Services_System_TARGETS art_Framework_Services_System_CurrentModule_service)
+target_link_libraries(art_Framework_Services_System_CurrentModule_service
+  art_Framework_Services_Registry
+  art_Persistency_Provenance
+  )
+
+# - FileCatalogMetadata
+add_library(art_Framework_Services_System_FileCatalogMetadata_service
+  SHARED
+  FileCatalogMetadata.h
+  FileCatalogMetadata_service.cc
+  )
+list(APPEND art_Framework_Services_System_HEADERS FileCatalogMetadata.h)
+list(APPEND art_Framework_Services_System_TARGETS art_Framework_Services_System_FileCatalogMetadata_service)
+target_link_libraries(art_Framework_Services_System_FileCatalogMetadata_service
+  art_Framework_Services_Registry
+  )
+
+# - FloatingPointControl
+add_library(art_Framework_Services_System_FloatingPointControl_service
+  SHARED
+  FloatingPointControl.h
+  FloatingPointControl_service.cc
+  )
+list(APPEND art_Framework_Services_System_HEADERS FloatingPointControl.h)
+list(APPEND art_Framework_Services_System_TARGETS art_Framework_Services_System_FloatingPointControl_service)
+target_link_libraries(art_Framework_Services_System_FloatingPointControl_service
+  art_Framework_Services_Registry
+  )
+
+# - PathSelection
+
+# - ScheduleContext
+
+# - TriggerNamesService
+add_library(art_Framework_Services_System_TriggerNamesService_service
+  SHARED
+  TriggerNamesService.h
+  TriggerNamesService_service.cc
+  )
+list(APPEND art_Framework_Services_System_HEADERS TriggerNamesService.h)
+list(APPEND art_Framework_Services_System_TARGETS art_Framework_Services_System_TriggerNamesService_service)
+target_link_libraries(art_Framework_Services_System_TriggerNamesService_service
+  art_Framework_Services_Registry
+  )
+
+
+# Set any additional properties
+set_target_properties(${art_Framework_Services_System_TARGETS}
+  PROPERTIES
+   VERSION ${art_VERSION}
+   SOVERSION ${art_SOVERSION}
+  )
+
+install(TARGETS ${art_Framework_Services_System_TARGETS}
+  EXPORT ArtLibraries
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  COMPONENT Runtime
+  )
+install(FILES ${art_Framework_Services_System_HEADERS}
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Framework/Services/System
+  COMPONENT Development
+  )
+
+#-----------------------------------------------------------------------
+# Old Stuff
+#
 # project name
-project(art_Framework_Services_System)
-
-simple_plugin(CurrentModule "service" art_Persistency_Provenance)
-simple_plugin(FileCatalogMetadata "service")
-simple_plugin(FloatingPointControl "service")
-simple_plugin(PathSelection "service" art_Framework_Core)
-simple_plugin(ScheduleContext "service" art_Framework_Core)
-simple_plugin(TriggerNamesService "service")
-
-install_headers(SUBDIRS detail)
-install_source(SUBDIRS detail)
+#project(art_Framework_Services_System)
+#
+#simple_plugin(CurrentModule "service" art_Persistency_Provenance)
+#simple_plugin(FileCatalogMetadata "service")
+#simple_plugin(FloatingPointControl "service")
+#simple_plugin(PathSelection "service" art_Framework_Core)
+#simple_plugin(ScheduleContext "service" art_Framework_Core)
+#simple_plugin(TriggerNamesService "service")
+#
+#install_headers(SUBDIRS detail)
+#install_source(SUBDIRS detail)
