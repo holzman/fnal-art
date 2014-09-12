@@ -25,16 +25,17 @@ Installation
 ============
 Requirements
 ------------
-- CMake 2.8.11 or above
-- C++0X/11 compliant compiler (GCC, Clang)
+- CMake 2.8.12 or above
+- C++11 compliant compiler (GCC 4.8 or better, Clang 3.3 or better)
   - NB: Full list of needed C++11 features not fully determined
   - Usage of FNALCore does not guarantee this
 - [FNALCore](https://github.com/LBNE/FNALCore) library
   - Correct installation of this will also provide [Boost](http://www.boost.org)
+  - art requires Boost 1.53 or better
 - [GCCXML](http://gccxml.github.io/HTML/Index.html) 0.9.0 or higher
-- [CLHEP](http://proj-clhep.web.cern.ch/proj-clhep/) 2.1.2.2 or higher
-- [SQLite](http://www.sqlite.org/) 3.7.8 or higher
-- [ROOT](http://root.cern.ch) 5.34 series
+- [CLHEP](http://proj-clhep.web.cern.ch/proj-clhep/) 2.2.0.3 or higher
+- [SQLite](http://www.sqlite.org/) 3.8.5 or higher
+- [ROOT](http://root.cern.ch) 5.34.20 (or better 5 series)
 - [Intel TBB](https://www.threadingbuildingblocks.org/) 4.1.0 or higher
 
 **NB**: all C++ libraries must have been compiled against the *same*
@@ -60,6 +61,7 @@ $ make install
 
 Status
 ======
+- Update sources to upstream art v1.11.3
 - No dictionary libraries built yet
 - Build of `art_Framework_Principal`
   - Discovered that this makes use of art/Persistency/Common/PtrVector.h

@@ -1,7 +1,9 @@
 # - Art top level build
 # Project setup
-# Require 2.8.11 to get new interface export features
-cmake_minimum_required(VERSION 2.8.11)
+# Require 2.8.12 to:
+# - get new interface export features
+# - target ALIAS
+cmake_minimum_required(VERSION 2.8.12)
 project(art)
 
 #-----------------------------------------------------------------------
@@ -49,7 +51,14 @@ include(CheckCXXCompilerFlag)
 # For now use FNALCore, easy switch out to multi modules later if needed
 find_package(FNALCore 1.0.0 REQUIRED)
 
-# TODO: FNALCore needs to tell us about the Boost it used.
+# We need a minimum version of Boost, but rely on FNALCore to supply this
+# to use. So check our found FNALCore provides a suitable version
+set(art_MIN_BOOST_VERSION "1.53.0")
+
+if(FNALCore_BOOST_VERSION VERSION_LESS art_MIN_BOOST_VERSION)
+  message(FATAL_ERROR "Located version of FNALCore compiled against Boost ${FNALCore_BOOST_VERSION}\nart requires Boost >= ${art_MIN_BOOST_VERSION}")
+endif()
+
 # FNALCore provides an interface to the C++ standard, so use its flags
 # Could also check for compiler/stdlib compatiblity.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FNALCore_CXX_FLAGS}")
@@ -67,15 +76,14 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FNALCore_CXX_FLAGS}")
 find_package(GCCXML 0.9.0 REQUIRED)
 
 # CLHEP supplies a CMake project config...
-find_package(CLHEP 2.1.2.2 REQUIRED)
+find_package(CLHEP 2.2.0.3 REQUIRED)
 
-# Need to implement
-# Could ROOT supply it (or just TSQLiteServer?)
-find_package(SQLite3 3.7.8 REQUIRED)
+# SQLite3 - NB FNALCore also depends on and exposes this...
+find_package(SQLite3 3.8.5 REQUIRED)
 
 # Cross check with what ROOT supply - ideally would like component
 # based checks.
-find_package(ROOT 5.34.00 REQUIRED
+find_package(ROOT 5.34.20 REQUIRED
   Core
   Cint
   Cintex
