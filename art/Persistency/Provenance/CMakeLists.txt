@@ -100,6 +100,7 @@ target_include_directories(art_Persistency_Provenance
 # Describe library link interface - all Public for now
 target_link_libraries(art_Persistency_Provenance
   LINK_PUBLIC
+   art_Persistency_RootDB
    art_Utilities
    ${ROOT_Cintex_LIBRARY}
   LINK_PRIVATE

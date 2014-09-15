@@ -22,36 +22,37 @@ set(art_UTILITIES_HEADERS
   CRC32Calculator.h
   DebugMacros.h
   Digest.h
-  ensurePointer.h
-  ensureTable.h
   Exception.h
   ExceptionMessages.h
   FirstAbsoluteOrLookupWithDotPolicy.h
   FriendlyName.h
-  fwd.h
   GetPassID.h
   GetReleaseVersion.h
   HRRealTime.h
   InputTag.h
   JobMode.h
   MallocOpts.h
-  md5.h
   OutputFileInfo.h
-  parent_path.h
-  pointersEqual.h
-  quiet_unit_test.hpp
   RegexMatch.h
   RootHandlers.h
   ScheduleID.h
   TestHelper.h
   ThreadSafeIndexedRegistry.h
   TypeID.h
-  unique_filename.h
   UnixSignalHandlers.h
-  vectorTransform.h
   Verbosity.h
   WrappedClassName.h
+  ensurePointer.h
+  ensureTable.h
+  fwd.h
+  md5.h
+  parent_path.h
+  pointersEqual.h
+  quiet_unit_test.hpp
+  unique_filename.h
+  vectorTransform.h
   )
+
 set(art_UTILITIES_DETAIL_HEADERS
   detail/math_private.h
   detail/metaprogramming.h
