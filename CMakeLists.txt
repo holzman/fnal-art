@@ -141,8 +141,8 @@ include_directories(${PROJECT_SOURCE_DIR})
 add_subdirectory(art)
 
 # testing
-option(ART_ENABLE_TESTING "Built unit tests for art" OFF)
-if(ART_ENABLE_TESTING)
+option(art_ENABLE_TESTING "Built unit tests for art" OFF)
+if(art_ENABLE_TESTING)
   # cppunit *only* needed for testing
   enable_testing()
   find_package(CppUnit 1.12.1 REQUIRED)
@@ -158,8 +158,8 @@ endif()
 #-----------------------------------------------------------------------
 # Documentation
 #
-option(ART_BUILD_DOCS "Build documentation for Art" ON)
-if(ART_BUILD_DOCS)
+option(art_BUILD_DOCS "Build documentation for Art" ON)
+if(art_BUILD_DOCS)
   add_subdirectory(doc)
 endif()
 
