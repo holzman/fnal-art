@@ -123,15 +123,15 @@ Dictionary libraries are left until last.
    |     +- FileServiceInterfaces/
    |     |  +- libart_Framework_Services_FileServiceInterfaces.so (YES)
    |     +- Optional/
-   |     |  +- libart_Framework_Services_Optional.so              (NO)
-   |     |  +- libRandomNumberGenerator_service.so                (NO)
+   |     |  +- libart_Framework_Services_Optional.so              (YES)
+   |     |  +- libRandomNumberGenerator_service.so                (YES)
    |     |  +- libSimpleInteraction_service.so                    (NO)
-   |     |  +- libSimpleMemoryCheck_service.so                    (NO)
+   |     |  +- libSimpleMemoryCheck_service.so                    (YES)
    |     |  +- libTFileService_service.so                         (NO)
-   |     |  +- libTiming_service.so                               (NO)
-   |     |  +- libTracer_service.so                               (NO)
-   |     |  +- libTrivialFileDelivery_service.so                  (NO)
-   |     |  +- libTrivialFileTransfer_service.so                  (NO)
+   |     |  +- libTiming_service.so                               (YES)
+   |     |  +- libTracer_service.so                               (YES)
+   |     |  +- libTrivialFileDelivery_service.so                  (YES)
+   |     |  +- libTrivialFileTransfer_service.so                  (YES)
    |     +- Registry/
    |     |  +- libart_Framework_Services_Registry.so              (YES)
    |     +- System/
