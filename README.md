@@ -61,6 +61,124 @@ $ make install
 
 Status
 ======
+Build Tree
+----------
+Here's a tree of the products in the art source tree, and the status
+of their conversion. NB, some products, notably plugins and dictionary
+libraries may be incomplete as it can be difficult to derive exactly what
+is produced (and names may not be exact). The conversion to pure CMake tries
+to add functionality from least to most dependent (an estimate of dependencies
+based off of stated dependencies for cetbuildtools invocations is given
+in [art/Framework/CMakeLists.txt](art's Framework CMake script). 
+Dictionary libraries are left until last.
+
+```sh
++- art/
+   +- Framework/
+   |  +- Art/
+   |  |  +- libart_Framework_Art.so                               (NO)
+   |  |  +- art                                                   (NO) \
+   |  |  +- gm2                                                   (NO) |
+   |  |  +- lar                                                   (NO) |- only difference, mu2e has different
+   |  |  +- mu2e                                                  (NO) |  exception handling
+   |  |  +- nova                                                  (NO) /
+   |  |  +- art_ut                                                (NO) \
+   |  |  +- gm2_ut                                                (NO) |
+   |  |  +- lar_ut                                                (NO) | - as above, but use boost::test
+   |  |  +- mu2e_ut                                               (NO) | 
+   |  |  +- nova_ut                                               (NO) /
+   |  +- Core/
+   |  |  +- libart_Framework_Core.so                              (NO)
+   |  +- EventProcessor/
+   |  |  +- libart_Framework_EventProcessor.so                    (NO)
+   |  +- IO/
+   |  |  +- libart_Framework_IO.so                                (NO)
+   |  |  +- Catalog/
+   |  |  |  +- libart_Framework_IO_Catalog.so                     (NO)
+   |  |  +- ProductMix/
+   |  |  |  +- libart_Framework_IO_ProductMix.so                  (NO)
+   |  |  |  +- libart_Framework_IO_ProductMix_dict.so             (NO)
+   |  |  |  +- libart_Framework_IO_ProductMix_map.so              (NO)
+   |  |  +- Root/
+   |  |  |  +- libart_Framework_IO_Root.so                        (NO)
+   |  |  |  +- libart_Framework_IO_RootVersion.so                 (NO)
+   |  |  |  +- libRootInput_source.so                             (NO)
+   |  |  |  +- libRootOutput_module.so                            (NO)
+   |  |  |  +- config_dumper                                      (NO)
+   |  |  |  +- sam_metadata_dumper                                (NO)
+   |  |  +- Sources/
+   |  |     +- libart_Framework_IO_Sources.so                     (NO)
+   |  +- Modules/
+   |  |  +- libart_Framework_Modules_dict.so                      (NO)
+   |  |  +- libart_Framework_Modules_map.so                       (NO)
+   |  |  +- libBlockingPrescaler_module.so                        (NO)
+   |  |  +- libEmptyEvent_source.so                               (NO)
+   |  |  +- libFileDumperOutput_module.so                         (NO)
+   |  |  +- libPrescaler_module.so                                (NO)
+   |  |  +- libProvenanceCheckerOutput_module.so                  (NO)
+   |  |  +- libRandomNumberSaver_module.so                        (NO)
+   |  +- Principal/
+   |  |  +- libart_Framework_Principal.so                         (YES)
+   |  +- Services/
+   |     +- FileServiceInterfaces/
+   |     |  +- libart_Framework_Services_FileServiceInterfaces.so (YES)
+   |     +- Optional/
+   |     |  +- libart_Framework_Services_Optional.so              (NO)
+   |     |  +- libRandomNumberGenerator_service.so                (NO)
+   |     |  +- libSimpleInteraction_service.so                    (NO)
+   |     |  +- libSimpleMemoryCheck_service.so                    (NO)
+   |     |  +- libTFileService_service.so                         (NO)
+   |     |  +- libTiming_service.so                               (NO)
+   |     |  +- libTracer_service.so                               (NO)
+   |     |  +- libTrivialFileDelivery_service.so                  (NO)
+   |     |  +- libTrivialFileTransfer_service.so                  (NO)
+   |     +- Registry/
+   |     |  +- libart_Framework_Services_Registry.so              (YES)
+   |     +- System/
+   |     |  +- libCurrentModule_service.so                        (YES)
+   |     |  +- libFileCatalogMetadata_service.so                  (YES)
+   |     |  +- libFloatingPointControl_service.so                 (YES)
+   |     |  +- libPathSelection_service.so                        (NO)
+   |     |  +- libScheduleContext_service.so                      (NO)
+   |     |  +- libTriggerNamesService.so                          (YES)
+   |     +- UserInteraction/
+   |        +- libart_Framework_Services_UserInteraction.so       (NO)
+   +- Ntuple/
+   |  +- libart_Ntuple.so                                         (YES)
+   +- Persistency/
+   |  +- CetlibDictionaries/
+   |  |  +- libart_Persistency_CetlibDictionaries_dict.so         (NO)
+   |  |  +- libart_Persistency_CetlibDictionaries_map.so          (NO)
+   |  +- CLHEPDictionaries/
+   |  |  +- libart_Persistency_CLHEPDictionaries_dict.so          (NO)
+   |  |  +- libart_Persistency_CLHEPDictionaries_map.so           (NO)
+   |  +- Common/
+   |  |  +- libart_Persistency_Common.so                          (YES)
+   |  |  +- libart_Persistency_Common_dict.so                     (NO)
+   |  |  +- libart_Persistency_Common_map.so                      (NO)
+   |  +- FhiclCppDictionaries/
+   |  |  +- libart_Persistency_FhiclCppDictionaries_dict.so       (NO)
+   |  |  +- libart_Persistency_FhiclCppDictionaries_map.so        (NO)
+   |  +- Provenance/
+   |  |  +- libart_Persistency_Provenance.so                      (YES)
+   |  |  +- libart_Persistency_Provenance_dict.so                 (NO)
+   |  |  +- libart_Persistency_Provenance_map.so                  (NO)
+   |  +- RootDB/
+   |  |  +- libart_Persistency_RootDB.so                          (YES)
+   |  +- StdDictionaries/
+   |  |  +- libart_Persistency_StdDictionaries_dict.so            (NO)
+   |  |  +- libart_Persistency_StdDictionaries_map.so             (NO)
+   |  +- WrappedStdDictionaries/
+   |     +- libart_Persistency_WrappedStdDictionaries_dict.so     (NO)
+   |     +- libart_Persistency_WrappedStdDictionaries_map.so      (NO)
+   +- Utilities/
+   |  +- libart_Utilities.so                                      (YES)
+   +- Version/
+      +- libart_Version.so                                        (YES)
+```
+
+Notes
+-----
 - Update sources to upstream art v1.11.3
 - No dictionary libraries built yet
 - Build of `art_Framework_Principal`
