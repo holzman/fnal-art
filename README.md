@@ -23,13 +23,23 @@ This specific `remove-ups-1.11.3` branch removes calls to the `ups` system and
 wrappings of other FNAL specific tools in the CMake scripts for Art.
 It also makes use of the [FNALCore](https://github.com/LBNE/FNALCore)
 project to simplify the use of Art's FNAL supplied dependencies.
+This project is a work in progress, so some areas include reasonable
+amounts of boilerplate CMake scripting that could be replaced by functions
+or macros. This is intentional because we want to identify the key repeatable
+areas before wrapping them into a coherent "ArtCMake" API for both developers
+and clients of art. A problem with
+Art's CET supplied CMake functions (and cetbuildtools) is that they provide
+"kitchen sink" interfaces which are often overcomplicated and with significant
+side effects.
 
 Installation
 ============
 Requirements
 ------------
 - [CMake](http://www.cmake.org) 2.8.12 or above
-- C++11 compliant compiler (GCC 4.8 or better, Clang 3.3 or better)
+- C++11 compliant compiler (GCC 4.8 or better)
+  - Intent is to support any C++11 compliant compiler, but code from upstream
+    is not completely portable at present.
   - NB: Full list of needed C++11 features not fully determined at present
   - Usage of FNALCore does not guarantee this
 - [FNALCore](https://github.com/LBNE/FNALCore) library
