@@ -7,7 +7,10 @@ This follow of the upstream project aims to make building Art easier
 by removing the dependence on FNAL's custom build tools and configuration
 management system. Whilst Art uses the [CMake](http://www.cmake.org)
 build tool, the upstream FNAL CMake scripts make calls to the higher level
-configuration management system, [ups](https://cdcvs.fnal.gov/redmine/projects/ups). This makes it impossible to build Art without this specific system,
+configuration management system,
+[ups](https://cdcvs.fnal.gov/redmine/projects/ups)
+and the [cetbuildtools](https://cdcvs.fnal.gov/redmine/projects/cetbuildtools).
+This makes it impossible to build Art without both of these systems,
 reducing the portability and usefulness of Art. It also prevents use
 of any other configuration management system for supplying (for example)
 locations of dependencies. Removing the coupling of the buildtool to the
@@ -16,7 +19,7 @@ so required. It simply notices that the buildtool is at a lower level than
 the configuration management tool, and thus should not call up into the
 higher level system.
 
-This specific `remove-ups` branch removes calls to the `ups` system and
+This specific `remove-ups-1.11.3` branch removes calls to the `ups` system and
 wrappings of other FNAL specific tools in the CMake scripts for Art.
 It also makes use of the [FNALCore](https://github.com/LBNE/FNALCore)
 project to simplify the use of Art's FNAL supplied dependencies.
@@ -25,9 +28,9 @@ Installation
 ============
 Requirements
 ------------
-- CMake 2.8.12 or above
+- [CMake](http://www.cmake.org) 2.8.12 or above
 - C++11 compliant compiler (GCC 4.8 or better, Clang 3.3 or better)
-  - NB: Full list of needed C++11 features not fully determined
+  - NB: Full list of needed C++11 features not fully determined at present
   - Usage of FNALCore does not guarantee this
 - [FNALCore](https://github.com/LBNE/FNALCore) library
   - Correct installation of this will also provide [Boost](http://www.boost.org)
@@ -69,7 +72,7 @@ libraries may be incomplete as it can be difficult to derive exactly what
 is produced (and names may not be exact). The conversion to pure CMake tries
 to add functionality from least to most dependent (an estimate of dependencies
 based off of stated dependencies for cetbuildtools invocations is given
-in [art/Framework/CMakeLists.txt](art's Framework CMake script). 
+in [art/Framework/CMakeLists.txt](art's Framework CMake script).
 Dictionary libraries are left until last.
 
 ```sh
@@ -85,7 +88,7 @@ Dictionary libraries are left until last.
    |  |  +- art_ut                                                (NO) \
    |  |  +- gm2_ut                                                (NO) |
    |  |  +- lar_ut                                                (NO) | - as above, but use boost::test
-   |  |  +- mu2e_ut                                               (NO) | 
+   |  |  +- mu2e_ut                                               (NO) |
    |  |  +- nova_ut                                               (NO) /
    |  +- Core/
    |  |  +- libart_Framework_Core.so                              (NO)
@@ -177,8 +180,11 @@ Dictionary libraries are left until last.
       +- libart_Version.so                                        (YES)
 ```
 
+So, an estimated 72 products from around 520 source files
+
 Notes
 -----
+- Add build product tree section above to track updates to available products
 - Update sources to upstream art v1.11.3
 - No dictionary libraries built yet
 - Build of `art_Framework_Principal`
