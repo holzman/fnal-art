@@ -13,31 +13,59 @@ able to help with this...
 
 The file [Dependencies.dot](Dependencies.dot) holds the Digraph of the
 art dependencies in the [Graphviz](http://www.graphviz.org) DOT language.
-When topologically sorted, the sequence of most to least dependent
-binaries is:
+One way to topologically sort this is to use the [networkx](https://networkx.github.io) Python package (with support for graphviz):
+
+```python
+import networkx
+
+art_graph = networkx.read_dot("./Dependencies.dot")
+art_tsort = networkx.topological_sort(art_graph)
+print(art_tsort)
+```
+
+The list returned by `networkx.topological_sort` is ordered
+from most to least dependent. Note that all this means is that for
+any edge `u->v` in the DAG (i.e. `u` depends on `v`), `u` appears
+before `v` in the output list. Many other implementations of topological
+sort are available, though `networkx` is one of the most widespread and
+easy to use.
+
+Using `networkx`, the topologically sorted list of art binaries is
+as follows
 
 ```
-Framework_Art
-Framework_EventProcessor
-Framework_Services_System_FloatingPointControl_service
-Framework_Services_System_PathSelection_service
-Framework_Services_System_FileCatalogMetadata_service
-Framework_IO_Root
-Framework_IO_Catalog
 Framework_Services_Optional_TrivialFileTransfer_service
-Framework_Services_Optional_TrivialFileDelivery_service
-Framework_IO_RootVersion
-Framework_Services_System_ScheduleContext_service
-Framework_Core
-Framework_Services_Optional_RandomNumberGenerator_service
-Framework_Services_System_TriggerNamesService_service
-Framework_IO
-Framework_Services_System_CurrentModule_service
-Framework_Principal
+Utilities
+Persistency_RootDB
+Persistency_Provenance
+Persistency_Common
 Version
 Framework_Services_Registry
-Persistency_Common
-Persistency_Provenance
-Persistency_RootDB
-Utilities
+Framework_Principal
+Framework_Services_System_TriggerNamesService_service
+Framework_Services_Optional_RandomNumberGenerator_service
+Framework_Services_System_CurrentModule_service
+Framework_Core
+Framework_Services_UserInteraction
+Framework_Services_Optional_SimpleInteraction_ervice
+Framework_IO
+Framework_Services_Optional_Tracer_service
+Framework_Services_Optional
+Framework_Services_Optional_TFileService_service
+Framework_Services_FileServiceInterfaces
+Framework_Services_Optional_Timing_service
+Framework_IO_RootVersion
+Framework_Services_Optional_TrivialFileDelivery_service
+Framework_IO_Catalog
+Framework_IO_Root
+Framework_IO_Sources
+Framework_Services_System_FileCatalogMetadata_service
+Framework_IO_ProductMix
+Framework_Services_System_PathSelection_service
+Framework_Services_System_ScheduleContext_service
+Framework_Services_System_FloatingPointControl_service
+Framework_EventProcessor
+Framework_Services_Optional_SimpleMemoryCheck_service
+Framework_Art
+Ntuple
 ```
