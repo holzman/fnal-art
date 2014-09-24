@@ -42,6 +42,17 @@ target_link_libraries(art_Framework_Services_System_FloatingPointControl_service
   )
 
 # - PathSelection
+add_library(art_Framework_Services_System_PathSelection_service
+  SHARED
+  PathSelection.h
+  PathSelection_service.cc
+  )
+list(APPEND art_Framework_Services_System_HEADERS PathSelection.h)
+list(APPEND art_Framework_Services_System_TARGETS art_Framework_Services_System_PathSelection_service)
+target_link_libraries(art_Framework_Services_System_PathSelection_service
+  art_Framework_Services_Registry
+  art_Framework_Core
+  )
 
 # - ScheduleContext
 add_library(art_Framework_Services_System_ScheduleContext_service

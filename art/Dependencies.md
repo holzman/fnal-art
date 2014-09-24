@@ -64,7 +64,7 @@ as follows (together with their build status):
 [no]  Framework_IO_Root_RootInput_source
 [yes] Framework_Services_System_FileCatalogMetadata_service
 [no]  Framework_IO_ProductMix
-[no]  Framework_Services_System_PathSelection_service
+[yes]  Framework_Services_System_PathSelection_service
 [yes] Framework_Services_System_FloatingPointControl_service
 [no]  Framework_EventProcessor
 [no]  config_dumper

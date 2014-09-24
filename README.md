@@ -151,7 +151,7 @@ Dictionary libraries are left until last.
    |     |  +- libCurrentModule_service.so                        (YES)
    |     |  +- libFileCatalogMetadata_service.so                  (YES)
    |     |  +- libFloatingPointControl_service.so                 (YES)
-   |     |  +- libPathSelection_service.so                        (NO)
+   |     |  +- libPathSelection_service.so                        (YES)
    |     |  +- libScheduleContext_service.so                      (YES)
    |     |  +- libTriggerNamesService.so                          (YES)
    |     +- UserInteraction/
