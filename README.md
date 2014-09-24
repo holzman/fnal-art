@@ -105,7 +105,7 @@ Dictionary libraries are left until last.
    |  +- EventProcessor/
    |  |  +- libart_Framework_EventProcessor.so                    (NO)
    |  +- IO/
-   |  |  +- libart_Framework_IO.so                                (NO)
+   |  |  +- libart_Framework_IO.so                                (YES)
    |  |  +- Catalog/
    |  |  |  +- libart_Framework_IO_Catalog.so                     (NO)
    |  |  +- ProductMix/

@@ -48,7 +48,7 @@ as follows (together with their build status):
 [yes] Framework_Core
 [yes] Framework_Services_UserInteraction
 [yes] Framework_Services_Optional_SimpleInteraction_ervice
-[no]  Framework_IO
+[yes] Framework_IO
 [yes] Framework_Services_Optional_Tracer_service
 [yes] Framework_Services_Optional
 [no]  Framework_Services_Optional_TFileService_service

@@ -30,7 +30,7 @@
 #     - art_Utilities
 #     - art_Version
 #
-add_subdirectory (Core)
+add_subdirectory(Core)
 
 #-----------------------------------------------------------------------
 # EventProcessor - builds
@@ -102,7 +102,7 @@ add_subdirectory (Core)
 #     - art_Persistency_Provenance
 #     - art_Utilities
 #
-#add_subdirectory (IO)
+add_subdirectory(IO)
 
 #-----------------------------------------------------------------------
 # Modules - builds

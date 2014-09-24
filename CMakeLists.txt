@@ -89,6 +89,9 @@ if(FNALCore_BOOST_VERSION VERSION_LESS art_MIN_BOOST_VERSION)
   message(FATAL_ERROR "Located version of FNALCore compiled against Boost ${FNALCore_BOOST_VERSION}\nart requires Boost >= ${art_MIN_BOOST_VERSION}")
 endif()
 
+# - Ensure we can refind Boost and extra components we need
+find_package(Boost ${art_MIN_BOOST_VERSION} REQUIRED date_time)
+
 # FNALCore provides an interface to the C++ standard, so use its flags
 # Could also check for compiler/stdlib compatiblity.
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} ${FNALCore_CXX_FLAGS}")
