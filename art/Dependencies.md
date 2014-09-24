@@ -31,41 +31,41 @@ sort are available, though `networkx` is one of the most widespread and
 easy to use.
 
 Using `networkx`, the topologically sorted list of art binaries is
-as follows
+as follows (together with their build status):
 
 ```
-Framework_Services_Optional_TrivialFileTransfer_service
-Utilities
-Persistency_RootDB
-Persistency_Provenance
-Persistency_Common
-Version
-Framework_Services_Registry
-Framework_Principal
-Framework_Services_System_TriggerNamesService_service
-Framework_Services_Optional_RandomNumberGenerator_service
-Framework_Services_System_CurrentModule_service
-Framework_Core
-Framework_Services_UserInteraction
-Framework_Services_Optional_SimpleInteraction_ervice
-Framework_IO
-Framework_Services_Optional_Tracer_service
-Framework_Services_Optional
-Framework_Services_Optional_TFileService_service
-Framework_Services_FileServiceInterfaces
-Framework_Services_Optional_Timing_service
-Framework_IO_RootVersion
-Framework_Services_Optional_TrivialFileDelivery_service
-Framework_IO_Catalog
-Framework_IO_Root
-Framework_IO_Sources
-Framework_Services_System_FileCatalogMetadata_service
-Framework_IO_ProductMix
-Framework_Services_System_PathSelection_service
-Framework_Services_System_ScheduleContext_service
-Framework_Services_System_FloatingPointControl_service
-Framework_EventProcessor
-Framework_Services_Optional_SimpleMemoryCheck_service
-Framework_Art
-Ntuple
+[yes] Framework_Services_Optional_TrivialFileTransfer_service
+[yes] Utilities
+[yes] Persistency_RootDB
+[yes] Persistency_Provenance
+[yes] Persistency_Common
+[yes] Version
+[yes] Framework_Services_Registry
+[yes] Framework_Principal
+[yes] Framework_Services_System_TriggerNamesService_service
+[yes] Framework_Services_Optional_RandomNumberGenerator_service
+[yes] Framework_Services_System_CurrentModule_service
+[no]  Framework_Core
+[no]  Framework_Services_UserInteraction
+[no]  Framework_Services_Optional_SimpleInteraction_ervice
+[no]  Framework_IO
+[yes] Framework_Services_Optional_Tracer_service
+[yes] Framework_Services_Optional
+[no]  Framework_Services_Optional_TFileService_service
+[yes] Framework_Services_FileServiceInterfaces
+[yes] Framework_Services_Optional_Timing_service
+[no]  Framework_IO_RootVersion
+[yes] Framework_Services_Optional_TrivialFileDelivery_service
+[no]  Framework_IO_Catalog
+[no]  Framework_IO_Root
+[no]  Framework_IO_Sources
+[yes] Framework_Services_System_FileCatalogMetadata_service
+[no]  Framework_IO_ProductMix
+[no]  Framework_Services_System_PathSelection_service
+[no]  Framework_Services_System_ScheduleContext_service
+[yes] Framework_Services_System_FloatingPointControl_service
+[no]  Framework_EventProcessor
+[yes] Framework_Services_Optional_SimpleMemoryCheck_service
+[no]  Framework_Art
+[yes] Ntuple
 ```
