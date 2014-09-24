@@ -107,7 +107,7 @@ Dictionary libraries are left until last.
    |  +- IO/
    |  |  +- libart_Framework_IO.so                                (YES)
    |  |  +- Catalog/
-   |  |  |  +- libart_Framework_IO_Catalog.so                     (NO)
+   |  |  |  +- libart_Framework_IO_Catalog.so                     (YES)
    |  |  +- ProductMix/
    |  |  |  +- libart_Framework_IO_ProductMix.so                  (NO)
    |  |  |  +- libart_Framework_IO_ProductMix_dict.so             (NO)

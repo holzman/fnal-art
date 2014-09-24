@@ -37,6 +37,7 @@ install(FILES FileStatsCollector.h PostCloseFileRenamer.h
   )
 
 # Build subcomponents
+add_subdirectory(Catalog)
 
 #-----------------------------------------------------------------------
 # Old stuff

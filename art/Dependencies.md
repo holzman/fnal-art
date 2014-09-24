@@ -57,7 +57,7 @@ as follows (together with their build status):
 [no]  Framework_IO_RootVersion
 [yes] Framework_Services_Optional_TrivialFileDelivery_service
 [yes] Framework_Services_Optional_TrivialFileTransfer_service
-[no]  Framework_IO_Catalog
+[yes]  Framework_IO_Catalog
 [no]  Framework_IO_Root
 [no]  sam_metadata_dumper
 [no]  Framework_IO_Sources
