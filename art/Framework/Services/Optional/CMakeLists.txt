@@ -1,9 +1,9 @@
 # - Build art_Framework_Services_Optional lib and plugins
 
-# - art_Framework_Services_Optional 
-add_library(art_Framework_Services_Optional SHARED 
+# - art_Framework_Services_Optional
+add_library(art_Framework_Services_Optional SHARED
   TFileDirectory.h
-  TFileDirectory.cc 
+  TFileDirectory.cc
   detail/TH1AddDirectorySentry.h
   detail/TH1AddDirectorySentry.cc
   )
@@ -67,6 +67,30 @@ install(FILES RandomNumberGenerator.h
   )
 
 # - SimpleInteraction_service
+add_library(art_Framework_Services_Optional_SimpleInteraction_service
+  SHARED
+  SimpleInteraction.h
+  SimpleInteraction_service.cc
+  )
+target_link_libraries(art_Framework_Services_Optional_SimpleInteraction_service
+  art_Framework_Services_UserInteraction
+  )
+set_target_properties(art_Framework_Services_Optional_SimpleInteraction_service
+  PROPERTIES
+   VERSION ${art_VERSION}
+   SOVERSION ${art_SOVERSION}
+  )
+install(TARGETS art_Framework_Services_Optional_SimpleInteraction_service
+  EXPORT ArtLibraries
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  COMPONENT Runtime
+  )
+install(FILES SimpleInteraction.h
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Framework/Services/Optional
+  COMPONENT Development
+  )
 
 # - SimpleMemoryCheck_service
 add_library(art_Framework_Services_Optional_SimpleMemoryCheck_service

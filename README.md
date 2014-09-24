@@ -138,7 +138,7 @@ Dictionary libraries are left until last.
    |     +- Optional/
    |     |  +- libart_Framework_Services_Optional.so              (YES)
    |     |  +- libRandomNumberGenerator_service.so                (YES)
-   |     |  +- libSimpleInteraction_service.so                    (NO)
+   |     |  +- libSimpleInteraction_service.so                    (YES)
    |     |  +- libSimpleMemoryCheck_service.so                    (YES)
    |     |  +- libTFileService_service.so                         (NO)
    |     |  +- libTiming_service.so                               (YES)
