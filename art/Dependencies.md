@@ -51,7 +51,7 @@ as follows (together with their build status):
 [yes] Framework_IO
 [yes] Framework_Services_Optional_Tracer_service
 [yes] Framework_Services_Optional
-[no]  Framework_Services_Optional_TFileService_service
+[yes] Framework_Services_Optional_TFileService_service
 [yes] Framework_Services_FileServiceInterfaces
 [yes] Framework_Services_Optional_Timing_service
 [no]  Framework_IO_RootVersion

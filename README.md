@@ -140,7 +140,7 @@ Dictionary libraries are left until last.
    |     |  +- libRandomNumberGenerator_service.so                (YES)
    |     |  +- libSimpleInteraction_service.so                    (YES)
    |     |  +- libSimpleMemoryCheck_service.so                    (YES)
-   |     |  +- libTFileService_service.so                         (NO)
+   |     |  +- libTFileService_service.so                         (YES)
    |     |  +- libTiming_service.so                               (YES)
    |     |  +- libTracer_service.so                               (YES)
    |     |  +- libTrivialFileDelivery_service.so                  (YES)

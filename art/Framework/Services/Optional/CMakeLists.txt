@@ -114,6 +114,44 @@ install(TARGETS art_Framework_Services_Optional_SimpleMemoryCheck_service
   )
 
 # - TFileService_service
+#simple_plugin(TFileService "service"
+#  art_Framework_Services_System_TriggerNamesService_service
+#  art_Framework_Services_Optional
+#  art_Framework_IO
+#  art_Framework_Principal
+#  ${ROOT_RIO}
+#  ${ROOT_THREAD})
+add_library(art_Framework_Services_Optional_TFileService_service
+  SHARED
+  TFileService.h
+  TFileService_service.cc
+  )
+target_link_libraries(art_Framework_Services_Optional_TFileService_service
+  art_Framework_Services_System_TriggerNamesService_service
+  art_Framework_Services_Optional
+  art_Framework_IO
+  art_Framework_Principal
+  ${ROOT_RIO_LIBRARY}
+  ${ROOT_Thread_LIBRARY}
+  )
+set_target_properties(art_Framework_Services_Optional_TFileService_service
+  PROPERTIES
+   VERSION ${art_VERSION}
+   SOVERSION ${art_SOVERSION}
+  )
+install(TARGETS art_Framework_Services_Optional_TFileService_service
+  EXPORT ArtLibraries
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  COMPONENT Runtime
+  )
+install(FILES TFileService.h
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Framework/Services/Optional
+  COMPONENT Development
+  )
+
+
 
 # - Timing_service
 add_library(art_Framework_Services_Optional_Timing_service
