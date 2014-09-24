@@ -124,5 +124,18 @@ digraph art {
   Framework_Services_UserInteraction -> Framework_Services_Registry;
 
   Ntuple;
+
+  Framework_IO_Root_RootInput_source -> Framework_IO_Root;
+  Framework_IO_Root_RootInput_source -> Framework_IO_Catalog;
+
+  Framework_IO_Root_RootOutput_module -> Framework_IO_Root;
+
+  config_dumper -> Framework_IO_Root;
+  config_dumper -> Utilities;
+  config_dumper -> Framework_Core;
+
+  sam_metadata_dumper -> Framework_IO_Root;
+  sam_metadata_dumper -> Utilities;
+  sam_metadata_dumper -> Framework_Core;
 }
 
