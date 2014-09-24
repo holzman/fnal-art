@@ -124,6 +124,7 @@ find_package(ROOT 5.34.20 REQUIRED
   Reflex
   RIO
   Thread
+  Tree
   )
 
 # Need to implement

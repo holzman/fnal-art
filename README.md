@@ -113,12 +113,12 @@ Dictionary libraries are left until last.
    |  |  |  +- libart_Framework_IO_ProductMix_dict.so             (NO)
    |  |  |  +- libart_Framework_IO_ProductMix_map.so              (NO)
    |  |  +- Root/
-   |  |  |  +- libart_Framework_IO_Root.so                        (NO)
-   |  |  |  +- libart_Framework_IO_RootVersion.so                 (NO)
-   |  |  |  +- libRootInput_source.so                             (NO)
-   |  |  |  +- libRootOutput_module.so                            (NO)
-   |  |  |  +- config_dumper                                      (NO)
-   |  |  |  +- sam_metadata_dumper                                (NO)
+   |  |  |  +- libart_Framework_IO_Root.so                        (YES)
+   |  |  |  +- libart_Framework_IO_RootVersion.so                 (YES)
+   |  |  |  +- libRootInput_source.so                             (YES)
+   |  |  |  +- libRootOutput_module.so                            (YES)
+   |  |  |  +- config_dumper                                      (YES)
+   |  |  |  +- sam_metadata_dumper                                (YES)
    |  |  +- Sources/
    |  |     +- libart_Framework_IO_Sources.so                     (NO)
    |  +- Modules/
