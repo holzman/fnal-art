@@ -1,6 +1,7 @@
 # - Build art_Framework_Services_System plugins
 # All service plugins, so require linking to art_Framework_Services_Registry
 set(art_Framework_Services_System_HEADERS)
+set(art_Framework_Services_System_DETAIL_HEADERS)
 set(art_Framework_Services_System_TARGETS)
 
 # - CurrentModule
@@ -43,6 +44,22 @@ target_link_libraries(art_Framework_Services_System_FloatingPointControl_service
 # - PathSelection
 
 # - ScheduleContext
+add_library(art_Framework_Services_System_ScheduleContext_service
+  SHARED
+  ScheduleContext.h
+  detail/ScheduleContextSetter.h
+  ScheduleContext_service.cc
+  )
+list(APPEND art_Framework_Services_System_HEADERS ScheduleContext.h)
+list(APPEND art_Framework_Services_System_DETAIL_HEADERS
+  detail/ScheduleContextSetter.h)
+list(APPEND art_Framework_Services_System_TARGETS
+  art_Framework_Services_System_ScheduleContext_service
+  )
+target_link_libraries(art_Framework_Services_System_ScheduleContext_service
+  art_Framework_Services_Registry
+  art_Framework_Core
+  )
 
 # - TriggerNamesService
 add_library(art_Framework_Services_System_TriggerNamesService_service
@@ -75,6 +92,11 @@ install(FILES ${art_Framework_Services_System_HEADERS}
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Framework/Services/System
   COMPONENT Development
   )
+install(FILES ${art_Framework_Services_System_DETAIL_HEADERS}
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Framework/Services/System/detail
+  COMPONENT Development
+  )
+
 
 #-----------------------------------------------------------------------
 # Old Stuff

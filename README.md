@@ -152,7 +152,7 @@ Dictionary libraries are left until last.
    |     |  +- libFileCatalogMetadata_service.so                  (YES)
    |     |  +- libFloatingPointControl_service.so                 (YES)
    |     |  +- libPathSelection_service.so                        (NO)
-   |     |  +- libScheduleContext_service.so                      (NO)
+   |     |  +- libScheduleContext_service.so                      (YES)
    |     |  +- libTriggerNamesService.so                          (YES)
    |     +- UserInteraction/
    |        +- libart_Framework_Services_UserInteraction.so       (YES)
