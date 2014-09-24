@@ -101,7 +101,7 @@ Dictionary libraries are left until last.
    |  |  +- mu2e_ut                                               (NO) |
    |  |  +- nova_ut                                               (NO) /
    |  +- Core/
-   |  |  +- libart_Framework_Core.so                              (NO)
+   |  |  +- libart_Framework_Core.so                              (YES)
    |  +- EventProcessor/
    |  |  +- libart_Framework_EventProcessor.so                    (NO)
    |  +- IO/

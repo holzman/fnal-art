@@ -30,7 +30,7 @@
 #     - art_Utilities
 #     - art_Version
 #
-#add_subdirectory (Core)
+add_subdirectory (Core)
 
 #-----------------------------------------------------------------------
 # EventProcessor - builds
