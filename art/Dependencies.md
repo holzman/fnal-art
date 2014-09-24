@@ -34,13 +34,12 @@ Using `networkx`, the topologically sorted list of art binaries is
 as follows (together with their build status):
 
 ```
-[yes] Framework_Services_Optional_TrivialFileTransfer_service
 [yes] Utilities
 [yes] Persistency_RootDB
 [yes] Persistency_Provenance
 [yes] Persistency_Common
-[yes] Version
 [yes] Framework_Services_Registry
+[yes] Version
 [yes] Framework_Principal
 [yes] Framework_Services_System_TriggerNamesService_service
 [yes] Framework_Services_Optional_RandomNumberGenerator_service
@@ -52,19 +51,24 @@ as follows (together with their build status):
 [yes] Framework_Services_Optional_Tracer_service
 [yes] Framework_Services_Optional
 [yes] Framework_Services_Optional_TFileService_service
+[no]  Framework_Services_System_ScheduleContext_service
 [yes] Framework_Services_FileServiceInterfaces
 [yes] Framework_Services_Optional_Timing_service
 [no]  Framework_IO_RootVersion
 [yes] Framework_Services_Optional_TrivialFileDelivery_service
+[yes] Framework_Services_Optional_TrivialFileTransfer_service
 [no]  Framework_IO_Catalog
 [no]  Framework_IO_Root
+[no]  sam_metadata_dumper
 [no]  Framework_IO_Sources
+[no]  Framework_IO_Root_RootInput_source
 [yes] Framework_Services_System_FileCatalogMetadata_service
 [no]  Framework_IO_ProductMix
 [no]  Framework_Services_System_PathSelection_service
-[no]  Framework_Services_System_ScheduleContext_service
 [yes] Framework_Services_System_FloatingPointControl_service
 [no]  Framework_EventProcessor
+[no]  config_dumper
+[no]  Framework_IO_Root_RootOutput_module
 [yes] Framework_Services_Optional_SimpleMemoryCheck_service
 [no]  Framework_Art
 [yes] Ntuple
