@@ -155,7 +155,7 @@ Dictionary libraries are left until last.
    |     |  +- libScheduleContext_service.so                      (NO)
    |     |  +- libTriggerNamesService.so                          (YES)
    |     +- UserInteraction/
-   |        +- libart_Framework_Services_UserInteraction.so       (NO)
+   |        +- libart_Framework_Services_UserInteraction.so       (YES)
    +- Ntuple/
    |  +- libart_Ntuple.so                                         (YES)
    +- Persistency/

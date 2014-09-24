@@ -45,8 +45,8 @@ as follows (together with their build status):
 [yes] Framework_Services_System_TriggerNamesService_service
 [yes] Framework_Services_Optional_RandomNumberGenerator_service
 [yes] Framework_Services_System_CurrentModule_service
-[yes]  Framework_Core
-[no]  Framework_Services_UserInteraction
+[yes] Framework_Core
+[yes]  Framework_Services_UserInteraction
 [no]  Framework_Services_Optional_SimpleInteraction_ervice
 [no]  Framework_IO
 [yes] Framework_Services_Optional_Tracer_service
