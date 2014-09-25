@@ -40,6 +40,7 @@ install(FILES FileStatsCollector.h PostCloseFileRenamer.h
 add_subdirectory(Catalog)
 add_subdirectory(Root)
 add_subdirectory(Sources)
+add_subdirectory(ProductMix)
 
 #-----------------------------------------------------------------------
 # Old stuff
