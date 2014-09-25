@@ -70,6 +70,6 @@ as follows (together with their build status):
 [yes] config_dumper
 [yes] Framework_IO_Root_RootOutput_module
 [yes] Framework_Services_Optional_SimpleMemoryCheck_service
-[no]  Framework_Art
+[yes] Framework_Art
 [yes] Ntuple
 ```

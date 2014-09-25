@@ -13,7 +13,7 @@
 #   - art ones link to art_Framework_Art
 #   - `check_libs` links to art_Utilities
 #
-#add_subdirectory (Art)
+add_subdirectory(Art)
 
 #-----------------------------------------------------------------------
 # Core - builds

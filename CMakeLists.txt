@@ -90,7 +90,9 @@ if(FNALCore_BOOST_VERSION VERSION_LESS art_MIN_BOOST_VERSION)
 endif()
 
 # - Ensure we can refind Boost and extra components we need
-find_package(Boost ${art_MIN_BOOST_VERSION} REQUIRED date_time)
+find_package(Boost ${art_MIN_BOOST_VERSION}
+  REQUIRED date_time unit_test_framework
+  )
 
 # FNALCore provides an interface to the C++ standard, so use its flags
 # Could also check for compiler/stdlib compatiblity.
@@ -121,6 +123,7 @@ find_package(ROOT 5.34.20 REQUIRED
   Cint
   Cintex
   Hist
+  Matrix
   Reflex
   RIO
   Thread
@@ -134,6 +137,7 @@ find_package(TBB 4.1.0 REQUIRED)
 # Set up paths for all subbuilds
 #
 include_directories(${PROJECT_SOURCE_DIR})
+include_directories(${PROJECT_BINARY_DIR})
 
 # macros for art_dictionary and simple_plugin
 #include(ArtDictionary)

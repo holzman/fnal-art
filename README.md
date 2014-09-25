@@ -89,16 +89,16 @@ Dictionary libraries are left until last.
 +- art/
    +- Framework/
    |  +- Art/
-   |  |  +- libart_Framework_Art.so                               (NO)
-   |  |  +- art                                                   (NO) \
-   |  |  +- gm2                                                   (NO) |
-   |  |  +- lar                                                   (NO) |- only difference, mu2e has different
-   |  |  +- mu2e                                                  (NO) |  exception handling
+   |  |  +- libart_Framework_Art.so                               (YES)
+   |  |  +- art                                                   (YES) \
+   |  |  +- gm2                                                   (NO)  |
+   |  |  +- lar                                                   (NO)  |- only difference, mu2e has different
+   |  |  +- mu2e                                                  (YES) |  exception handling
    |  |  +- nova                                                  (NO) /
-   |  |  +- art_ut                                                (NO) \
-   |  |  +- gm2_ut                                                (NO) |
-   |  |  +- lar_ut                                                (NO) | - as above, but use boost::test
-   |  |  +- mu2e_ut                                               (NO) |
+   |  |  +- art_ut                                                (YES) \
+   |  |  +- gm2_ut                                                (NO)  |
+   |  |  +- lar_ut                                                (NO)  | - as above, but use boost::test
+   |  |  +- mu2e_ut                                               (YES) |
    |  |  +- nova_ut                                               (NO) /
    |  +- Core/
    |  |  +- libart_Framework_Core.so                              (YES)
