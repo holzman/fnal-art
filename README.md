@@ -120,7 +120,7 @@ Dictionary libraries are left until last.
    |  |  |  +- config_dumper                                      (YES)
    |  |  |  +- sam_metadata_dumper                                (YES)
    |  |  +- Sources/
-   |  |     +- libart_Framework_IO_Sources.so                     (NO)
+   |  |     +- libart_Framework_IO_Sources.so                     (YES)
    |  +- Modules/
    |  |  +- libart_Framework_Modules_dict.so                      (NO)
    |  |  +- libart_Framework_Modules_map.so                       (NO)

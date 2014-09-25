@@ -60,7 +60,7 @@ as follows (together with their build status):
 [yes] Framework_IO_Catalog
 [yes] Framework_IO_Root
 [yes] sam_metadata_dumper
-[no]  Framework_IO_Sources
+[yes] Framework_IO_Sources
 [yes] Framework_IO_Root_RootInput_source
 [yes] Framework_Services_System_FileCatalogMetadata_service
 [no]  Framework_IO_ProductMix
