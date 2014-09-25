@@ -103,7 +103,7 @@ Dictionary libraries are left until last.
    |  +- Core/
    |  |  +- libart_Framework_Core.so                              (YES)
    |  +- EventProcessor/
-   |  |  +- libart_Framework_EventProcessor.so                    (NO)
+   |  |  +- libart_Framework_EventProcessor.so                    (YES)
    |  +- IO/
    |  |  +- libart_Framework_IO.so                                (YES)
    |  |  +- Catalog/

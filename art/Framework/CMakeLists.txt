@@ -45,7 +45,7 @@ add_subdirectory(Core)
 #     - art_Framework_Core
 #     - art_Utilities
 #
-#add_subdirectory (EventProcessor)
+add_subdirectory(EventProcessor)
 
 #-----------------------------------------------------------------------
 # IO - builds

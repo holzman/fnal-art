@@ -66,7 +66,7 @@ as follows (together with their build status):
 [yes] Framework_IO_ProductMix
 [yes] Framework_Services_System_PathSelection_service
 [yes] Framework_Services_System_FloatingPointControl_service
-[no]  Framework_EventProcessor
+[yes] Framework_EventProcessor
 [yes] config_dumper
 [yes] Framework_IO_Root_RootOutput_module
 [yes] Framework_Services_Optional_SimpleMemoryCheck_service
