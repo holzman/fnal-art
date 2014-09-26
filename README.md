@@ -89,105 +89,105 @@ Dictionary libraries are left until last.
 +- art/
    +- Framework/
    |  +- Art/
-   |  |  +- libart_Framework_Art.so                               (YES)
-   |  |  +- art                                                   (YES) \
-   |  |  +- gm2                                                   (NO)  |
-   |  |  +- lar                                                   (NO)  |- only difference, mu2e has different
-   |  |  +- mu2e                                                  (YES) |  exception handling
-   |  |  +- nova                                                  (NO) /
-   |  |  +- art_ut                                                (YES) \
-   |  |  +- gm2_ut                                                (NO)  |
-   |  |  +- lar_ut                                                (NO)  | - as above, but use boost::test
-   |  |  +- mu2e_ut                                               (YES) |
-   |  |  +- nova_ut                                               (NO) /
+   |  |  +- libart_Framework_Art.so                                    (YES)
+   |  |  +- art                                                        (YES) \
+   |  |  +- gm2                                                        (NO)  |
+   |  |  +- lar                                                        (NO)  |- only difference, mu2e has different
+   |  |  +- mu2e                                                       (YES) |  exception handling
+   |  |  +- nova                                                       (NO) /
+   |  |  +- art_ut                                                     (YES) \
+   |  |  +- gm2_ut                                                     (NO)  |
+   |  |  +- lar_ut                                                     (NO)  | - as above, but use boost::test
+   |  |  +- mu2e_ut                                                    (YES) |
+   |  |  +- nova_ut                                                    (NO) /
    |  +- Core/
-   |  |  +- libart_Framework_Core.so                              (YES)
+   |  |  +- libart_Framework_Core.so                                   (YES)
    |  +- EventProcessor/
-   |  |  +- libart_Framework_EventProcessor.so                    (YES)
+   |  |  +- libart_Framework_EventProcessor.so                         (YES)
    |  +- IO/
-   |  |  +- libart_Framework_IO.so                                (YES)
+   |  |  +- libart_Framework_IO.so                                     (YES)
    |  |  +- Catalog/
-   |  |  |  +- libart_Framework_IO_Catalog.so                     (YES)
+   |  |  |  +- libart_Framework_IO_Catalog.so                          (YES)
    |  |  +- ProductMix/
-   |  |  |  +- libart_Framework_IO_ProductMix.so                  (YES)
-   |  |  |  +- libart_Framework_IO_ProductMix_dict.so             (NO)
-   |  |  |  +- libart_Framework_IO_ProductMix_map.so              (NO)
+   |  |  |  +- libart_Framework_IO_ProductMix.so                       (YES)
+   |  |  |  +- libart_Framework_IO_ProductMix_dict.so                  (NO)
+   |  |  |  +- libart_Framework_IO_ProductMix_map.so                   (NO)
    |  |  +- Root/
-   |  |  |  +- libart_Framework_IO_Root.so                        (YES)
-   |  |  |  +- libart_Framework_IO_RootVersion.so                 (YES)
-   |  |  |  +- libRootInput_source.so                             (YES)
-   |  |  |  +- libRootOutput_module.so                            (YES)
-   |  |  |  +- config_dumper                                      (YES)
-   |  |  |  +- sam_metadata_dumper                                (YES)
+   |  |  |  +- libart_Framework_IO_Root.so                             (YES)
+   |  |  |  +- libart_Framework_IO_RootVersion.so                      (YES)
+   |  |  |  +- libRootInput_source.so                                  (YES)
+   |  |  |  +- libRootOutput_module.so                                 (YES)
+   |  |  |  +- config_dumper                                           (YES)
+   |  |  |  +- sam_metadata_dumper                                     (YES)
    |  |  +- Sources/
-   |  |     +- libart_Framework_IO_Sources.so                     (YES)
+   |  |     +- libart_Framework_IO_Sources.so                          (YES)
    |  +- Modules/
-   |  |  +- libart_Framework_Modules_dict.so                      (NO)
-   |  |  +- libart_Framework_Modules_map.so                       (NO)
-   |  |  +- libBlockingPrescaler_module.so                        (NO)
-   |  |  +- libEmptyEvent_source.so                               (NO)
-   |  |  +- libFileDumperOutput_module.so                         (NO)
-   |  |  +- libPrescaler_module.so                                (NO)
-   |  |  +- libProvenanceCheckerOutput_module.so                  (NO)
-   |  |  +- libRandomNumberSaver_module.so                        (NO)
+   |  |  +- libart_Framework_Modules_dict.so                           (NO)
+   |  |  +- libart_Framework_Modules_map.so                            (NO)
+   |  |  +- libart_Framework_Modules_BlockingPrescaler_module.so       (YES)
+   |  |  +- libart_Framework_Modules_EmptyEvent_source.so              (YES)
+   |  |  +- libart_Framework_Modules_FileDumperOutput_module.so        (YES)
+   |  |  +- libart_Framework_Modules_Prescaler_module.so               (YES)
+   |  |  +- libart_Framework_Modules_ProvenanceCheckerOutput_module.so (YES)
+   |  |  +- libart_Framework_Modules_RandomNumberSaver_module.so       (YES)
    |  +- Principal/
-   |  |  +- libart_Framework_Principal.so                         (YES)
+   |  |  +- libart_Framework_Principal.so                              (YES)
    |  +- Services/
    |     +- FileServiceInterfaces/
-   |     |  +- libart_Framework_Services_FileServiceInterfaces.so (YES)
+   |     |  +- libart_Framework_Services_FileServiceInterfaces.so      (YES)
    |     +- Optional/
-   |     |  +- libart_Framework_Services_Optional.so              (YES)
-   |     |  +- libRandomNumberGenerator_service.so                (YES)
-   |     |  +- libSimpleInteraction_service.so                    (YES)
-   |     |  +- libSimpleMemoryCheck_service.so                    (YES)
-   |     |  +- libTFileService_service.so                         (YES)
-   |     |  +- libTiming_service.so                               (YES)
-   |     |  +- libTracer_service.so                               (YES)
-   |     |  +- libTrivialFileDelivery_service.so                  (YES)
-   |     |  +- libTrivialFileTransfer_service.so                  (YES)
+   |     |  +- libart_Framework_Services_Optional.so                   (YES)
+   |     |  +- libRandomNumberGenerator_service.so                     (YES)
+   |     |  +- libSimpleInteraction_service.so                         (YES)
+   |     |  +- libSimpleMemoryCheck_service.so                         (YES)
+   |     |  +- libTFileService_service.so                              (YES)
+   |     |  +- libTiming_service.so                                    (YES)
+   |     |  +- libTracer_service.so                                    (YES)
+   |     |  +- libTrivialFileDelivery_service.so                       (YES)
+   |     |  +- libTrivialFileTransfer_service.so                       (YES)
    |     +- Registry/
-   |     |  +- libart_Framework_Services_Registry.so              (YES)
+   |     |  +- libart_Framework_Services_Registry.so                   (YES)
    |     +- System/
-   |     |  +- libCurrentModule_service.so                        (YES)
-   |     |  +- libFileCatalogMetadata_service.so                  (YES)
-   |     |  +- libFloatingPointControl_service.so                 (YES)
-   |     |  +- libPathSelection_service.so                        (YES)
-   |     |  +- libScheduleContext_service.so                      (YES)
-   |     |  +- libTriggerNamesService.so                          (YES)
+   |     |  +- libCurrentModule_service.so                             (YES)
+   |     |  +- libFileCatalogMetadata_service.so                       (YES)
+   |     |  +- libFloatingPointControl_service.so                      (YES)
+   |     |  +- libPathSelection_service.so                             (YES)
+   |     |  +- libScheduleContext_service.so                           (YES)
+   |     |  +- libTriggerNamesService.so                               (YES)
    |     +- UserInteraction/
-   |        +- libart_Framework_Services_UserInteraction.so       (YES)
+   |        +- libart_Framework_Services_UserInteraction.so            (YES)
    +- Ntuple/
-   |  +- libart_Ntuple.so                                         (YES)
+   |  +- libart_Ntuple.so                                              (YES)
    +- Persistency/
    |  +- CetlibDictionaries/
-   |  |  +- libart_Persistency_CetlibDictionaries_dict.so         (NO)
-   |  |  +- libart_Persistency_CetlibDictionaries_map.so          (NO)
+   |  |  +- libart_Persistency_CetlibDictionaries_dict.so              (NO)
+   |  |  +- libart_Persistency_CetlibDictionaries_map.so               (NO)
    |  +- CLHEPDictionaries/
-   |  |  +- libart_Persistency_CLHEPDictionaries_dict.so          (NO)
-   |  |  +- libart_Persistency_CLHEPDictionaries_map.so           (NO)
+   |  |  +- libart_Persistency_CLHEPDictionaries_dict.so               (NO)
+   |  |  +- libart_Persistency_CLHEPDictionaries_map.so                (NO)
    |  +- Common/
-   |  |  +- libart_Persistency_Common.so                          (YES)
-   |  |  +- libart_Persistency_Common_dict.so                     (NO)
-   |  |  +- libart_Persistency_Common_map.so                      (NO)
+   |  |  +- libart_Persistency_Common.so                               (YES)
+   |  |  +- libart_Persistency_Common_dict.so                          (NO)
+   |  |  +- libart_Persistency_Common_map.so                           (NO)
    |  +- FhiclCppDictionaries/
-   |  |  +- libart_Persistency_FhiclCppDictionaries_dict.so       (NO)
-   |  |  +- libart_Persistency_FhiclCppDictionaries_map.so        (NO)
+   |  |  +- libart_Persistency_FhiclCppDictionaries_dict.so            (NO)
+   |  |  +- libart_Persistency_FhiclCppDictionaries_map.so             (NO)
    |  +- Provenance/
-   |  |  +- libart_Persistency_Provenance.so                      (YES)
-   |  |  +- libart_Persistency_Provenance_dict.so                 (NO)
-   |  |  +- libart_Persistency_Provenance_map.so                  (NO)
+   |  |  +- libart_Persistency_Provenance.so                           (YES)
+   |  |  +- libart_Persistency_Provenance_dict.so                      (NO)
+   |  |  +- libart_Persistency_Provenance_map.so                       (NO)
    |  +- RootDB/
-   |  |  +- libart_Persistency_RootDB.so                          (YES)
+   |  |  +- libart_Persistency_RootDB.so                               (YES)
    |  +- StdDictionaries/
-   |  |  +- libart_Persistency_StdDictionaries_dict.so            (NO)
-   |  |  +- libart_Persistency_StdDictionaries_map.so             (NO)
+   |  |  +- libart_Persistency_StdDictionaries_dict.so                 (NO)
+   |  |  +- libart_Persistency_StdDictionaries_map.so                  (NO)
    |  +- WrappedStdDictionaries/
-   |     +- libart_Persistency_WrappedStdDictionaries_dict.so     (NO)
-   |     +- libart_Persistency_WrappedStdDictionaries_map.so      (NO)
+   |     +- libart_Persistency_WrappedStdDictionaries_dict.so          (NO)
+   |     +- libart_Persistency_WrappedStdDictionaries_map.so           (NO)
    +- Utilities/
-   |  +- libart_Utilities.so                                      (YES)
+   |  +- libart_Utilities.so                                           (YES)
    +- Version/
-      +- libart_Version.so                                        (YES)
+      +- libart_Version.so                                             (YES)
 ```
 
 So, an estimated 72 products from around 520 source files

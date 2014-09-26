@@ -113,7 +113,7 @@ add_subdirectory(IO)
 # - ProvenanceCheckerOutput (module plugin)
 # - RandomNumberSaver       (module plugin)
 #
-#add_subdirectory (Modules)
+add_subdirectory(Modules)
 
 #-----------------------------------------------------------------------
 # Principal - (BUILT)

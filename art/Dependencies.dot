@@ -137,5 +137,41 @@ digraph art {
   sam_metadata_dumper -> Framework_IO_Root;
   sam_metadata_dumper -> Utilities;
   sam_metadata_dumper -> Framework_Core;
+
+  Framework_Modules_BlockingPrescaler_module -> Framework_Core;
+  Framework_Modules_BlockingPrescaler_module -> Framework_Principal;
+  Framework_Modules_BlockingPrescaler_module -> Persistency_Common;
+  Framework_Modules_BlockingPrescaler_module -> Persistency_Provenance;
+  Framework_Modules_BlockingPrescaler_module -> Utilities;
+
+  Framework_Modules_EmptyEvent_source -> Framework_Core;
+  Framework_Modules_EmptyEvent_source -> Framework_Principal;
+  Framework_Modules_EmptyEvent_source -> Persistency_Common;
+  Framework_Modules_EmptyEvent_source -> Persistency_Provenance;
+  Framework_Modules_EmptyEvent_source -> Utilities;
+
+  Framework_Modules_FileDumperOutput_module -> Framework_Core;
+  Framework_Modules_FileDumperOutput_module -> Framework_Principal;
+  Framework_Modules_FileDumperOutput_module -> Persistency_Common;
+  Framework_Modules_FileDumperOutput_module -> Persistency_Provenance;
+  Framework_Modules_FileDumperOutput_module -> Utilities;
+
+  Framework_Modules_Prescaler_module -> Framework_Core;
+  Framework_Modules_Prescaler_module -> Framework_Principal;
+  Framework_Modules_Prescaler_module -> Persistency_Common;
+  Framework_Modules_Prescaler_module -> Persistency_Provenance;
+  Framework_Modules_Prescaler_module -> Utilities;
+
+  Framework_Modules_ProvenanceChecker_module -> Framework_Core;
+  Framework_Modules_ProvenanceChecker_module -> Framework_Principal;
+  Framework_Modules_ProvenanceChecker_module -> Persistency_Common;
+  Framework_Modules_ProvenanceChecker_module -> Persistency_Provenance;
+  Framework_Modules_ProvenanceChecker_module -> Utilities;
+
+  Framework_Modules_RandomNumberSaver_module -> Framework_Core;
+  Framework_Modules_RandomNumberSaver_module -> Framework_Principal;
+  Framework_Modules_RandomNumberSaver_module -> Persistency_Common;
+  Framework_Modules_RandomNumberSaver_module -> Persistency_Provenance;
+  Framework_Modules_RandomNumberSaver_module -> Utilities;
 }
 

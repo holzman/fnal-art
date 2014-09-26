@@ -71,5 +71,11 @@ as follows (together with their build status):
 [yes] Framework_IO_Root_RootOutput_module
 [yes] Framework_Services_Optional_SimpleMemoryCheck_service
 [yes] Framework_Art
+[yes] Framework_Modules_BlockingPrescaler_module
+[yes] Framework_Modules_EmptyEvent_source
+[yes] Framework_Modules_FileDumperOutput_module
+[yes] Framework_Modules_Prescaler_module
+[yes] Framework_Modules_ProvenanceChecker_module
+[yes] Framework_Modules_RandomNumberSaver_module
 [yes] Ntuple
 ```
