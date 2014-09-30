@@ -91,7 +91,10 @@ endif()
 
 # - Ensure we can refind Boost and extra components we need
 find_package(Boost ${art_MIN_BOOST_VERSION}
-  REQUIRED date_time unit_test_framework
+  REQUIRED
+    date_time
+    unit_test_framework
+    program_options
   )
 
 # FNALCore provides an interface to the C++ standard, so use its flags

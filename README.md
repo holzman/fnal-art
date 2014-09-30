@@ -45,8 +45,8 @@ Requirements
 - [FNALCore](https://github.com/LBNE/FNALCore) library
   - Correct installation of this will also provide [Boost](http://www.boost.org)
   - art requires Boost 1.53 or better
-  - art requires Boost's `date_time` and `unit_test_framework` libraries in
-    addition to those used in FNALCore.
+  - art requires Boost's `date_time`, `unit_test_framework` and `program_options`
+    libraries in addition to those used in FNALCore.
 - [GCCXML](http://gccxml.github.io/HTML/Index.html) 0.9.0 or higher
 - [CLHEP](http://proj-clhep.web.cern.ch/proj-clhep/) 2.2.0.3 or higher
 - [SQLite](http://www.sqlite.org/) 3.8.5 or higher
