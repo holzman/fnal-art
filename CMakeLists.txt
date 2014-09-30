@@ -79,7 +79,7 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${BASE_OUTPUT_DIRECTORY}/${CMAKE_INSTALL_LIB
 # Required Third Party
 # - Core library(ies), which will supply us with Boost
 # For now use FNALCore, easy switch out to multi modules later if needed
-find_package(FNALCore 1.0.0 REQUIRED)
+find_package(FNALCore 0.1.0 REQUIRED)
 
 # We need a minimum version of Boost, but rely on FNALCore to supply this
 # to use. So check our found FNALCore provides a suitable version
