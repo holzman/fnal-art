@@ -51,14 +51,16 @@ add_library(art_Persistency_Common SHARED
   )
 
 # Describe library include interface
-target_include_directories(art_Persistency_Common
-  PUBLIC
-   ${ROOT_INCLUDE_DIRS}
-   ${BOOST_INCLUDE_DIRS}
-   )
+#target_include_directories(art_Persistency_Common
+#  PUBLIC
+#   ${ROOT_INCLUDE_DIRS}
+#   ${BOOST_INCLUDE_DIRS}
+#   )
 
 # Describe library link interface
 target_link_libraries(art_Persistency_Common
+  PUBLIC
+  FNALCore::FNALCore
   art_Utilities
   art_Persistency_Provenance
   ${ROOT_Core_LIBRARY}
@@ -71,7 +73,10 @@ set_target_properties(art_Persistency_Common
    SOVERSION ${art_SOVERSION}
   )
 
-install(TARGETS art_Persistency_Common
+# - Dictify
+art_add_dictionary(DICTIONARY_LIBRARIES art_Persistency_Common)
+
+install(TARGETS art_Persistency_Common art_Persistency_Common_dict art_Persistency_Common_map
   EXPORT ArtLibraries
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

@@ -50,7 +50,12 @@ Requirements
 - [GCCXML](http://gccxml.github.io/HTML/Index.html) 0.9.0 or higher
 - [CLHEP](http://proj-clhep.web.cern.ch/proj-clhep/) 2.2.0.3 or higher
 - [SQLite](http://www.sqlite.org/) 3.8.5 or higher
-- [ROOT](http://root.cern.ch) 5.34.20 (or better 5 series)
+- [ROOT](http://root.cern.ch) 5.34.20 (or better 5 series) built with CMake
+  - CMake-built ROOT is needed so that we can use the supplied 'ROOTConfig'
+    support files. This provides better support for relocatable builds
+    as it allows use of CMake's import/export target functionality.
+    A FindROOT.cmake find module to backport this functionality can
+    be provided later.
 - [Intel TBB](https://www.threadingbuildingblocks.org/) 4.1.0 or higher
 
 **NB**: all C++ libraries must have been compiled against the *same*
@@ -71,7 +76,12 @@ $ make -j4
 $ make install
 ```
 
+If the required third-party packages are in non-standard locations,
+then you will need to tell CMake where to find these.
+
 **TODO**: add detail on how to find packages when not in standard locations.
+This will cover both command line arguments and the use of an initial cache
+file.
 
 
 Status
@@ -112,8 +122,8 @@ Dictionary libraries are left until last.
    |  |  |  +- libart_Framework_IO_Catalog.so                                      (YES)
    |  |  +- ProductMix/
    |  |  |  +- libart_Framework_IO_ProductMix.so                                   (YES)
-   |  |  |  +- libart_Framework_IO_ProductMix_dict.so                              (NO)
-   |  |  |  +- libart_Framework_IO_ProductMix_map.so                               (NO)
+   |  |  |  +- libart_Framework_IO_ProductMix_dict.so                              (YES)
+   |  |  |  +- libart_Framework_IO_ProductMix_map.so                               (YES)
    |  |  +- Root/
    |  |  |  +- libart_Framework_IO_Root.so                                         (YES)
    |  |  |  +- libart_Framework_IO_RootVersion.so                                  (YES)
@@ -124,8 +134,8 @@ Dictionary libraries are left until last.
    |  |  +- Sources/
    |  |     +- libart_Framework_IO_Sources.so                                      (YES)
    |  +- Modules/
-   |  |  +- libart_Framework_Modules_dict.so                                       (NO)
-   |  |  +- libart_Framework_Modules_map.so                                        (NO)
+   |  |  +- libart_Framework_Modules_dict.so                                       (YES)
+   |  |  +- libart_Framework_Modules_map.so                                        (YES)
    |  |  +- libart_Framework_Modules_BlockingPrescaler_module.so                   (YES)
    |  |  +- libart_Framework_Modules_EmptyEvent_source.so                          (YES)
    |  |  +- libart_Framework_Modules_FileDumperOutput_module.so                    (YES)
@@ -162,30 +172,30 @@ Dictionary libraries are left until last.
    |  +- libart_Ntuple.so                                                          (YES)
    +- Persistency/
    |  +- CetlibDictionaries/
-   |  |  +- libart_Persistency_CetlibDictionaries_dict.so                          (NO)
-   |  |  +- libart_Persistency_CetlibDictionaries_map.so                           (NO)
+   |  |  +- libart_Persistency_CetlibDictionaries_dict.so                          (YES)
+   |  |  +- libart_Persistency_CetlibDictionaries_map.so                           (YES)
    |  +- CLHEPDictionaries/
-   |  |  +- libart_Persistency_CLHEPDictionaries_dict.so                           (NO)
-   |  |  +- libart_Persistency_CLHEPDictionaries_map.so                            (NO)
+   |  |  +- libart_Persistency_CLHEPDictionaries_dict.so                           (YES)
+   |  |  +- libart_Persistency_CLHEPDictionaries_map.so                            (YES)
    |  +- Common/
    |  |  +- libart_Persistency_Common.so                                           (YES)
-   |  |  +- libart_Persistency_Common_dict.so                                      (NO)
-   |  |  +- libart_Persistency_Common_map.so                                       (NO)
+   |  |  +- libart_Persistency_Common_dict.so                                      (YES)
+   |  |  +- libart_Persistency_Common_map.so                                       (YES)
    |  +- FhiclCppDictionaries/
-   |  |  +- libart_Persistency_FhiclCppDictionaries_dict.so                        (NO)
-   |  |  +- libart_Persistency_FhiclCppDictionaries_map.so                         (NO)
+   |  |  +- libart_Persistency_FhiclCppDictionaries_dict.so                        (YES)
+   |  |  +- libart_Persistency_FhiclCppDictionaries_map.so                         (YES)
    |  +- Provenance/
    |  |  +- libart_Persistency_Provenance.so                                       (YES)
-   |  |  +- libart_Persistency_Provenance_dict.so                                  (NO)
-   |  |  +- libart_Persistency_Provenance_map.so                                   (NO)
+   |  |  +- libart_Persistency_Provenance_dict.so                                  (YES)
+   |  |  +- libart_Persistency_Provenance_map.so                                   (YES)
    |  +- RootDB/
    |  |  +- libart_Persistency_RootDB.so                                           (YES)
    |  +- StdDictionaries/
-   |  |  +- libart_Persistency_StdDictionaries_dict.so                             (NO)
-   |  |  +- libart_Persistency_StdDictionaries_map.so                              (NO)
+   |  |  +- libart_Persistency_StdDictionaries_dict.so                             (YES)
+   |  |  +- libart_Persistency_StdDictionaries_map.so                              (YES)
    |  +- WrappedStdDictionaries/
-   |     +- libart_Persistency_WrappedStdDictionaries_dict.so                      (NO)
-   |     +- libart_Persistency_WrappedStdDictionaries_map.so                       (NO)
+   |     +- libart_Persistency_WrappedStdDictionaries_dict.so                      (YES)
+   |     +- libart_Persistency_WrappedStdDictionaries_map.so                       (YES)
    +- Utilities/
    |  +- libart_Utilities.so                                                       (YES)
    +- Version/

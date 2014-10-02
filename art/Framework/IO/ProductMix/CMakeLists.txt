@@ -37,7 +37,12 @@ set_target_properties(art_Framework_IO_ProductMix
    SOVERSION ${art_SOVERSION}
   )
 
-install(TARGETS art_Framework_IO_ProductMix
+# - Dictify
+#
+art_add_dictionary(DICTIONARY_LIBRARIES art_Persistency_Provenance)
+
+install(TARGETS art_Framework_IO_ProductMix art_Framework_IO_ProductMix_dict
+  art_Framework_IO_ProductMix_map
   EXPORT ArtLibraries
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

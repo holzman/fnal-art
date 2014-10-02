@@ -91,6 +91,9 @@ set_target_properties(
    SOVERSION ${art_SOVERSION}
   )
 
+# - Dictify
+art_add_dictionary(DICTIONARY_LIBRARIES art_Persistency_Common)
+
 # - Install targets, files
 install(TARGETS
   art_Framework_Modules_BlockingPrescaler_module
@@ -99,6 +102,8 @@ install(TARGETS
   art_Framework_Modules_Prescaler_module
   art_Framework_Modules_ProvenanceCheckerOutput_module
   art_Framework_Modules_RandomNumberSaver_module
+  art_Framework_Modules_dict
+  art_Framework_Modules_map
   EXPORT ArtLibraries
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

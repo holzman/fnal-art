@@ -132,6 +132,10 @@ find_package(ROOT 5.34.20 REQUIRED
   Thread
   Tree
   )
+# - Must have Python support
+if(NOT ROOT_python_FOUND)
+  message(FATAL_ERROR "art requires ROOT with Python support")
+endif()
 
 # Need to implement
 find_package(TBB 4.1.0 REQUIRED)
@@ -143,7 +147,8 @@ include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_BINARY_DIR})
 
 # macros for art_dictionary and simple_plugin
-#include(ArtDictionary)
+include(ArtDictionary)
+#include(artTools)
 #include(BuildPlugins)
 
 # tools (first)
@@ -196,6 +201,9 @@ write_basic_package_version_file(
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/artConfig.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/artConfigVersion.cmake
+  Modules/ArtDictionary.cmake
+  Modules/BuildDictionary.cmake
+  Modules/CheckClassVersion.cmake
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/art-${art_VERSION}
   COMPONENT Development
   )

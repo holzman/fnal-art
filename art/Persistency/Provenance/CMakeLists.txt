@@ -114,7 +114,11 @@ set_target_properties(art_Persistency_Provenance
    SOVERSION ${art_SOVERSION}
   )
 
-install(TARGETS art_Persistency_Provenance
+# - Dictify
+art_add_dictionary(DICTIONARY_LIBRARIES art_Persistency_Provenance)
+
+
+install(TARGETS art_Persistency_Provenance art_Persistency_Provenance_dict art_Persistency_Provenance_map
   EXPORT ArtLibraries
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

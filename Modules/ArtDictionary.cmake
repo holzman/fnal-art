@@ -1,5 +1,5 @@
 ########################################################################
-# art_dictionary
+# art_add_dictionary
 #
 # Wrapper around cetbuildtools' build_dictionary featuring the addition
 # of commonly required libraries to the dictionary library link list,
@@ -27,47 +27,43 @@ include(CMakeParseArguments)
 include(CheckClassVersion)
 
 function(art_dictionary)
+  message(WARNING "art_dictionary is deprecated, use art_add_dictionary")
+  art_add_dictionary(${ARGN})
+endfunction()
+
+function(art_add_dictionary)
   cmake_parse_arguments(AD
     "UPDATE_IN_PLACE;DICT_FUNCTIONS"
     "DICT_NAME_VAR"
     "DICTIONARY_LIBRARIES"
     ${ARGN}
     )
-  if(ART_PERSISTENCY_COMMON)
-    # Using art as a product rather than building art itself.
-    set(AD_DICTIONARY_LIBRARIES
-      ${ART_PERSISTENCY_COMMON} ${ART_UTILITIES} ${CETLIB} ${AD_DICTIONARY_LIBRARIES}
-      )
-  else()
-    set(AD_DICTIONARY_LIBRARIES
-      art_Persistency_Common art_Utilities ${CETLIB} ${AD_DICTIONARY_LIBRARIES}
-      )
-  endif()
-  if (AD_DICT_FUNCTIONS)
-    set(want_build_dictionary_version v3_13_00)
-    if (COMMAND check_ups_version)
-      check_ups_version(cetbuildtools $ENV{CETBUILDTOOLS_VERSION} ${want_build_dictionary_version}
-        PRODUCT_MATCHES_VAR understands_DICT_FUNCTIONS)
-    endif()
-    if (understands_DICT_FUNCTIONS)
-      set(extra_args DICT_FUNCTIONS)
-    else()
-      message(WARNING "art_dictionary: DICT_FUNCTIONS not forwarded to build_dictionary command too old to understand it (require ${want_build_dictionary_version}, found $ENV{CETBUILDTOOLS_VERSION}).")
-    endif()
-  endif()
+
+  # Setup common libs required for linking
+  # We can use target names consistently across build and client because
+  # of import/export of targets
+  set(AD_DICTIONARY_LIBRARIES
+    ${art_IMPORT_NAMESPACE}art_Persistency_Common
+    ${art_IMPORT_NAMESPACE}art_Utilities
+    FNALCore::FNALCore
+    ${AD_DICTIONARY_LIBRARIES}
+    )
+
   build_dictionary(DICT_NAME_VAR dictname
     DICTIONARY_LIBRARIES ${AD_DICTIONARY_LIBRARIES}
     ${AD_UNPARSED_ARGUMENTS}
     ${extra_args})
+
+  # "returns"
   if (cet_generated_code) # Bubble up to top scope.
     set(cet_generated_code ${cet_generated_code} PARENT_SCOPE)
   endif()
   if (AD_DICT_NAME_VAR)
     set (${AD_DICT_NAME_VAR} ${dictname} PARENT_SCOPE)
   endif()
+
   if(AD_UPDATE_IN_PLACE)
     set(AD_CCV_ARGS ${AD_CCV_ARGS} "UPDATE_IN_PLACE" ${AD_UPDATE_IN_PLACE})
   endif()
-  #message(STATUS "Calling check_class_version with args ${AD_ARGS}")
-  check_class_version(${AD_LIBRARIES} UPDATE_IN_PLACE ${AD_CCV_ARGS})
+  #check_class_version(${AD_LIBRARIES} UPDATE_IN_PLACE ${AD_CCV_ARGS})
 endfunction()
