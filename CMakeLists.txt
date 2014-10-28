@@ -149,12 +149,22 @@ include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_BINARY_DIR})
 
 # macros for art_dictionary and simple_plugin
+# Use an imported target for checkClassVersion to give transparency
+# between art build and client usage.
+# This *is* a little messy, but eases the writing of the scripts for
+# full portability between the art build and clients.
+add_executable(art::checkClassVersion IMPORTED)
+set_target_properties(art::checkClassVersion PROPERTIES IMPORTED_LOCATION
+  ${CMAKE_CURRENT_SOURCE_DIR}/tools/checkClassVersion
+  )
 include(ArtDictionary)
+checkclassversion_append_path(${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
+
 #include(artTools)
 #include(BuildPlugins)
 
 # tools (first)
-#add_subdirectory(tools)
+add_subdirectory(tools)
 
 # source
 add_subdirectory(art)
@@ -192,6 +202,7 @@ configure_package_config_file(
   PATH_VARS
     CMAKE_INSTALL_INCLUDEDIR
     CMAKE_INSTALL_LIBDIR
+    CMAKE_INSTALL_BINDIR
   )
 
 write_basic_package_version_file(

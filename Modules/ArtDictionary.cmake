@@ -55,9 +55,14 @@ function(art_add_dictionary)
     ${extra_args})
 
   # "returns"
+  # We *probably* don't care about this as it only
+  # appears to be relevant when installing source
+  # code, and we almost certainly don't want to do that
+  # for generated code.
   if (cet_generated_code) # Bubble up to top scope.
     set(cet_generated_code ${cet_generated_code} PARENT_SCOPE)
   endif()
+
   if (AD_DICT_NAME_VAR)
     set (${AD_DICT_NAME_VAR} ${dictname} PARENT_SCOPE)
   endif()
@@ -65,5 +70,6 @@ function(art_add_dictionary)
   if(AD_UPDATE_IN_PLACE)
     set(AD_CCV_ARGS ${AD_CCV_ARGS} "UPDATE_IN_PLACE" ${AD_UPDATE_IN_PLACE})
   endif()
-  #check_class_version(${AD_LIBRARIES} UPDATE_IN_PLACE ${AD_CCV_ARGS})
+
+  check_class_version(${AD_LIBRARIES} UPDATE_IN_PLACE ${AD_CCV_ARGS})
 endfunction()

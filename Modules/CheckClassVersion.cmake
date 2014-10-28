@@ -1,4 +1,15 @@
-string(REPLACE "/" "+" _ccv_target "${EXECUTABLE_OUTPUT_PATH}/checkClassVersion")
+#string(REPLACE "/" "+" _ccv_target "${EXECUTABLE_OUTPUT_PATH}/checkClassVersion")
+
+# - Use a property to configure the dynamic loader path for checkClassVersion
+# It's done this way because we don't want to hard code anything in the
+# actual macro or provide an argument (because it's used internally by ArtDictionary
+# and that can be used by clients...
+function(checkclassversion_append_path _path)
+  set_property(GLOBAL
+    APPEND
+    PROPERTY CHECKCLASSVERSION_DYNAMIC_PATH ${_path}
+    )
+endfunction()
 
 
 MACRO(check_class_version)
@@ -18,18 +29,28 @@ MACRO(check_class_version)
     MESSAGE(FATAL_ERROR "CHECK_CLASS_VERSION must be called after BUILD_DICTIONARY.")
   ENDIF()
   IF(ROOT_python_FOUND)
+    # Use dynamic path lookup if configured
+    get_property(ART_CCV_DYNAMIC_PATH GLOBAL PROPERTY CHECKCLASSVERSION_DYNAMIC_PATH)
+    set(ART_CCV_DYNAMIC_PATH_ARGS)
+    foreach(_path ${ART_CCV_DYNAMIC_PATH})
+      list(APPEND ART_CCV_DYNAMIC_PATH_ARGS -L${_path})
+    endforeach()
+
     # Add the check to the end of the dictionary building step.
     add_custom_command(TARGET ${dictname}_dict POST_BUILD
-      COMMAND ${PROJECT_SOURCE_DIR}/tools/checkClassVersion ${ART_CCV_EXTRA_ARGS}
+      COMMAND art::checkClassVersion
+      ${ART_CCV_EXTRA_ARGS}
+      ${ART_CCV_DYNAMIC_PATH_ARGS}
       -l$<TARGET_FILE:${dictname}_dict>
       -x ${CMAKE_CURRENT_SOURCE_DIR}/classes_def.xml
+      COMMENT "Running checkClassVersion on ${dictname}_dict"
       VERBATIM
       )
-    if (NOT ART_FRAMEWORK_CORE)
+    if (NOT TARGET art::art_Framework_Core)
       # If we're in art, we need to be sure that CheckClassVersion and
       # art_Framework_Core are already built; if we're outside art, this
       # is a given.
-      add_dependencies(${dictname}_dict ${_ccv_target} art_Framework_Core)
+      add_dependencies(${dictname}_dict art::checkClassVersion art_Framework_Core)
     endif()
   ENDIF()
 ENDMACRO()
