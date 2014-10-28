@@ -132,7 +132,9 @@ find_package(ROOT 5.34.20 REQUIRED
   Thread
   Tree
   )
-# - Must have Python support
+# - Must have Python support - it doesn't work as a COMPONENT
+# argument to find_package because Root's component lookup only
+# works for libraries.
 if(NOT ROOT_python_FOUND)
   message(FATAL_ERROR "art requires ROOT with Python support")
 endif()
