@@ -175,7 +175,7 @@ if(art_ENABLE_TESTING)
   # cppunit *only* needed for testing
   enable_testing()
   find_package(CppUnit 1.12.1 REQUIRED)
-  #add_subdirectory(test)
+  add_subdirectory(test)
 endif()
 
 # ups - table and config files
