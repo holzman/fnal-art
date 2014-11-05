@@ -17,7 +17,7 @@ set(art_IMPORT_NAMESPACE "art::")
 include("${CMAKE_CURRENT_LIST_DIR}/ArtLibraries.cmake")
 
 # - Configure tools
-add_target(art::checkClassVersion IMPORTED)
+add_executable(art::checkClassVersion IMPORTED)
 set_target_properties(art::checkClassVersion
   PROPERTIES
    IMPORTED_LOCATION "${art_BINDIR}/checkClassVersion"
