@@ -70,6 +70,11 @@ list(APPEND art_Framework_Services_System_TARGETS
 target_link_libraries(art_Framework_Services_System_ScheduleContext_service
   art_Framework_Services_Registry
   art_Framework_Core
+  ${TBB_LIBRARIES}
+  )
+target_include_directories(art_Framework_Services_System_ScheduleContext_service
+  PRIVATE
+   ${TBB_INCLUDE_DIRS}
   )
 
 # - TriggerNamesService

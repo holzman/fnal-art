@@ -33,6 +33,12 @@ target_link_libraries(art_Framework_EventProcessor
   art_Framework_Core
   art_Utilities
   FNALCore::FNALCore
+  ${TBB_LIBRARIES}
+  )
+
+target_include_directories(art_Framework_EventProcessor
+  PUBLIC
+   ${TBB_INCLUDE_DIRS}
   )
 
 # Set any additional properties

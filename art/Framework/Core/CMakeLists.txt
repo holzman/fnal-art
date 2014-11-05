@@ -147,6 +147,11 @@ target_link_libraries(art_Framework_Core
   ${TBB_LIBRARIES}
   )
 
+target_include_directories(art_Framework_Core
+  PUBLIC
+   ${TBB_INCLUDE_DIRS}
+  )
+
 # Set any additional properties
 set_target_properties(art_Framework_Core
   PROPERTIES
