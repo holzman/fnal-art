@@ -1,4 +1,4 @@
 
 cet_test(ntuple_t
-         LIBRARIES art_Ntuple ${SQLITE3}
+         LIBRARIES art_Ntuple ${SQLite3_LIBRARIES}
          )
