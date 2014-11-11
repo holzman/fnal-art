@@ -52,6 +52,10 @@ include(GNUInstallDirs)
 include(CheckCXXCompilerFlag)
 
 # - Local Customs
+include(artInternalTools)
+include(artTools)
+include(ArtDictionary)
+
 # - Build product locations
 # The variables CMAKE_{RUNTIME,LIBRARY,ARCHIVE}_OUTPUT_DIRECTORY can
 # be used to specify where executables, dynamic and static libraries
@@ -75,8 +79,20 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${BASE_OUTPUT_DIRECTORY}/${CMAKE_INSTALL_LIB
 #  cet_add_compiler_flags(CXX -msse2 -ftree-vectorizer-verbose=2)
 #endif()
 
+# Use an imported target for checkClassVersion to give transparency
+# between art build and client usage.
+# This *is* a little messy, but eases the writing of the scripts for
+# full portability between the art build and clients.
+# We set it up *here* because we need to append the library output
+# directory to checkClassVersion's search path.
+add_executable(art::checkClassVersion IMPORTED)
+set_target_properties(art::checkClassVersion PROPERTIES IMPORTED_LOCATION
+  ${CMAKE_CURRENT_SOURCE_DIR}/tools/checkClassVersion
+  )
+checkclassversion_append_path(${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
+
 #-----------------------------------------------------------------------
-# Required Third Party
+# Required Third Party Packages
 # - Core library(ies), which will supply us with Boost
 # For now use FNALCore, easy switch out to multi modules later if needed
 find_package(FNALCore 0.1.0 REQUIRED)
@@ -148,21 +164,6 @@ find_package(TBB 4.1.0 REQUIRED)
 include_directories(${PROJECT_SOURCE_DIR})
 include_directories(${PROJECT_BINARY_DIR})
 
-# macros for art_dictionary and simple_plugin
-# Use an imported target for checkClassVersion to give transparency
-# between art build and client usage.
-# This *is* a little messy, but eases the writing of the scripts for
-# full portability between the art build and clients.
-add_executable(art::checkClassVersion IMPORTED)
-set_target_properties(art::checkClassVersion PROPERTIES IMPORTED_LOCATION
-  ${CMAKE_CURRENT_SOURCE_DIR}/tools/checkClassVersion
-  )
-include(ArtDictionary)
-checkclassversion_append_path(${CMAKE_LIBRARY_OUTPUT_DIRECTORY})
-
-#include(artTools)
-#include(BuildPlugins)
-
 # tools (first)
 add_subdirectory(tools)
 
@@ -177,12 +178,6 @@ if(art_ENABLE_TESTING)
   find_package(CppUnit 1.12.1 REQUIRED)
   add_subdirectory(test)
 endif()
-
-# ups - table and config files
-#add_subdirectory(ups)
-
-# CMake modules
-#add_subdirectory(Modules)
 
 #-----------------------------------------------------------------------
 # Documentation
@@ -217,6 +212,7 @@ install(FILES
   Modules/ArtDictionary.cmake
   Modules/BuildDictionary.cmake
   Modules/CheckClassVersion.cmake
+  Modules/artTools.cmake
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/art-${art_VERSION}
   COMPONENT Development
   )
