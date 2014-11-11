@@ -18,7 +18,7 @@ endif()
 
 # build Persistency libraries
 add_subdirectory(Framework/Art)
-#add_subdirectory(Framework/Core)
+add_subdirectory(Framework/Core)
 #add_subdirectory(Framework/EventProcessor)
 #add_subdirectory(Framework/IO)
 #add_subdirectory(Framework/IO/Root)

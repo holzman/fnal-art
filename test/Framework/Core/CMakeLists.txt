@@ -1,4 +1,5 @@
-art_dictionary(NO_INSTALL)
+# - There can be only one...
+art_add_dictionary()
 
 # Library link requirements for tests here
 set(default_test_libraries
@@ -18,8 +19,8 @@ set(default_test_libraries
 	${ROOT_CORE}
   ${ROOT_CINT}
 	${ROOT_REFLEX}
-  ${CPPUNIT}
-  -ldl
+  ${CPPUNIT_LIBRARY}
+  ${CMAKE_DL_LIBS}
  )
 
 #########################################################################
@@ -36,27 +37,28 @@ foreach (type Analyzer Filter Output Producer)
     PROPERTIES
     COMPILE_FLAGS "-Wno-unused-parameter -Wno-return-type"
     )
-  simple_plugin(PMTest${type} "module" NO_INSTALL)
+  art_add_module(PMTest${type}_module PMTest${type}_module.cc)
 endforeach()
 
 cet_test(PathManager_t USE_BOOST_UNIT
   LIBRARIES
   art_Framework_Core
-  ${FHICLCPP}
-  ${CETLIB}
+  FNALCore::FNALCore
   )
 
 #########################################################################
 # Old (pre-ART fork) tests.
+art_add_module(TestMod_module TestMod_module.cc)
+target_link_libraries(TestMod_module ${CPPUNIT_LIBRARY})
 
-simple_plugin(TestMod module NO_INSTALL ${CPPUNIT})
+
 
 # cppunit tests en masse.
 file(GLOB cppunit_files *.cppunit.cc)
 foreach(cppunit_source ${cppunit_files})
   get_filename_component(test_name ${cppunit_source} NAME_WE )
   cet_test(${test_name} SOURCES testRunner.cpp ${cppunit_source}
-    LIBRARIES ${default_test_libraries} ${CPPUNIT}
+    LIBRARIES ${default_test_libraries} ${CPPUNIT_LIBRARY}
     )
 endforeach()
 
