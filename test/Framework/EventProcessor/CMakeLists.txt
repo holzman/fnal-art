@@ -9,12 +9,12 @@ cet_test(Statemachine_t NO_AUTO
   art_Framework_Core
   )
 
-cet_script(Statemachine_t.sh NO_INSTALL)
+#cet_script(Statemachine_t.sh NO_INSTALL)
 
 # Shorthand to avoid writing almost the same thing three times.
 macro(statemachine_test i)
   cet_test(Statemachine_t_${i} HANDBUILT
-    TEST_EXEC Statemachine_t.sh
+    TEST_EXEC ${CMAKE_CURRENT_SOURCE_DIR}/Statemachine_t.sh
     DEPENDENCIES Statemachine_t
     DATAFILES
     unit_test_outputs/statemachine_${i}.txt
