@@ -1,11 +1,10 @@
 # cet_test macro
-
-art_dictionary(NO_INSTALL)
+art_add_dictionary()
 
 set(default_test_libraries
   art_Utilities
   test_Utilities_dict
-  ${MF_MESSAGELOGGER}
+  FNALCore::FNALCore
   ${ROOT_CINT}
   ${ROOT_REFLEX}
   )
@@ -48,7 +47,9 @@ foreach(cppunit_test HRTime_t.cpp)
   get_filename_component(tname ${cppunit_test} NAME_WE )
   cet_test(${tname}
     SOURCES ${cppunit_test}
-    LIBRARIES ${default_test_libraries} ${CPPUNIT}
+    LIBRARIES ${default_test_libraries}
+    ${CPPUNIT_LIBRARY}
+    ${CMAKE_DL_LIBS}
     )
 endforeach()
 
