@@ -1,5 +1,5 @@
 
-art_dictionary(NO_INSTALL)
+art_add_dictionary()
 
 set(standard_libraries
   art_Persistency_Provenance
@@ -10,7 +10,7 @@ set(standard_libraries
   ${ROOT_CORE}
   ${ROOT_CINT}
 	${ROOT_REFLEX}
-  -ldl
+  ${CMAKE_DL_LIBS}
   )
 
 cet_test(EventID_t USE_BOOST_UNIT
@@ -21,7 +21,7 @@ file(GLOB cppunit_files *.cppunit.cc)
 foreach(cppunit_source ${cppunit_files})
   get_filename_component(test_name ${cppunit_source} NAME_WE )
   cet_test(${test_name} SOURCES testRunner.cpp ${cppunit_source}
-    LIBRARIES ${CPPUNIT} ${standard_libraries}
+    LIBRARIES ${CPPUNIT_LIBRARY} ${standard_libraries}
     )
 endforeach()
 
@@ -34,7 +34,7 @@ cet_test(RootClassMapping_t USE_BOOST_UNIT
   LIBRARIES
   test_Persistency_Provenance_dict
   ${ROOT_CINTEX}
-  ${ROOT_TREE}
+  ${ROOT_Tree_LIBRARY}
   ${ROOT_NET}
   ${ROOT_MATHCORE}
   ${ROOT_RIO}
@@ -42,7 +42,7 @@ cet_test(RootClassMapping_t USE_BOOST_UNIT
   ${ROOT_CORE}
   ${ROOT_CINT}
 	${ROOT_REFLEX}
-  -ldl
+  ${CMAKE_DL_LIBS}
   # When ROOT is fixed WILL_FAIL should be removed and the code in ASSNS
   # (and associated ioread rules) should be fixed accordingly.
   TEST_PROPERTIES WILL_FAIL true
