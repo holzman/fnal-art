@@ -21,6 +21,12 @@
 # DICTIONARY_LIBRARIES
 #   Passed through to build_dictionary with additions.
 #
+# COMPILE_FLAGS
+#   Passed through to build_dictionary.
+#
+# USE_PRODUCT_NAME
+#   Passed through to build_dictionary.
+#
 #########################################################################
 include(BuildDictionary)
 include(CMakeParseArguments)
@@ -33,9 +39,9 @@ endfunction()
 
 function(art_add_dictionary)
   cmake_parse_arguments(AD
-    "UPDATE_IN_PLACE;DICT_FUNCTIONS"
+    "UPDATE_IN_PLACE;DICT_FUNCTIONS;USE_PRODUCT_NAME"
     "DICT_NAME_VAR"
-    "DICTIONARY_LIBRARIES"
+    "DICTIONARY_LIBRARIES;COMPILE_FLAGS"
     ${ARGN}
     )
 
