@@ -85,7 +85,6 @@ set(art_Framework_Core_DETAIL_HEADERS
   detail/ModuleInPathInfo.h
   detail/ModuleTypeDeducer.h
   detail/OutputModuleUtils.h
-  detail/ProductIDProvider.h
   detail/ScheduleTask.h
   )
 
