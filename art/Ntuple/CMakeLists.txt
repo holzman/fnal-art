@@ -39,6 +39,7 @@ add_library(art_Ntuple SHARED ${art_Ntuple_HEADERS} Transaction.cc)
 target_include_directories(art_Ntuple
   PUBLIC
    ${SQLite3_INCLUDE_DIRS}
+   ${FNALCore_INCLUDE_DIRS}
    )
 
 # Describe library link interface
