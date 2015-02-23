@@ -1,5 +1,13 @@
+IF (CETBUILDTOOLS_VERSION)
+
 # project name
-#project(art_Persistency_StdDictionaries)
+project(art_Persistency_StdDictionaries)
+
+art_dictionary()
+
+install_source()
+
+ELSE()
 
 art_add_dictionary()
 install(TARGETS art_Persistency_StdDictionaries_dict art_Persistency_StdDictionaries_map
@@ -10,5 +18,4 @@ install(TARGETS art_Persistency_StdDictionaries_dict art_Persistency_StdDictiona
   COMPONENT Runtime
   )
 
-
-#install_source()
+ENDIF()

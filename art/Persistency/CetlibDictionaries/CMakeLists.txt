@@ -1,5 +1,13 @@
+if (CETBUILDTOOLS_VERSION)
+
 # project name
-#project(art_Persistency_CetlibDictionaries)
+project(art_Persistency_CetlibDictionaries)
+
+art_dictionary(DICTIONARY_LIBRARIES cetlib)
+
+install_source()
+
+ELSE()
 
 art_add_dictionary(DICTIONARY_LIBRARIES FNALCore::FNALCore)
 
@@ -11,4 +19,4 @@ install(TARGETS art_Persistency_CetlibDictionaries_dict art_Persistency_CetlibDi
   COMPONENT Runtime
   )
 
-#install_source()
+ENDIF()

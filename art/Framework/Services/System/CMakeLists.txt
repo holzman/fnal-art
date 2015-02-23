@@ -1,3 +1,20 @@
+IF (CETBUILDTOOLS_VERSION)
+
+# project name
+project(art_Framework_Services_System)
+
+simple_plugin(CurrentModule "service" art_Persistency_Provenance)
+simple_plugin(FileCatalogMetadata "service")
+simple_plugin(FloatingPointControl "service")
+simple_plugin(PathSelection "service" art_Framework_Core)
+simple_plugin(ScheduleContext "service" art_Framework_Core)
+simple_plugin(TriggerNamesService "service")
+
+install_headers(SUBDIRS detail)
+install_source(SUBDIRS detail)
+
+ELSE()
+
 # - Build art_Framework_Services_System plugins
 # All service plugins, so require linking to art_Framework_Services_Registry
 set(art_Framework_Services_System_HEADERS)
@@ -113,19 +130,4 @@ install(FILES ${art_Framework_Services_System_DETAIL_HEADERS}
   COMPONENT Development
   )
 
-
-#-----------------------------------------------------------------------
-# Old Stuff
-#
-# project name
-#project(art_Framework_Services_System)
-#
-#simple_plugin(CurrentModule "service" art_Persistency_Provenance)
-#simple_plugin(FileCatalogMetadata "service")
-#simple_plugin(FloatingPointControl "service")
-#simple_plugin(PathSelection "service" art_Framework_Core)
-#simple_plugin(ScheduleContext "service" art_Framework_Core)
-#simple_plugin(TriggerNamesService "service")
-#
-#install_headers(SUBDIRS detail)
-#install_source(SUBDIRS detail)
+ENDIF()

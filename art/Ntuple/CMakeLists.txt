@@ -1,3 +1,29 @@
+IF (CETBUILDTOOLS_VERSION)
+
+include(BuildPlugins)
+
+art_make(
+  art_Ntuple
+  LIB_LIBRARIES
+  art_Utilities
+  ${SQLITE3}
+  EXCLUDE sqlite_mfPlugin.cc
+  )
+
+simple_plugin( sqlite mfPlugin
+               art_Ntuple
+               ${SQLITE3}
+               ${MF_MESSAGELOGGER}
+               ${MF_UTILITIES}
+               ${FHICLCPP}
+               ${CETLIB}
+               )
+
+install_headers()
+install_source()
+
+ELSE()
+
 # - Build art_Ntuple libray
 # Define headers
 set(art_Ntuple_HEADERS
@@ -37,14 +63,4 @@ install(FILES ${art_Ntuple_HEADERS}
   COMPONENT Development
   )
 
-
-#-----------------------------------------------------------------------
-# Original
-#
-#art_make(
-#  LIB_LIBRARIES
-#  ${SQLITE3}
-#  )
-
-#install_headers()
-#install_source()
+ENDIF()

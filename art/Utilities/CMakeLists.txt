@@ -1,20 +1,24 @@
-#art_make(LIB_LIBRARIES
-#  ${MF_MESSAGELOGGER}
-#  ${MF_UTILITIES}
-#	${FHICLCPP}
-#	${CETLIB}
-#	${Boost_FILESYSTEM_LIBRARY}
-#	${Boost_REGEX_LIBRARY}
-#	${Boost_SYSTEM_LIBRARY}
-#	${Boost_THREAD_LIBRARY}
-#	${ROOT_CINT}
-#	${ROOT_REFLEX}
-#	-lpthread
-#	-ldl
-#  )
+IF (CETBUILDTOOLS_VERSION)
 
-#install_headers(SUBDIRS detail)
-#install_source(SUBDIRS detail)
+art_make(LIB_LIBRARIES
+  MF_MessageLogger
+  MF_Utilities
+	fhiclcpp
+	cetlib
+	${Boost_FILESYSTEM_LIBRARY}
+	${Boost_REGEX_LIBRARY}
+	${Boost_SYSTEM_LIBRARY}
+	${Boost_THREAD_LIBRARY}
+	${ROOT_CINT}
+	${ROOT_REFLEX}
+	-lpthread
+	-ldl
+  )
+
+install_headers(SUBDIRS detail)
+install_source(SUBDIRS detail)
+
+ELSE()
 
 set(art_UTILITIES_HEADERS
   BasicPluginMacros.h
@@ -126,3 +130,4 @@ install(FILES ${art_UTILITIES_DETAIL_HEADERS}
   COMPONENT Development
   )
 
+ENDIF()

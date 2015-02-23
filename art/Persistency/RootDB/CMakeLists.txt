@@ -1,3 +1,27 @@
+IF (CETBUILDTOOLS_VERSION)
+
+set(art_Persistency_RootDB_suorce
+  MetaDataAccess.cc
+  SQLErrMsg.cc
+  SQLite3Wrapper.cc
+  tkeyvfs.cc
+)
+
+art_make_library( LIBRARY_NAME art_Persistency_RootDB
+                  SOURCE ${art_Persistency_RootDB_suorce}
+                  LIBRARIES ${ROOT_RIO}
+  ${ROOT_THREAD}
+  ${ROOT_CORE}
+  ${ROOT_CINT}
+  art_Utilities
+  ${SQLITE3}
+  )
+
+install_headers()
+install_source()
+
+ELSE()
+
 # - Build art_Persistency_RootDB lib
 # Define headers
 set(art_Persistency_RootDB_HEADERS
@@ -50,26 +74,4 @@ install(FILES ${art_Persistency_RootDB_HEADERS}
   COMPONENT Development
   )
 
-
-#-----------------------------------------------------------------------
-# Old stuff
-#
-#set(art_Persistency_RootDB_suorce
-#  MetaDataAccess.cc
-#  SQLErrMsg.cc
-#  SQLite3Wrapper.cc
-#  tkeyvfs.cc
-#)
-#
-#art_make_library( LIBRARY_NAME art_Persistency_RootDB
-#                  SOURCE ${art_Persistency_RootDB_suorce}
-#                  LIBRARIES ${ROOT_RIO}
-#  ${ROOT_THREAD}
-#  ${ROOT_CORE}
-#  ${ROOT_CINT}
-#  art_Utilities
-#  ${SQLITE3}
-#  )
-#
-#install_headers()
-#install_source()
+ENDIF()

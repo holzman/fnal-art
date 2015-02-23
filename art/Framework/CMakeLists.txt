@@ -1,3 +1,15 @@
+IF (CETBUILDTOOLS_VERSION)
+
+add_subdirectory (Art)
+add_subdirectory (Core)
+add_subdirectory (EventProcessor)
+add_subdirectory (IO)
+add_subdirectory (Modules)
+add_subdirectory (Principal)
+add_subdirectory (Services)
+
+ELSE()
+
 #-----------------------------------------------------------------------
 # Art - builds:
 # - art_Framework_Art library
@@ -177,3 +189,4 @@ add_subdirectory(Principal)
 #     - art_Framework_Services_Registry
 #
 add_subdirectory(Services)
+ENDIF()

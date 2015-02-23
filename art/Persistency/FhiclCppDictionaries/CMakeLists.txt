@@ -1,5 +1,13 @@
+IF (CETBUILDTOOLS_VERSION)
+
 # project name
-#project(art_Persistency_FhiclCppDictionaries)
+project(art_Persistency_FhiclCppDictionaries)
+
+art_dictionary(DICTIONARY_LIBRARIES fhiclcpp)
+
+install_source()
+
+ELSE()
 
 art_add_dictionary(DICTIONARY_LIBRARIES FNALCore::FNALCore)
 install(TARGETS art_Persistency_FhiclCppDictionaries_map
@@ -11,4 +19,4 @@ install(TARGETS art_Persistency_FhiclCppDictionaries_map
   COMPONENT Runtime
   )
 
-#install_source()
+ENDIF()
