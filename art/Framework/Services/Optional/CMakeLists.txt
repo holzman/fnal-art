@@ -243,6 +243,11 @@ add_library(art_Framework_Services_Optional_Timing_service
 target_link_libraries(art_Framework_Services_Optional_Timing_service
   art_Persistency_Provenance
   )
+target_include_directories(art_Framework_Services_Optional_Timing_service
+  PRIVATE
+   ${TBB_INCLUDE_DIRS}
+  )
+
 set_target_properties(art_Framework_Services_Optional_Timing_service
   PROPERTIES
    VERSION ${art_VERSION}
