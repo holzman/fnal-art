@@ -1,3 +1,6 @@
+if (PURE_CMAKE) 
+include(altCMakeLists.txt)
+else()
 INSTALL(FILES
   ArtDictionary.cmake
   ArtMake.cmake
@@ -5,3 +8,4 @@ INSTALL(FILES
   CheckClassVersion.cmake
   DESTINATION ${product}/${version}/Modules
   )
+endif()

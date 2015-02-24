@@ -1,3 +1,6 @@
+if (PURE_CMAKE) 
+include(altCMakeLists.txt)
+else()
 # project name
 project(art_Persistency_Common)
 
@@ -30,3 +33,4 @@ art_dictionary(DICTIONARY_LIBRARIES art_Persistency_Common)
 
 install_headers(SUBDIRS detail)
 install_source(SUBDIRS detail)
+endif()

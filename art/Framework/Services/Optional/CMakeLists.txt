@@ -1,3 +1,6 @@
+if (PURE_CMAKE) 
+include(altCMakeLists.txt)
+else()
 set( art_Framework_Services_Optional_sources
   TFileDirectory.cc
   detail/TH1AddDirectorySentry.cc
@@ -83,3 +86,4 @@ simple_plugin(TrivialFileTransfer "service")
 
 install_headers(SUBDIRS detail)
 install_source(SUBDIRS detail)
+endif()

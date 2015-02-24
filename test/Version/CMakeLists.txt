@@ -1,3 +1,6 @@
+if (ALT_CMAKE) 
+include(altCMakeLists.txt)
+else()
 # project name
 project(art_Version_Test)
 
@@ -8,4 +11,4 @@ link_libraries(  art_Version  )
 cet_test(GetReleaseVersion
   SOURCES ${CMAKE_CURRENT_BINARY_DIR}/test_GetReleaseVersion.cpp
   )
-
+endif()

@@ -1,3 +1,6 @@
+if (PURE_CMAKE) 
+include(altCMakeLists.txt)
+else()
 # project name
 project(art_Framework_Services_System)
 
@@ -10,3 +13,4 @@ simple_plugin(TriggerNamesService "service")
 
 install_headers(SUBDIRS detail)
 install_source(SUBDIRS detail)
+endif()

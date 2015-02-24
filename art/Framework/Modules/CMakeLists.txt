@@ -1,3 +1,6 @@
+if (PURE_CMAKE) 
+include(altCMakeLists.txt)
+else()
 # project name
 project(art_Framework_Modules)
 
@@ -12,3 +15,4 @@ art_dictionary(DICTIONARY_LIBRARIES art_Persistency_Common)
 
 install_headers()
 install_source()
+endif()

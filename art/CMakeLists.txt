@@ -1,3 +1,6 @@
+if (PURE_CMAKE) 
+include(altCMakeLists.txt)
+else()
 # project name
 project(artCode)
 
@@ -9,4 +12,4 @@ add_subdirectory (Utilities)
 add_subdirectory (Framework)
 add_subdirectory (Persistency)
 add_subdirectory (Ntuple)
-
+endif()

@@ -1,3 +1,6 @@
+if (PURE_CMAKE) 
+include(altCMakeLists.txt)
+else()
 art_make(
   SUBDIRS detail
   LIB_LIBRARIES
@@ -14,3 +17,4 @@ art_make(
 
 install_headers(SUBDIRS detail)
 install_source(SUBDIRS detail)
+endif()

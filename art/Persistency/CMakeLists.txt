@@ -1,3 +1,6 @@
+if (PURE_CMAKE) 
+include(altCMakeLists.txt)
+else()
 # project name
 project(Persistency)
 
@@ -10,3 +13,4 @@ add_subdirectory (StdDictionaries)
 add_subdirectory (WrappedStdDictionaries)
 add_subdirectory (CetlibDictionaries)
 add_subdirectory (FhiclCppDictionaries)
+endif()

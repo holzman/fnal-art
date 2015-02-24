@@ -1,3 +1,6 @@
+if (PURE_CMAKE)
+include(altCheckClassVersion)
+else()
 INCLUDE(CetParseArgs)
 
 EXECUTE_PROCESS(COMMAND root-config --has-python
@@ -50,3 +53,4 @@ MACRO(check_class_version)
     endif()
   ENDIF()
 ENDMACRO()
+endif()

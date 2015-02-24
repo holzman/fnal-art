@@ -1,3 +1,6 @@
+if (PURE_CMAKE) 
+include(altCMakeLists.txt)
+else()
 include(BuildPlugins)
 
 art_make(
@@ -19,3 +22,4 @@ simple_plugin( sqlite mfPlugin
 
 install_headers()
 install_source()
+endif()

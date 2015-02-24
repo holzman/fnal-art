@@ -1,6 +1,10 @@
+if (ALT_CMAKE) 
+include(altCMakeLists.txt)
+else()
 
 # create package configuration and version files
 
 process_ups_files()
 
 cet_cmake_config()
+endif()
