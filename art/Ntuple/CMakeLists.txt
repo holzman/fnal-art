@@ -40,6 +40,7 @@ target_include_directories(art_Ntuple
   PUBLIC
    ${SQLite3_INCLUDE_DIRS}
    ${FNALCore_INCLUDE_DIRS}
+   ${Boost_INCLUDE_DIRS}
    )
 
 # Describe library link interface
