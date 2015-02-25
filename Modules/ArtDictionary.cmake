@@ -1,4 +1,4 @@
-if (PURE_CMAKE)
+if (ALT_CMAKE)
 include(altArtDictionary)
 else()
 ########################################################################

@@ -1,5 +1,5 @@
 if (ALT_CMAKE) 
-include(altCMakeLists.txt)
+include(altCMakeLists.cmake)
 else()
 link_libraries (art_Framework_IO_RootVersion)
 cet_test(GetFileFormatVersion SOURCES test_GetFileFormatVersion.cpp)

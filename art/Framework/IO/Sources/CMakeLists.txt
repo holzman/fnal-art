@@ -1,5 +1,5 @@
-if (PURE_CMAKE) 
-include(altCMakeLists.txt)
+if (ALT_CMAKE) 
+include(altCMakeLists.cmake)
 else()
 art_make(LIBRARY_NAME art_Framework_IO_Sources
   SUBDIRS detail

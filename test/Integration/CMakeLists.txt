@@ -1,5 +1,5 @@
 if (ALT_CMAKE) 
-include(altCMakeLists.txt)
+include(altCMakeLists.cmake)
 else()
 set(CMAKE_MODULE_PATH
 	${CMAKE_MODULE_PATH}

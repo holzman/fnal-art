@@ -1,5 +1,5 @@
 if (ALT_CMAKE) 
-include(altCMakeLists.txt)
+include(altCMakeLists.cmake)
 else()
 set_source_files_properties(
   test3.cc

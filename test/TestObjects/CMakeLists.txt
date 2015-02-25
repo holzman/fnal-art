@@ -1,5 +1,5 @@
 if (ALT_CMAKE) 
-include(altCMakeLists.txt)
+include(altCMakeLists.cmake)
 else()
 art_make_library(SOURCE TH1Data.cc
   LIBRARIES ${ROOT_HIST} ${ROOT_CORE} NO_INSTALL

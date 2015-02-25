@@ -1,5 +1,5 @@
 if (ALT_CMAKE) 
-include(altCMakeLists.txt)
+include(altCMakeLists.cmake)
 else()
 cet_test(ntuple_t
   LIBRARIES art_Ntuple art_Utilities ${SQLITE3}

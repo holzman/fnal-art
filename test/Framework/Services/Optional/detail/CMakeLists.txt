@@ -1,5 +1,5 @@
 if (ALT_CMAKE) 
-include(altCMakeLists.txt)
+include(altCMakeLists.cmake)
 else()
 
 if ( ${CMAKE_SYSTEM_NAME} MATCHES "Linux")

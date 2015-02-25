@@ -1,5 +1,5 @@
-if (PURE_CMAKE) 
-include(altCMakeLists.txt)
+if (ALT_CMAKE) 
+include(altCMakeLists.cmake)
 else()
 # build art_Framework_Services libraries
 add_subdirectory (FileServiceInterfaces)

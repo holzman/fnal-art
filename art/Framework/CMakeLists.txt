@@ -1,5 +1,5 @@
-if (PURE_CMAKE) 
-include(altCMakeLists.txt)
+if (ALT_CMAKE) 
+include(altCMakeLists.cmake)
 else()
 add_subdirectory (Art)
 add_subdirectory (Core)

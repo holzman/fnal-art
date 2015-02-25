@@ -1,5 +1,5 @@
 if (ALT_CMAKE) 
-include(altCMakeLists.txt)
+include(altCMakeLists.cmake)
 else()
 # Compile the exec (don't run). Yes, add_executable /
 # target_link_libraries is also fine but this is one command with a

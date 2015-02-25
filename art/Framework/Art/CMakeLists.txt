@@ -1,5 +1,5 @@
-if (PURE_CMAKE) 
-include(altCMakeLists.txt)
+if (ALT_CMAKE) 
+include(altCMakeLists.cmake)
 else()
 # Confgure file to handle differences for Mac.
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/check_libs.cc.in

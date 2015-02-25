@@ -1,5 +1,5 @@
-if (PURE_CMAKE) 
-include(altCMakeLists.txt)
+if (ALT_CMAKE) 
+include(altCMakeLists.cmake)
 else()
 set( art_Framework_Services_Optional_sources
   TFileDirectory.cc

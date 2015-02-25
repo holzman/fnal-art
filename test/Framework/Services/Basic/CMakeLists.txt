@@ -1,5 +1,5 @@
 if (ALT_CMAKE) 
-include(altCMakeLists.txt)
+include(altCMakeLists.cmake)
 else()
 # simple_plugin(RNGS_analyzer  "module" NO_INSTALL )
 # simple_plugin(RNGS_producer  "module" NO_INSTALL )

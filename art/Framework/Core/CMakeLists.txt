@@ -1,5 +1,5 @@
-if (PURE_CMAKE) 
-include(altCMakeLists.txt)
+if (ALT_CMAKE) 
+include(altCMakeLists.cmake)
 else()
 foreach(ART_IPR_BASE_NAME FindOne FindMany)
   UNSET(ART_IPR_BY_PTR)
