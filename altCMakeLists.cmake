@@ -170,6 +170,10 @@ add_subdirectory(tools)
 # source
 add_subdirectory(art)
 
+# cmake modules
+
+add_subdirectory(Modules)
+
 # testing
 option(art_ENABLE_TESTING "Built unit tests for art" OFF)
 if(art_ENABLE_TESTING)
@@ -209,10 +213,6 @@ write_basic_package_version_file(
 install(FILES
   ${CMAKE_CURRENT_BINARY_DIR}/artConfig.cmake
   ${CMAKE_CURRENT_BINARY_DIR}/artConfigVersion.cmake
-  Modules/ArtDictionary.cmake
-  Modules/BuildDictionary.cmake
-  Modules/CheckClassVersion.cmake
-  Modules/artTools.cmake
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/art-${art_VERSION}
   COMPONENT Development
   )
