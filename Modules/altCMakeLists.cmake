@@ -4,7 +4,9 @@ INSTALL(FILES
   ArtMake.cmake
   BuildDictionary.cmake
   BuildPlugins.cmake
+  CetParseArgs.cmake
   CetRegexEscape.cmake
+  CetRootCint.cmake
   CetTest.cmake
   CheckClassVersion.cmake
   FindCppUnit.cmake
