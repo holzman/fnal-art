@@ -1,5 +1,5 @@
 if (ALT_CMAKE)
-include(altArtDictionary)
+include(portableArtDictionary)
 else()
 ########################################################################
 # art_dictionary

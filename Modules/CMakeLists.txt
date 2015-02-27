@@ -1,5 +1,5 @@
 if (ALT_CMAKE) 
-include(altCMakeLists.cmake)
+include(portableCMakeLists.cmake)
 else()
 INSTALL(FILES
   ArtDictionary.cmake

@@ -1,5 +1,5 @@
 if (ALT_CMAKE)
-include(altCheckClassVersion)
+include(portableCheckClassVersion)
 else()
 INCLUDE(CetParseArgs)
 
