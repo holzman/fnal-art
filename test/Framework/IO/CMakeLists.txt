@@ -1,4 +1,4 @@
-if (ALT_CMAKE) 
+if (ALT_CMAKE)
 include(altCMakeLists.cmake)
 else()
 cet_test(PostCloseFileRenamer_t USE_BOOST_UNIT

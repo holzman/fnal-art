@@ -16,12 +16,20 @@ elseif(UNIX)
 endif()
 
 # build Persistency libraries
+
+
 add_subdirectory(Framework/Art)
 add_subdirectory(Framework/Core)
+
+# NEEDS FIX FOT STATEMACHINCE.sh
 add_subdirectory(Framework/EventProcessor)
+
 add_subdirectory(Framework/IO)
 #add_subdirectory(Framework/IO/Root)
 #add_subdirectory(Framework/Principal)
+
+# New 'detail' subdir under this with what look like extra test
+# tools for clients of art to use...
 add_subdirectory(Framework/Services/Optional)
 add_subdirectory(Framework/Services/Registry)
 add_subdirectory(Framework/Services/System)
