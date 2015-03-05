@@ -1,3 +1,4 @@
+include_directories(${TBB_INCLUDE_DIRS})
 
 set(simple_tbb_tests
   tbb_init_t
