@@ -20,19 +20,21 @@ endif()
 
 add_subdirectory(Framework/Art)
 add_subdirectory(Framework/Core)
-
-# NEEDS FIX FOT STATEMACHINCE.sh
 add_subdirectory(Framework/EventProcessor)
-
 add_subdirectory(Framework/IO)
+
+# Depends on Integration tests
 #add_subdirectory(Framework/IO/Root)
-#add_subdirectory(Framework/Principal)
+
+# Builds, bu appears "GroupFactory_t" depends on Integration
+add_subdirectory(Framework/Principal)
 
 # New 'detail' subdir under this with what look like extra test
 # tools for clients of art to use...
 add_subdirectory(Framework/Services/Optional)
 add_subdirectory(Framework/Services/Registry)
 add_subdirectory(Framework/Services/System)
+#add_subdirectory(Framework/Services/Basic)
 #add_subdirectory(Integration)
 add_subdirectory(Persistency/Provenance)
 add_subdirectory(Persistency/RootDB)
