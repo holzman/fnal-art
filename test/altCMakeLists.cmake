@@ -29,12 +29,10 @@ add_subdirectory(Framework/IO)
 # Builds, bu appears "GroupFactory_t" depends on Integration
 add_subdirectory(Framework/Principal)
 
-# New 'detail' subdir under this with what look like extra test
-# tools for clients of art to use...
 add_subdirectory(Framework/Services/Optional)
 add_subdirectory(Framework/Services/Registry)
 add_subdirectory(Framework/Services/System)
-#add_subdirectory(Framework/Services/Basic)
+add_subdirectory(Framework/Services/Basic)
 #add_subdirectory(Integration)
 add_subdirectory(Persistency/Provenance)
 add_subdirectory(Persistency/RootDB)
