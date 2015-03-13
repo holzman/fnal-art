@@ -141,6 +141,7 @@ find_package(ROOT 5.34.20 REQUIRED
   Core
   Cint
   Cintex
+  Graf
   Hist
   Matrix
   Reflex
