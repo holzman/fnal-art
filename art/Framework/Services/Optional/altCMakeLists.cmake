@@ -122,6 +122,7 @@ art_add_service(art_Framework_Services_Optional_SimpleMemoryCheck_service
   )
 
 target_link_libraries(art_Framework_Services_Optional_SimpleMemoryCheck_service
+  art_Framework_Services_Optional
   art_Persistency_Provenance
   )
 
