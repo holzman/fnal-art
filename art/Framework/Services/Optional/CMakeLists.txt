@@ -1,4 +1,4 @@
-if (ALT_CMAKE) 
+if (ALT_CMAKE)
 include(altCMakeLists.cmake)
 else()
 set( art_Framework_Services_Optional_sources
@@ -6,9 +6,9 @@ set( art_Framework_Services_Optional_sources
   detail/TH1AddDirectorySentry.cc
 )
 
-if ( ${CMAKE_SYSTEM_NAME} MATCHES "Linux" ) 
-  list( APPEND 
-    art_Framework_Services_Optional_sources 
+if ( ${CMAKE_SYSTEM_NAME} MATCHES "Linux" )
+  list( APPEND
+    art_Framework_Services_Optional_sources
     MemoryTrackerLinux.cc
     SimpleMemoryCheckLinux.cc
     detail/LinuxProcMgr.cc

@@ -1,124 +1,180 @@
-
 # - Build art_Framework_Services_Optional lib and plugins
-
+#-----------------------------------------------------------------------
 # - art_Framework_Services_Optional
-add_library(art_Framework_Services_Optional SHARED
+set(art_Framework_Services_Optional_HEADERS
   TFileDirectory.h
-  TFileDirectory.cc
+  )
+set(art_Framework_Services_Optional_DETAIL_HEADERS
   detail/TH1AddDirectorySentry.h
+  detail/constrained_multimap.h
+  )
+set(art_Framework_Services_Optional_SOURCES
+  TFileDirectory.cc
   detail/TH1AddDirectorySentry.cc
+  )
+
+if(${CMAKE_SYSTEM_NAME} MATCHES "Linux")
+  list(APPEND art_Framework_Services_Optional_HEADERS
+    MemoryTrackerLinux.h
+    SimpleMemoryCheckLinux.h
+    )
+  list(APPEND art_Framework_Services_Optional_DETAIL_HEADERS
+    detail/LinuxMallInfo.h
+    detail/LinuxProcData.h
+    detail/LinuxProcMgr.h
+    detail/MemoryTrackerLinuxCallbackPair.h
+    )
+  list(APPEND art_Framework_Services_Optional_SOURCES
+    MemoryTrackerLinux.cc
+    SimpleMemoryCheckLinux.cc
+    detail/LinuxProcMgr.cc
+    )
+elseif(APPLE)
+  list(APPEND art_Framework_Services_Optional_HEADERS
+    MemoryTrackerDarwin.h
+    SimpleMemoryCheckDarwin.h
+    )
+endif()
+
+
+add_library(art_Framework_Services_Optional SHARED
+  ${art_Framework_Services_Optional_HEADERS}
+  ${art_Framework_Services_Optional_DETAIL_HEADERS}
+  ${art_Framework_Services_Optional_SOURCES}
   )
 
 target_link_libraries(art_Framework_Services_Optional
   FNALCore::FNALCore
   ${ROOT_Core_LIBRARY}
   ${ROOT_Hist_LIBRARY}
+  art_Framework_Services_Registry
+  art_Persistency_Provenance
+  art_Ntuple
   )
+
 target_include_directories(art_Framework_Services_Optional
   PUBLIC
    ${ROOT_INCLUDE_DIRS}
   )
-set_target_properties(art_Framework_Services_Optional
-  PROPERTIES
-   VERSION ${art_VERSION}
-   SOVERSION ${art_SOVERSION}
-  )
-install(TARGETS art_Framework_Services_Optional
-  EXPORT ArtLibraries
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  COMPONENT Runtime
-  )
-install(FILES TFileDirectory.h
+
+art_set_standard_target_properties(art_Framework_Services_Optional)
+
+install(TARGETS art_Framework_Services_Optional ${art_TARGET_INSTALL_ARGS})
+
+install(FILES ${art_Framework_Services_Optional_HEADERS}
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Framework/Services/Optional
   COMPONENT Development
   )
-install(FILES detail/TH1AddDirectorySentry.h
+install(FILES ${art_Framework_Services_Optional_DETAIL_HEADERS}
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Framework/Services/Optional/detail
   COMPONENT Development
   )
 
+#-----------------------------------------------------------------------
+# SERVICE PLUGINS
+#-----------------------------------------------------------------------
 # - RandomNumberGeneratorService
-add_library(art_Framework_Services_Optional_RandomNumberGenerator_service
-  SHARED
+art_add_service(art_Framework_Services_Optional_RandomNumberGenerator_service
   RandomNumberGenerator.h
   RandomNumberGenerator_service.cc
   )
+
 target_link_libraries(art_Framework_Services_Optional_RandomNumberGenerator_service
   FNALCore::FNALCore
   ${CLHEP_LIBRARIES}
   art_Framework_Principal
   )
-set_target_properties(art_Framework_Services_Optional_RandomNumberGenerator_service
-  PROPERTIES
-   VERSION ${art_VERSION}
-   SOVERSION ${art_SOVERSION}
-  )
-install(TARGETS art_Framework_Services_Optional_RandomNumberGenerator_service
-  EXPORT ArtLibraries
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  COMPONENT Runtime
-  )
+
+art_set_standard_target_properties(art_Framework_Services_Optional_RandomNumberGenerator_service)
+
+install(TARGETS art_Framework_Services_Optional_RandomNumberGenerator_service ${art_TARGET_INSTALL_ARGS})
+
 install(FILES RandomNumberGenerator.h
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Framework/Services/Optional
   COMPONENT Development
   )
 
+#-----------------------------------------------------------------------
 # - SimpleInteraction_service
-add_library(art_Framework_Services_Optional_SimpleInteraction_service
-  SHARED
+art_add_service(art_Framework_Services_Optional_SimpleInteraction_service
   SimpleInteraction.h
   SimpleInteraction_service.cc
   )
+
 target_link_libraries(art_Framework_Services_Optional_SimpleInteraction_service
   art_Framework_Services_UserInteraction
   )
-set_target_properties(art_Framework_Services_Optional_SimpleInteraction_service
-  PROPERTIES
-   VERSION ${art_VERSION}
-   SOVERSION ${art_SOVERSION}
-  )
+
+art_set_standard_target_properties(art_Framework_Services_Optional_SimpleInteraction_service)
+
 install(TARGETS art_Framework_Services_Optional_SimpleInteraction_service
-  EXPORT ArtLibraries
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  COMPONENT Runtime
+  ${art_TARGET_INSTALL_ARGS}
   )
 install(FILES SimpleInteraction.h
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Framework/Services/Optional
   COMPONENT Development
   )
 
+#-----------------------------------------------------------------------
 # - SimpleMemoryCheck_service
-add_library(art_Framework_Services_Optional_SimpleMemoryCheck_service
-  SHARED
+art_add_service(art_Framework_Services_Optional_SimpleMemoryCheck_service
   SimpleMemoryCheck_service.cc
   )
+
 target_link_libraries(art_Framework_Services_Optional_SimpleMemoryCheck_service
   art_Persistency_Provenance
   )
-set_target_properties(art_Framework_Services_Optional_SimpleMemoryCheck_service
-  PROPERTIES
-   VERSION ${art_VERSION}
-   SOVERSION ${art_SOVERSION}
-  )
+
+art_set_standard_target_properties(art_Framework_Services_Optional_SimpleMemoryCheck_service)
+
 install(TARGETS art_Framework_Services_Optional_SimpleMemoryCheck_service
-  EXPORT ArtLibraries
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  COMPONENT Runtime
+  ${art_TARGET_INSTALL_ARGS}
   )
 
-add_library(art_Framework_Services_Optional_TFileService_service
-  SHARED
+#-----------------------------------------------------------------------
+# MemoryAdjuster service
+#
+art_add_service(art_Framework_Services_Optional_MemoryAdjuster_service
+  MemoryAdjuster_service.cc
+  )
+
+target_link_libraries(art_Framework_Services_Optional_MemoryAdjuster_service
+  art_Framework_Services_Optional
+  )
+
+art_set_standard_target_properties(art_Framework_Services_Optional_MemoryAdjuster_service)
+
+install(TARGETS art_Framework_Services_Optional_MemoryAdjuster_service
+  ${art_TARGET_INSTALL_ARGS}
+  )
+
+#-----------------------------------------------------------------------
+# MemoryTracker service
+#
+art_add_service(art_Framework_Services_Optional_MemoryTracker_service
+  MemoryTracker_service.cc
+  )
+
+target_link_libraries(art_Framework_Services_Optional_MemoryTracker_service
+  art_Framework_Services_Optional
+  art_Ntuple
+  art_Persistency_Provenance
+  )
+
+art_set_standard_target_properties(art_Framework_Services_Optional_MemoryTracker_service)
+
+install(TARGETS art_Framework_Services_Optional_MemoryTracker_service
+  ${art_TARGET_INSTALL_ARGS}
+  )
+
+#-----------------------------------------------------------------------
+# TFileService service
+#
+art_add_service(art_Framework_Services_Optional_TFileService_service
   TFileService.h
   TFileService_service.cc
   )
+
 target_link_libraries(art_Framework_Services_Optional_TFileService_service
   art_Framework_Services_System_TriggerNamesService_service
   art_Framework_Services_Optional
@@ -127,124 +183,99 @@ target_link_libraries(art_Framework_Services_Optional_TFileService_service
   ${ROOT_RIO_LIBRARY}
   ${ROOT_Thread_LIBRARY}
   )
-set_target_properties(art_Framework_Services_Optional_TFileService_service
-  PROPERTIES
-   VERSION ${art_VERSION}
-   SOVERSION ${art_SOVERSION}
-  )
+
+art_set_standard_target_properties(art_Framework_Services_Optional_TFileService_service)
+
 install(TARGETS art_Framework_Services_Optional_TFileService_service
-  EXPORT ArtLibraries
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  COMPONENT Runtime
+  ${art_TARGET_INSTALL_ARGS}
   )
+
 install(FILES TFileService.h
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Framework/Services/Optional
   COMPONENT Development
   )
 
-
-
+#-----------------------------------------------------------------------
 # - Timing_service
-add_library(art_Framework_Services_Optional_Timing_service
-  SHARED
+#
+art_add_service(art_Framework_Services_Optional_Timing_service
   Timing_service.cc
   )
 target_link_libraries(art_Framework_Services_Optional_Timing_service
   art_Persistency_Provenance
   )
 
-target_include_directories(art_Framework_Services_Optional_Timing_service
-  PRIVATE
-   ${TBB_INCLUDE_DIRS}
-  )
+art_set_standard_target_properties(art_Framework_Services_Optional_Timing_service)
 
-
-set_target_properties(art_Framework_Services_Optional_Timing_service
-  PROPERTIES
-   VERSION ${art_VERSION}
-   SOVERSION ${art_SOVERSION}
-  )
 install(TARGETS art_Framework_Services_Optional_Timing_service
-  EXPORT ArtLibraries
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  COMPONENT Runtime
+  ${art_TARGET_INSTALL_ARGS}
   )
 
+#-----------------------------------------------------------------------
+# - TimeTracker_service
+art_add_service(art_Framework_Services_Optional_TimeTracker_service
+  TimeTracker_service.cc
+  )
+target_link_libraries(art_Framework_Services_Optional_TimeTracker_service
+  art_Ntuple
+  art_Persistency_Provenance
+  ${TBB_LIBRARIES}
+  )
+
+art_set_standard_target_properties(art_Framework_Services_Optional_TimeTracker_service)
+
+install(TARGETS art_Framework_Services_Optional_TimeTracker_service
+  ${art_TARGET_INSTALL_ARGS}
+  )
+
+#-----------------------------------------------------------------------
 # - Tracer_service
-add_library(art_Framework_Services_Optional_Tracer_service
-  SHARED
+art_add_service(art_Framework_Services_Optional_Tracer_service
   Tracer_service.cc
   )
 target_link_libraries(art_Framework_Services_Optional_Tracer_service
   art_Persistency_Provenance
   )
-set_target_properties(art_Framework_Services_Optional_Tracer_service
-  PROPERTIES
-   VERSION ${art_VERSION}
-   SOVERSION ${art_SOVERSION}
-  )
+
+art_set_standard_target_properties(art_Framework_Services_Optional_Tracer_service)
+
 install(TARGETS art_Framework_Services_Optional_Tracer_service
-  EXPORT ArtLibraries
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  COMPONENT Runtime
+  ${art_TARGET_INSTALL_ARGS}
   )
 
+#-----------------------------------------------------------------------
 # - TrivialFileDelivery_service
-add_library(art_Framework_Services_Optional_TrivialFileDelivery_service
-  SHARED
+art_add_service(art_Framework_Services_Optional_TrivialFileDelivery_service
   TrivialFileDelivery.h
   TrivialFileDelivery_service.cc
   )
-target_link_libraries(art_Framework_Services_Optional_TrivialFileDelivery_service
-  art_Framework_Services_Registry
-  )
-set_target_properties(art_Framework_Services_Optional_TrivialFileDelivery_service
-  PROPERTIES
-   VERSION ${art_VERSION}
-   SOVERSION ${art_SOVERSION}
-  )
+
+art_set_standard_target_properties(art_Framework_Services_Optional_TrivialFileDelivery_service)
+
 install(TARGETS art_Framework_Services_Optional_TrivialFileDelivery_service
-  EXPORT ArtLibraries
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  COMPONENT Runtime
+  ${art_TARGET_INSTALL_ARGS}
   )
+
 install(FILES TrivialFileDelivery.h
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Framework/Services/Optional
   COMPONENT Development
   )
 
+#-----------------------------------------------------------------------
 # - TrivialFileTransfer_service
-add_library(art_Framework_Services_Optional_TrivialFileTransfer_service
-  SHARED
+art_add_service(art_Framework_Services_Optional_TrivialFileTransfer_service
   TrivialFileTransfer.h
   TrivialFileTransfer_service.cc
   )
-target_link_libraries(art_Framework_Services_Optional_TrivialFileTransfer_service
-  art_Framework_Services_Registry
-  )
-set_target_properties(art_Framework_Services_Optional_TrivialFileTransfer_service
-  PROPERTIES
-   VERSION ${art_VERSION}
-   SOVERSION ${art_SOVERSION}
-  )
+
+art_set_standard_target_properties(art_Framework_Services_Optional_TrivialFileTransfer_service)
+
 install(TARGETS art_Framework_Services_Optional_TrivialFileTransfer_service
-  EXPORT ArtLibraries
-  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-  COMPONENT Runtime
+  ${art_TARGET_INSTALL_ARGS}
   )
+
 install(FILES TrivialFileTransfer.h
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Framework/Services/Optional
   COMPONENT Development
   )
-
 

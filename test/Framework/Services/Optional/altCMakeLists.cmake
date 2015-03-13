@@ -1,4 +1,6 @@
 
+add_subdirectory(detail)
+
 art_add_service(MyService_service
   MyService.h
   MyService_service.cc
