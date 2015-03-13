@@ -22,13 +22,8 @@ add_subdirectory(Framework/Art)
 add_subdirectory(Framework/Core)
 add_subdirectory(Framework/EventProcessor)
 add_subdirectory(Framework/IO)
-
-# Depends on Integration tests
-#add_subdirectory(Framework/IO/Root)
-
-# Builds, bu appears "GroupFactory_t" depends on Integration
+add_subdirectory(Framework/IO/Root)
 add_subdirectory(Framework/Principal)
-
 add_subdirectory(Framework/Services/Optional)
 add_subdirectory(Framework/Services/Registry)
 add_subdirectory(Framework/Services/System)
