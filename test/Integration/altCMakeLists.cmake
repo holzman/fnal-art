@@ -117,7 +117,7 @@ target_link_libraries(MixFilterTest_module art_Framework_IO_ProductMix)
 
 art_add_module(MixFilterTestETS_module MixFilterTestETS_module.cc)
 use_boost_unit(MixFilterTestETS_module)
-target_link_libraries(MixFilterTest_module art_Framework_IO_ProductMix)
+target_link_libraries(MixFilterTestETS_module art_Framework_IO_ProductMix)
 
 art_add_module(MixFilterTestETSc_module MixFilterTestETSc_module.cc)
 use_boost_unit(MixFilterTestETSc_module)
