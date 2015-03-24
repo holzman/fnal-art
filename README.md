@@ -37,10 +37,10 @@ Installation
 Requirements
 ------------
 - [CMake](http://www.cmake.org) 2.8.12 or above
-- C++11 compliant compiler (GCC 4.8 or better)
-  - Intent is to support any C++11 compliant compiler, but code from upstream
+- C++11/14 compliant compiler (GCC 4.9 or better)
+  - Intent is to support any C++11/14 compliant compiler, but code from upstream
     is not completely portable at present.
-  - NB: Full list of needed C++11 features not fully determined at present
+  - NB: Full list of needed C++11/14 features not fully determined at present
   - Usage of FNALCore does not guarantee this
 - [FNALCore](https://github.com/LBNE/FNALCore) library
   - Correct installation of this will also provide [Boost](http://www.boost.org)
@@ -57,6 +57,10 @@ Requirements
     A FindROOT.cmake find module to backport this functionality can
     be provided later.
 - [Intel TBB](https://www.threadingbuildingblocks.org/) 4.1.0 or higher
+- [Doxygen](http://www.doxygen.org) *Optional*: Only required if you
+  want documentation to be generated for Art's API.
+- `LaTeX` installation supplying `pdflatex` *Optional*: Only required
+  if you want to build the Art Workbook User Guide.
 
 **NB**: all C++ libraries must have been compiled against the *same*
 C++ standard, specifically 0X or 11, and link to the *same* C++ Standard
@@ -64,14 +68,18 @@ Library.
 
 How to Install
 --------------
-The build of Art provides a standard CMake system, so if you
-have all the requirements installed and available directly in CMake's
-search path(s), then you can simply do
+The build of Art provides a standard CMake system replacing the
+`cetbuildtools` implementation, improving the portability and usability
+of the system. To help migration from `cetbuildtools`, the standard CMake
+system is currently not the default, and so must be activated explicitly.
+
+If you have all the requirements installed and available directly in
+CMake's search path(s), then you can simply do
 
 ```
 $ mkdir build
 $ cd build
-$ cmake ..
+$ cmake -DALT_CMAKE=ON ..
 $ make -j4
 $ make install
 ```
@@ -206,6 +214,8 @@ So, an estimated 72 products from around 520 source files
 
 Notes
 -----
+- Feature complete for Art 1.13.1
+- Provide build/install of Art User Guide PDFs
 - Add build product tree section above to track updates to available products
 - Update sources to upstream art v1.11.3
 - No dictionary libraries built yet
