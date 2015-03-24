@@ -8,6 +8,8 @@ INSTALL(FILES
   CetRegexEscape.cmake
   CetRootCint.cmake
   CetTest.cmake
+  RunAndCompare.cmake
+  filter-output
   cet_test_functions.sh
   CheckClassVersion.cmake
   FindCppUnit.cmake
