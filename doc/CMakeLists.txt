@@ -33,3 +33,33 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${Art_DOXYGEN_TAGFILE}
   COMPONENT Documentation
   )
 
+#-----------------------------------------------------------------------
+# Art Workbook - for now bring in as external project, could later
+# be submodule.
+# The "develop" branch is used because the last tag was last summer.
+# No update command to avoid pulling in changes at every single build,
+# which slightly contradicts the preceeding statement...
+include(ExternalProject)
+find_package(LATEX)
+
+# Only build/install if we've got pdflatex
+if(PDFLATEX_COMPILER)
+  ExternalProject_Add(art-wb
+    GIT_REPOSITORY "https://cdcvs.fnal.gov/projects/art-workbook-doc"
+    GIT_TAG        "develop"
+    UPDATE_COMMAND    ""
+    CONFIGURE_COMMAND ""
+    BUILD_COMMAND     ${PDFLATEX_COMPILER} "art-doc-draft"
+          COMMAND     ${PDFLATEX_COMPILER} "art-doc-print"
+    BUILD_IN_SOURCE   1
+    INSTALL_COMMAND   ${CMAKE_COMMAND} -E copy art-doc-draft.pdf ${PROJECT_BINARY_DIR}
+            COMMAND   ${CMAKE_COMMAND} -E copy art-doc-print.pdf ${PROJECT_BINARY_DIR}
+    )
+
+  install(FILES ${PROJECT_BINARY_DIR}/art-doc-draft.pdf
+    ${PROJECT_BINARY_DIR}/art-doc-print.pdf
+    DESTINATION ${CMAKE_INSTALL_DOCDIR}
+    )
+endif()
+
+
