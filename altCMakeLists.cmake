@@ -187,7 +187,7 @@ endif()
 #-----------------------------------------------------------------------
 # Documentation
 #
-option(art_BUILD_DOCS "Build documentation for Art" ON)
+option(art_BUILD_DOCS "Build documentation for Art" OFF)
 if(art_BUILD_DOCS)
   add_subdirectory(doc)
 endif()
