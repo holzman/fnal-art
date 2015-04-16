@@ -229,6 +229,12 @@ target_link_libraries(art_Framework_Services_Optional_TimeTracker_service
   ${TBB_LIBRARIES}
   )
 
+target_include_directories(art_Framework_Services_Optional_TimeTracker_service
+  PRIVATE
+   ${TBB_INCLUDE_DIRS}
+  )
+
+
 art_set_standard_target_properties(art_Framework_Services_Optional_TimeTracker_service)
 
 install(TARGETS art_Framework_Services_Optional_TimeTracker_service
