@@ -169,26 +169,21 @@ art_exec(mu2e art mu2eapp)
 art_exec(nova art artapp)
 
 # Execs with Boost unit testing enabled for modules.
-art_exec(art_ut art_ut artapp LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY_DEBUG})
-art_exec(gm2_ut art_ut artapp LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY_DEBUG})
-art_exec(lar_ut art_ut artapp LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY_DEBUG})
-art_exec(mu2e_ut art_ut mu2eapp LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY_DEBUG})
-art_exec(nova_ut art_ut artapp LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY_DEBUG})
+#art_exec(art_ut art_ut artapp LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY_DEBUG})
+#art_exec(gm2_ut art_ut artapp LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY_DEBUG})
+#art_exec(lar_ut art_ut artapp LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY_DEBUG})
+#art_exec(mu2e_ut art_ut mu2eapp LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY_DEBUG})
+#art_exec(nova_ut art_ut artapp LIBRARIES ${Boost_UNIT_TEST_FRAMEWORK_LIBRARY_DEBUG})
 
 # - Install the targets
 install(TARGETS
   check_libs
   art_Framework_Art
   art
-  art_ut
   mu2e
-  mu2e_ut
   lar
-  lar_ut
   gm2
-  gm2_ut
   nova
-  nova_ut
   EXPORT ArtLibraries
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}

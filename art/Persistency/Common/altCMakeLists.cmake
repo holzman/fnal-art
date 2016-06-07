@@ -33,10 +33,7 @@ set_target_properties(art_Persistency_Common
    SOVERSION ${art_SOVERSION}
   )
 
-# - Dictify
-art_dictionary(DICTIONARY_LIBRARIES art_Persistency_Common)
-
-install(TARGETS art_Persistency_Common art_Persistency_Common_dict
+install(TARGETS art_Persistency_Common
   EXPORT ArtLibraries
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
