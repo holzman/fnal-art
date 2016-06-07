@@ -10,12 +10,18 @@ ProcessHistoryRegistry.h
 ProductMetaData.h
 Selections.h  )
 
+set(art_Persistency_Provenance_detail_HEADERS
+detail/branchNameComponentChecking.h
+detail/type_aliases.h )
+
+
 # Describe library
 add_library(art_Persistency_Provenance SHARED
   ${art_Persistency_Provenance_HEADERS}
 BranchIDListHelper.cc
 MasterProductRegistry.cc
 ProductMetaData.cc
+detail/branchNameComponentChecking.cc
   )
 
 # Describe library include interface
@@ -44,11 +50,8 @@ set_target_properties(art_Persistency_Provenance
    SOVERSION ${art_SOVERSION}
   )
 
-# - Dictify
-art_dictionary(DICTIONARY_LIBRARIES art_Persistency_Provenance)
 
-
-install(TARGETS art_Persistency_Provenance art_Persistency_Provenance_dict
+install(TARGETS art_Persistency_Provenance 
   EXPORT ArtLibraries
   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
@@ -60,4 +63,8 @@ install(FILES ${art_Persistency_Provenance_HEADERS}
   COMPONENT Development
   )
 
+install(FILES ${art_Persistency_Provenance_detail_HEADERS}
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Persistency/Provenance/detail
+  COMPONENT Development
+  )
 

@@ -8,7 +8,6 @@ set(art_Framework_Services_System_TARGETS)
 # - CurrentModule
 add_library(art_Framework_Services_System_CurrentModule_service
   SHARED
-  CurrentModule.h
   CurrentModule_service.cc
   )
 list(APPEND art_Framework_Services_System_HEADERS CurrentModule.h)
@@ -21,7 +20,6 @@ target_link_libraries(art_Framework_Services_System_CurrentModule_service
 # - FileCatalogMetadata
 add_library(art_Framework_Services_System_FileCatalogMetadata_service
   SHARED
-  FileCatalogMetadata.h
   FileCatalogMetadata_service.cc
   )
 list(APPEND art_Framework_Services_System_HEADERS FileCatalogMetadata.h)
@@ -33,7 +31,6 @@ target_link_libraries(art_Framework_Services_System_FileCatalogMetadata_service
 # - FloatingPointControl
 add_library(art_Framework_Services_System_FloatingPointControl_service
   SHARED
-  FloatingPointControl.h
   FloatingPointControl_service.cc
   )
 list(APPEND art_Framework_Services_System_HEADERS FloatingPointControl.h)
@@ -45,7 +42,6 @@ target_link_libraries(art_Framework_Services_System_FloatingPointControl_service
 # - PathSelection
 add_library(art_Framework_Services_System_PathSelection_service
   SHARED
-  PathSelection.h
   PathSelection_service.cc
   )
 list(APPEND art_Framework_Services_System_HEADERS PathSelection.h)
@@ -58,8 +54,6 @@ target_link_libraries(art_Framework_Services_System_PathSelection_service
 # - ScheduleContext
 add_library(art_Framework_Services_System_ScheduleContext_service
   SHARED
-  ScheduleContext.h
-  detail/ScheduleContextSetter.h
   ScheduleContext_service.cc
   )
 list(APPEND art_Framework_Services_System_HEADERS ScheduleContext.h)
@@ -81,7 +75,6 @@ target_include_directories(art_Framework_Services_System_ScheduleContext_service
 # - TriggerNamesService
 add_library(art_Framework_Services_System_TriggerNamesService_service
   SHARED
-  TriggerNamesService.h
   TriggerNamesService_service.cc
   )
 list(APPEND art_Framework_Services_System_HEADERS TriggerNamesService.h)

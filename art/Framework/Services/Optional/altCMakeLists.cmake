@@ -90,7 +90,7 @@ target_link_libraries(art_Framework_Services_Optional_RandomNumberGenerator_serv
   ${CLHEP_LIBRARIES}
   art_Framework_Principal
   art_Persistency_Common
-  canvas::canvas_Persistency_Provenance
+  canvas::canvas_Persistency_Common
   )
 
 art_set_standard_target_properties(art_Framework_Services_Optional_RandomNumberGenerator_service)

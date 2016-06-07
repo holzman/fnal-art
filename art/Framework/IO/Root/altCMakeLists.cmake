@@ -1,5 +1,28 @@
 # - Build art_Framework_IO_Root{Version} plus modules/apps
 
+add_library(art_Framework_IO_Root_detail_sources SHARED
+  detail/rootFileSizeTools.cc ) 
+
+target_link_libraries(art_Framework_IO_Root_detail_sources
+  ${ROOT_Core_LIBRARY} 
+  ${ROOT_RIO_LIBRARY}
+  ${ROOT_Tree_LIBRARY} 
+  )
+
+set_target_properties(art_Framework_IO_Root_detail_sources
+  PROPERTIES
+   VERSION ${art_VERSION}
+   SOVERSION ${art_SOVERSION}
+  )
+
+install(TARGETS art_Framework_IO_Root_detail_sources
+  EXPORT ArtLibraries
+  RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+  COMPONENT Runtime
+  )
+
 # - art_Framework_IO_RootVersion
 add_library(art_Framework_IO_RootVersion SHARED
   GetFileFormatEra.cc
@@ -42,7 +65,13 @@ RootTree.h
 setFileIndexPointer.h
   )
 
+set(art_Framework_IO_Root_detail_HEADERS
+detail/readParameterSetsFromDB.h
+detail/rootFileSizeTools.h
+  )
+
 add_library(art_Framework_IO_Root SHARED
+./detail/rootFileSizeTools.cc
 DuplicateChecker.cc
 FastCloningInfoProvider.cc
 RootBranchInfo.cc
@@ -50,9 +79,7 @@ RootBranchInfoList.cc
 RootDelayedReader.cc
 RootInputFile.cc
 RootInputFileSequence.cc
-RootInput_source.cc
 RootOutputFile.cc
-RootOutput_module.cc
 RootOutputTree.cc
 RootSizeOnDisk.cc
 RootTree.cc
@@ -65,12 +92,16 @@ target_link_libraries(art_Framework_IO_Root
   art_Framework_IO_Catalog
   art_Framework_Principal
   art_Framework_Services_Registry
+  art_Framework_Services_System_FileCatalogMetadata_service
   art_Persistency_Common
   art_Persistency_Provenance
+  canvas::canvas_Persistency_Provenance
   art_Framework_IO_RootVersion
+  art_Framework_IO_Root_detail_sources
+  ${ROOT_Cintex_LIBRARY}
   ${ROOT_Tree_LIBRARY}
   ${ROOT_Net_LIBRARY}
-  ${ROOT_MatchCore_LIBRARY}
+  ${ROOT_MathCore_LIBRARY}
   )
 
 # Set any additional properties
@@ -87,8 +118,14 @@ install(TARGETS art_Framework_IO_Root
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   COMPONENT Runtime
   )
+
 install(FILES ${art_Framework_IO_Root_HEADERS}
   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Framework/IO/Root
+  COMPONENT Development
+  )
+
+install(FILES ${art_Framework_IO_Root__detail_HEADERS}
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/art/Framework/IO/Root/detail
   COMPONENT Development
   )
 

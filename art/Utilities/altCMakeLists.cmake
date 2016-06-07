@@ -40,6 +40,7 @@ RegexMatch.cc
 RootHandlers.cc
 unique_filename.cc
 UnixSignalHandlers.cc
+detail/serviceConfigLocation.cc
   )
 
 

@@ -1,3 +1,4 @@
+include_directories(${canvas_INCLUDEDIR})
 
 # - Build art_Framework_IO_ProductMix library
 
@@ -43,7 +44,9 @@ set_target_properties(art_Framework_IO_ProductMix
 
 # - Dictify
 #
-art_dictionary(DICTIONARY_LIBRARIES art_Persistency_Provenance)
+include_directories(${canvas_INCLUDE_DIRS})
+include_directories(${cetlib_INCLUDEDIR})
+art_dictionary(DICTIONARY_LIBRARIES art_Persistency_Provenance canvas::canvas_Persistency_Provenance)
 
 install(TARGETS art_Framework_IO_ProductMix art_Framework_IO_ProductMix_dict
   EXPORT ArtLibraries

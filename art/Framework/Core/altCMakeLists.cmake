@@ -67,8 +67,15 @@ detail/verify_names.h
 
 # - Describe Library
 add_library(art_Framework_Core SHARED
-  ${art_Framework_Core_HEADERS}
-  ${art_Framework_Core_DETAIL_HEADERS}
+Breakpoints.cc
+CachedProducts.cc
+DecrepitRelicInputSourceImplementation.cc
+detail/get_failureToPut_flag.cc
+detail/ModuleConfigInfo.cc
+detail/ModuleFactory.cc
+detail/OutputModuleUtils.cc
+detail/ScheduleTask.cc
+detail/verify_names.cc
 EDAnalyzer.cc
 EDFilter.cc
 EDProducer.cc
