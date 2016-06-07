@@ -1,3 +1,8 @@
+if (ALT_CMAKE)
+include(altCMakeLists.cmake)
+else(ALT_CMAKE)
+
+
 # project name
 project(art_Framework_IO)
 
@@ -16,3 +21,5 @@ add_subdirectory (Catalog)
 add_subdirectory (ProductMix)
 add_subdirectory (Root)
 add_subdirectory (Sources)
+
+endif(ALT_CMAKE)

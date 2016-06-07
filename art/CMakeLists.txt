@@ -1,3 +1,7 @@
+if (ALT_CMAKE)
+include(altCMakeLists.cmake)
+else(ALT_CMAKE)
+
 # project name
 project(artCode)
 
@@ -12,3 +16,5 @@ add_subdirectory (Ntuple)
 
 # Testing
 add_subdirectory(test)
+
+endif(ALT_CMAKE)

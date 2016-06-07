@@ -1,3 +1,7 @@
+if (ALT_CMAKE)
+include(altCMakeLists.cmake)
+else(ALT_CMAKE)
+
 # project name
 project(art_Persistency_Common)
 
@@ -23,3 +27,4 @@ art_make_library( LIBRARY_NAME art_Persistency_Common
 
 install_headers(SUBDIRS detail)
 install_source(SUBDIRS detail)
+endif(ALT_CMAKE)

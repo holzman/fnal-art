@@ -1,3 +1,6 @@
+if (ALT_CMAKE)
+include(altCMakeLists.cmake)
+else(ALT_CMAKE)
 
 art_make(SUBDIRS detail
   LIB_LIBRARIES
@@ -11,3 +14,5 @@ art_make(SUBDIRS detail
 
 install_headers(SUBDIRS detail)
 install_source(SUBDIRS detail)
+
+endif(ALT_CMAKE)

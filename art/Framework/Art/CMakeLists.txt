@@ -1,3 +1,8 @@
+if (ALT_CMAKE)
+include(altCMakeLists.cmake)
+else(ALT_CMAKE)
+
+
 # Configure file to handle differences for Mac.
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/check_libs.cc.in
   ${CMAKE_CURRENT_BINARY_DIR}/check_libs.cc @ONLY
@@ -124,3 +129,5 @@ art_make_exec(NAME check_libs
 
 install_headers()
 install_source()
+
+endif(ALT_CMAKE)

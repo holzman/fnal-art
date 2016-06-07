@@ -1,3 +1,8 @@
+if (ALT_CMAKE)
+include(altCMakeLists.cmake)
+else(ALT_CMAKE)
+
+
 art_make(LIB_LIBRARIES
   canvas_Utilities
   MF_MessageLogger
@@ -17,3 +22,5 @@ art_make(LIB_LIBRARIES
 
 install_headers(SUBDIRS detail)
 install_source(SUBDIRS detail)
+
+endif(ALT_CMAKE)

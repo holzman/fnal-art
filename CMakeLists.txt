@@ -1,3 +1,6 @@
+if (ALT_CMAKE)
+include(altCMakeLists.cmake)
+else(ALT_CMAKE)
 # ======================================================================
 #  art main build file
 #
@@ -88,3 +91,4 @@ add_subdirectory(Modules)
 
 # packaging utility
 include(UseCPack)
+endif(ALT_CMAKE)

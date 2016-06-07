@@ -1,3 +1,8 @@
+if (ALT_CMAKE)
+include(altCMakeLists.cmake)
+else(ALT_CMAKE)
+
+
 art_make_library(
   LIBRARY_NAME art_Framework_IO_Root_detail_sources
   SOURCE detail/rootFileSizeTools.cc
@@ -76,3 +81,6 @@ art_make_exec( NAME count_events
 
 install_headers()
 install_source()
+
+
+endif(ALT_CMAKE)

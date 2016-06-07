@@ -1,3 +1,8 @@
+if (ALT_CMAKE)
+include(altCMakeLists.cmake)
+else(ALT_CMAKE)
+
+
 # project name
 project(art_Framework_Modules)
 
@@ -14,3 +19,5 @@ add_subdirectory(detail)
 
 install_headers()
 install_source()
+
+endif(ALT_CMAKE)

@@ -1,3 +1,8 @@
+if (ALT_CMAKE)
+include(altCMakeLists.cmake)
+else(ALT_CMAKE)
+
+
 art_make_library(LIBRARY_NAME art_Framework_Services_UserInteraction
   SOURCE UserInteraction.cc
   LIBRARIES art_Framework_Core
@@ -9,3 +14,6 @@ art_make_library(LIBRARY_NAME art_Framework_Services_UserInteraction
 
 install_headers(SUBDIRS detail)
 install_source(SUBDIRS detail)
+
+
+endif(ALT_CMAKE)

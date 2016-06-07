@@ -1,3 +1,8 @@
+if (ALT_CMAKE)
+include(altCMakeLists.cmake)
+else(ALT_CMAKE)
+
+
 # project name
 project(art_Framework_Services_Registry)
 
@@ -15,3 +20,5 @@ art_make_library( LIBRARY_NAME art_Framework_Services_Registry
 
 install_headers(SUBDIRS detail)
 install_source(SUBDIRS detail)
+
+endif(ALT_CMAKE)

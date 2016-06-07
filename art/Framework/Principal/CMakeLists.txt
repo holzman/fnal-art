@@ -1,3 +1,8 @@
+if (ALT_CMAKE)
+include(altCMakeLists.cmake)
+else(ALT_CMAKE)
+
+
 art_make(LIB_LIBRARIES art_Persistency_Provenance canvas_Persistency_Provenance
   art_Persistency_Common
   art_Framework_Services_Registry
@@ -11,3 +16,6 @@ art_make(LIB_LIBRARIES art_Persistency_Provenance canvas_Persistency_Provenance
 
 install_headers(SUBDIRS detail)
 install_source(SUBDIRS detail)
+
+
+endif(ALT_CMAKE)
