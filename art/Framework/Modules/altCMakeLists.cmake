@@ -86,8 +86,9 @@ set_target_properties(
   )
 
 # - Dictify
-include_directories(${canvas_INCLUDE_DIRS})
+include_directories(${canvas_INCLUDEDIR})
 include_directories(${cetlib_INCLUDEDIR})
+include_directories(${Boost_INCLUDE_DIR})
 art_dictionary(DICTIONARY_LIBRARIES art_Persistency_Common)
 
 # - Install targets, files

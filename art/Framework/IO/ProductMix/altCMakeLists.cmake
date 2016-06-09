@@ -44,8 +44,9 @@ set_target_properties(art_Framework_IO_ProductMix
 
 # - Dictify
 #
-include_directories(${canvas_INCLUDE_DIRS})
+include_directories(${canvas_INCLUDEDIR})
 include_directories(${cetlib_INCLUDEDIR})
+include_directories(${Boost_INCLUDE_DIR})
 art_dictionary(DICTIONARY_LIBRARIES art_Persistency_Provenance canvas::canvas_Persistency_Provenance)
 
 install(TARGETS art_Framework_IO_ProductMix art_Framework_IO_ProductMix_dict

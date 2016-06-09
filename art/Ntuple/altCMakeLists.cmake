@@ -22,7 +22,7 @@ target_include_directories(art_Ntuple
    ${SQLite_INCLUDEDIR}
    ${cetlib_INCLUDEDIR}
    ${fhiclcpp_INCLUDEDIR}
-   ${Boost_INCLUDE_DIRS}
+   ${Boost_INCLUDE_DIR}
    )
 
 # Describe library link interface
