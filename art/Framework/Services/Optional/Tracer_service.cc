@@ -34,54 +34,55 @@ namespace {
 }
 
 // ======================================================================
+namespace art {
 class Tracer
 {
 public:
 
-  using Parameters = ServiceTable<Config>;
-  Tracer(ServiceTable<Config> const&, ActivityRegistry&);
+  using Parameters = art::ServiceTable<Config>;
+  Tracer(art::ServiceTable<Config> const&, art::ActivityRegistry&);
 
   void postBeginJob();
   void postEndJob();
 
-  void preBeginRun(Run const& run);
-  void postBeginRun(Run const& run);
+  void preBeginRun(art::Run const& run);
+  void postBeginRun(art::Run const& run);
 
-  void preBeginSubRun(SubRun const& subRun);
-  void postBeginSubRun(SubRun const& subRun);
+  void preBeginSubRun(art::SubRun const& subRun);
+  void postBeginSubRun(art::SubRun const& subRun);
 
-  void preEvent(Event const& ev);
-  void postEvent(Event const& ev);
+  void preEvent(art::Event const& ev);
+  void postEvent(art::Event const& ev);
 
-  void preEndSubRun(SubRunID const& id, Timestamp const& ts);
-  void postEndSubRun(SubRun const& run);
+  void preEndSubRun(art::SubRunID const& id, art::Timestamp const& ts);
+  void postEndSubRun(art::SubRun const& run);
 
-  void preEndRun(RunID const& id, Timestamp const& ts);
-  void postEndRun(Run const& run);
+  void preEndRun(art::RunID const& id, art::Timestamp const& ts);
+  void postEndRun(art::Run const& run);
 
-  void preModuleConstruction(ModuleDescription const& md);
-  void postModuleConstruction(ModuleDescription const& md);
+  void preModuleConstruction(art::ModuleDescription const& md);
+  void postModuleConstruction(art::ModuleDescription const& md);
 
-  void preModuleBeginJob(ModuleDescription const& md);
-  void postModuleBeginJob(ModuleDescription const& md);
+  void preModuleBeginJob(art::ModuleDescription const& md);
+  void postModuleBeginJob(art::ModuleDescription const& md);
 
-  void preModuleBeginRun(ModuleDescription const& md);
-  void postModuleBeginRun(ModuleDescription const& md);
+  void preModuleBeginRun(art::ModuleDescription const& md);
+  void postModuleBeginRun(art::ModuleDescription const& md);
 
-  void preModuleBeginSubRun(ModuleDescription const& md);
-  void postModuleBeginSubRun(ModuleDescription const& md);
+  void preModuleBeginSubRun(art::ModuleDescription const& md);
+  void postModuleBeginSubRun(art::ModuleDescription const& md);
 
-  void preModuleEvent(ModuleDescription const& md);
-  void postModuleEvent(ModuleDescription const& md);
+  void preModuleEvent(art::ModuleDescription const& md);
+  void postModuleEvent(art::ModuleDescription const& md);
 
-  void preModuleEndSubRun(ModuleDescription const& md);
-  void postModuleEndSubRun(ModuleDescription const& md);
+  void preModuleEndSubRun(art::ModuleDescription const& md);
+  void postModuleEndSubRun(art::ModuleDescription const& md);
 
-  void preModuleEndRun(ModuleDescription const& md);
-  void postModuleEndRun(ModuleDescription const& md);
+  void preModuleEndRun(art::ModuleDescription const& md);
+  void postModuleEndRun(art::ModuleDescription const& md);
 
-  void preModuleEndJob(ModuleDescription const& md);
-  void postModuleEndJob(ModuleDescription const& md);
+  void preModuleEndJob(art::ModuleDescription const& md);
+  void postModuleEndJob(art::ModuleDescription const& md);
 
   void preSourceEvent();
   void postSourceEvent();
@@ -100,22 +101,22 @@ public:
 
   void postOpenOutputFile(std::string const & label);
   void preCloseOutputFile(std::string const & label);
-  void postCloseOutputFile(OutputFileInfo const & info);
+  void postCloseOutputFile(art::OutputFileInfo const & info);
 
   void prePathBeginRun(std::string const& s);
-  void postPathBeginRun(std::string const& s, HLTPathStatus const& hlt);
+  void postPathBeginRun(std::string const& s, art::HLTPathStatus const& hlt);
 
   void prePathBeginSubRun(std::string const& s);
-  void postPathBeginSubRun(std::string const& s, HLTPathStatus const& hlt);
+  void postPathBeginSubRun(std::string const& s, art::HLTPathStatus const& hlt);
 
   void prePathEvent(std::string const& s);
-  void postPathEvent(std::string const& s, HLTPathStatus const& hlt);
+  void postPathEvent(std::string const& s, art::HLTPathStatus const& hlt);
 
   void prePathEndSubRun(std::string const& s);
-  void postPathEndSubRun(std::string const& s, HLTPathStatus const& hlt);
+  void postPathEndSubRun(std::string const& s, art::HLTPathStatus const& hlt);
 
   void prePathEndRun(std::string const& s);
-  void postPathEndRun(std::string const& s, HLTPathStatus const& hlt);
+  void postPathEndRun(std::string const& s, art::HLTPathStatus const& hlt);
 
 private:
   std::string indentation_;
@@ -133,7 +134,7 @@ private:
 // ======================================================================
 // constructors and destructor
 
-Tracer::Tracer(ServiceTable<Config> const& config, ActivityRegistry&iRegistry)
+Tracer::Tracer(art::ServiceTable<Config> const& config, art::ActivityRegistry&iRegistry)
   : indentation_( config().indentation() )
   , depth_      ( 0 )
 {
@@ -288,7 +289,7 @@ Tracer::preCloseOutputFile (std::string const & label) {
 }
 
 void
-Tracer::postCloseOutputFile (OutputFileInfo const & info) {
+Tracer::postCloseOutputFile (art::OutputFileInfo const & info) {
   std::string const fn { info.fileName().empty() ?
       std::string("<none>") :
       info.fileName() };
@@ -318,17 +319,17 @@ Tracer::prePathEvent(std::string const& iName) {
   indent(3) << " processing path for event:" << iName << std::endl;
 }
 void
-Tracer::postPathEvent(std::string const& /*iName*/, HLTPathStatus const&) {
+Tracer::postPathEvent(std::string const& /*iName*/, art::HLTPathStatus const&) {
   indent(3) << " finished path for event:" << std::endl;
 }
 
 void
-Tracer::preModuleEvent(ModuleDescription const& iDescription) {
+Tracer::preModuleEvent(art::ModuleDescription const& iDescription) {
    ++depth_;
    indent(3+depth_) << " module for event:" << iDescription.moduleLabel() << std::endl;
 }
 void
-Tracer::postModuleEvent(ModuleDescription const& iDescription) {
+Tracer::postModuleEvent(art::ModuleDescription const& iDescription) {
    --depth_;
    indent(4+depth_) << " finished for event:" << iDescription.moduleLabel() << std::endl;
 }
@@ -353,23 +354,23 @@ Tracer::prePathBeginRun(std::string const& iName) {
 }
 
 void
-Tracer::postPathBeginRun(std::string const& /*iName*/, HLTPathStatus const&) {
+Tracer::postPathBeginRun(std::string const& /*iName*/, art::HLTPathStatus const&) {
   indent(3) << " finished path for begin run:" << std::endl;
 }
 
 void
-Tracer::preModuleBeginRun(ModuleDescription const& iDescription) {
+Tracer::preModuleBeginRun(art::ModuleDescription const& iDescription) {
    ++depth_;
    indent(3+depth_) << " module for begin run:" << iDescription.moduleLabel() << std::endl;
 }
 void
-Tracer::postModuleBeginRun(ModuleDescription const& iDescription) {
+Tracer::postModuleBeginRun(art::ModuleDescription const& iDescription) {
    --depth_;
    indent(4+depth_) << " finished for begin run:" << iDescription.moduleLabel() << std::endl;
 }
 
 void
-Tracer::preEndRun(RunID const& iID, Timestamp const& iTime) {
+Tracer::preEndRun(RunID const& iID, art::Timestamp const& iTime) {
    depth_=0;
    indent(2) << " processing end run:" << iID << " time:" << iTime.value() << std::endl;
 }
@@ -384,23 +385,23 @@ Tracer::prePathEndRun(std::string const& iName) {
   indent(3) << " processing path for end run:" << iName << std::endl;
 }
 void
-Tracer::postPathEndRun(std::string const& /*iName*/, HLTPathStatus const&) {
+Tracer::postPathEndRun(std::string const& /*iName*/, art::HLTPathStatus const&) {
   indent(3) << " finished path for end run:" << std::endl;
 }
 
 void
-Tracer::preModuleEndRun(ModuleDescription const& iDescription) {
+Tracer::preModuleEndRun(art::ModuleDescription const& iDescription) {
    ++depth_;
    indent(3+depth_) << " module for end run:" << iDescription.moduleLabel() << std::endl;
 }
 void
-Tracer::postModuleEndRun(ModuleDescription const& iDescription) {
+Tracer::postModuleEndRun(art::ModuleDescription const& iDescription) {
    --depth_;
    indent(4+depth_) << " finished for end run:" << iDescription.moduleLabel() << std::endl;
 }
 
 void
-Tracer::preBeginSubRun(SubRun const& subRun) {
+Tracer::preBeginSubRun(art::SubRun const& subRun) {
    depth_=0;
    indent(2) << " processing begin subRun:"
              << subRun.id()
@@ -410,7 +411,7 @@ Tracer::preBeginSubRun(SubRun const& subRun) {
 }
 
 void
-Tracer::postBeginSubRun(SubRun const&) {
+Tracer::postBeginSubRun(art::SubRun const&) {
    indent(2) << " finished begin subRun:" << std::endl;
 }
 
@@ -419,28 +420,28 @@ Tracer::prePathBeginSubRun(std::string const& iName) {
   indent(3) << " processing path for begin subRun:" << iName << std::endl;
 }
 void
-Tracer::postPathBeginSubRun(std::string const& /*iName*/, HLTPathStatus const&) {
+Tracer::postPathBeginSubRun(std::string const& /*iName*/, art::HLTPathStatus const&) {
   indent(3) << " finished path for begin subRun:" << std::endl;
 }
 
 void
-Tracer::preModuleBeginSubRun(ModuleDescription const& iDescription) {
+Tracer::preModuleBeginSubRun(art::ModuleDescription const& iDescription) {
    ++depth_;
    indent(3+depth_) << " module for begin subRun:" << iDescription.moduleLabel() << std::endl;
 }
 void
-Tracer::postModuleBeginSubRun(ModuleDescription const& iDescription) {
+Tracer::postModuleBeginSubRun(art::ModuleDescription const& iDescription) {
    --depth_;
    indent(4) << " finished for begin subRun:" << iDescription.moduleLabel() << std::endl;
 }
 
 void
-Tracer::preEndSubRun(SubRunID const& iID, Timestamp const& iTime) {
+Tracer::preEndSubRun(SubRunID const& iID, art::Timestamp const& iTime) {
    depth_=0;
    indent(2) << " processing end subRun:" << iID << " time:" << iTime.value() << std::endl;
 }
 void
-Tracer::postEndSubRun(SubRun const&) {
+Tracer::postEndSubRun(art::SubRun const&) {
    indent(2) << " finished end subRun:" << std::endl;
 }
 
@@ -450,54 +451,54 @@ Tracer::prePathEndSubRun(std::string const& iName) {
 }
 
 void
-Tracer::postPathEndSubRun(std::string const& /*iName*/, HLTPathStatus const&) {
+Tracer::postPathEndSubRun(std::string const& /*iName*/, art::HLTPathStatus const&) {
   indent(3) << " finished path for end subRun:" << std::endl;
 }
 
 void
-Tracer::preModuleEndSubRun(ModuleDescription const& iDescription) {
+Tracer::preModuleEndSubRun(art::ModuleDescription const& iDescription) {
    ++depth_;
    indent(3+depth_) << " module for end subRun:" << iDescription.moduleLabel() << std::endl;
 }
 
 void
-Tracer::postModuleEndSubRun(ModuleDescription const& iDescription) {
+Tracer::postModuleEndSubRun(art::ModuleDescription const& iDescription) {
    --depth_;
    indent(4+depth_) << " finished for end subRun:" << iDescription.moduleLabel() << std::endl;
 }
 
 void
-Tracer::preModuleConstruction(ModuleDescription const& iDescription) {
+Tracer::preModuleConstruction(art::ModuleDescription const& iDescription) {
   indent(1) << " constructing module:" << iDescription.moduleLabel() << std::endl;
 }
 
 void
-Tracer::postModuleConstruction(ModuleDescription const& iDescription) {
+Tracer::postModuleConstruction(art::ModuleDescription const& iDescription) {
   indent(1) << " construction finished:" << iDescription.moduleLabel() << std::endl;
 }
 
 void
-Tracer::preModuleBeginJob(ModuleDescription const& iDescription) {
+Tracer::preModuleBeginJob(art::ModuleDescription const& iDescription) {
   indent(1) << " beginJob module:" << iDescription.moduleLabel() << std::endl;
 }
 
 void
-Tracer::postModuleBeginJob(ModuleDescription const& iDescription) {
+Tracer::postModuleBeginJob(art::ModuleDescription const& iDescription) {
   indent(1) << " beginJob finished:" << iDescription.moduleLabel() << std::endl;
 }
 
 void
-Tracer::preModuleEndJob(ModuleDescription const& iDescription) {
+Tracer::preModuleEndJob(art::ModuleDescription const& iDescription) {
   indent(1) << " endJob module:" << iDescription.moduleLabel() << std::endl;
 }
 
 void
-Tracer::postModuleEndJob(ModuleDescription const& iDescription) {
+Tracer::postModuleEndJob(art::ModuleDescription const& iDescription) {
   indent(1) << " endJob finished:" << iDescription.moduleLabel() << std::endl;
 }
 
 // ======================================================================
-
+} //namespace art
 // The DECLARE macro call should be moved to the header file, should you
 // create one.
 DECLARE_ART_SERVICE(Tracer, LEGACY)

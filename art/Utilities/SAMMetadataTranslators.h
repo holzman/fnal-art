@@ -23,6 +23,12 @@ namespace art {
 
   // Translator
   struct NewToOld {
+    ~NewToOld() = default;
+    NewToOld() = default;
+    NewToOld(NewToOld const&) = default;
+    NewToOld(NewToOld &&) = default;
+    NewToOld& operator=(NewToOld const&) = default;
+    NewToOld& operator=(NewToOld &&) = default;
     std::string operator()(std::string const& name) const
     {
       auto const& transMap = newToOldName();
@@ -45,6 +51,12 @@ namespace art {
 
   // Translator
   struct OldToNew {
+    ~OldToNew() = default;
+    OldToNew() = default;
+    OldToNew(OldToNew const&) = default;
+    OldToNew(OldToNew &&) = default;
+    OldToNew& operator=(OldToNew const&) = default;
+    OldToNew& operator=(OldToNew &&) = default;
     std::string operator()(std::string const& name) const
     {
       auto const& transMap = oldToNewName();

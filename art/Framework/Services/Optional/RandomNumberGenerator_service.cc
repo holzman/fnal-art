@@ -83,7 +83,7 @@ namespace {
   string       const  DEFAULT_ENGINE_KIND( "HepJamesRandom" );
   seed_t       const  MAXIMUM_CLHEP_SEED( 900000000 );
   seed_t       const  USE_DEFAULT_SEED( -1 );
-  RNGsnapshot  const  EMPTY_SNAPSHOT;
+  RNGsnapshot  const  EMPTY_SNAPSHOT{};
 
   struct G4Engine { };
 

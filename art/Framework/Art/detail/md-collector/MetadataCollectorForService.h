@@ -25,7 +25,7 @@ namespace art {
     private:
       std::string header_(LibraryInfo const& li) const
       {
-        static ServiceNames const serviceNames;
+        static ServiceNames const serviceNames{};
         std::string const printed_name = serviceNames.fclname( li.short_spec() );
         std::ostringstream result;
         result << indent_1()  << "service : "

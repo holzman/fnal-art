@@ -175,7 +175,7 @@ bool
 Schedule::runTriggerPaths_(typename T::MyPrincipal& ep)
 {
   doForAllEnabledPaths_([&ep](auto p) {
-    p->processOneOccurrence<T>(ep);
+    p->template processOneOccurrence<T>(ep);
   });
   return triggerPathsInfo_.pathResults().accept();
 }

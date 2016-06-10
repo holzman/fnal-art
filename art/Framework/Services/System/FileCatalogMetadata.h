@@ -86,7 +86,7 @@ private:
     InheritedMetadata(std::vector<std::string> const& sortedMdToInherit,
                       collection_type const& coll)
     {
-      NewToOld const translator;
+      NewToOld const translator{};
       for(auto const& pr : coll) {
         if (cet::search_all(sortedMdToInherit, translator(pr.first))) {
           inputmd_.insert(pr);
@@ -146,7 +146,7 @@ setMetadataFromInput(collection_type const& mdFromInput)
   else
     imd_->check_values(mdFromInput);
 
-  OldToNew const translator;
+  OldToNew const translator{};
   for (auto const& pr : imd_->entries()) {
     addMetadataString(translator(pr.first), pr.second);
   }
