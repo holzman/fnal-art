@@ -89,6 +89,7 @@ set_target_properties(
 include_directories(${canvas_INCLUDEDIR})
 include_directories(${cetlib_INCLUDEDIR})
 include_directories(${Boost_INCLUDE_DIR})
+include_directories(${CLHEP_INCLUDE_DIRS})
 art_dictionary(DICTIONARY_LIBRARIES art_Persistency_Common)
 
 # - Install targets, files

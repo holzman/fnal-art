@@ -23,6 +23,7 @@ target_link_libraries(art_Persistency_Common
   cetlib::cetlib fhiclcpp::fhiclcpp
   art_Utilities
   art_Persistency_Provenance
+  CLHEP::CLHEP
   ${ROOT_Core_LIBRARY}
   )
 
