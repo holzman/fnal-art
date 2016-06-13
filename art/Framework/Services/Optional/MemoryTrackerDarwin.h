@@ -15,16 +15,21 @@ namespace fhicl { class ParameterSet; }
 namespace art {
 
   class ActivityRegistry;
+  class ModuleDescription;
 
   class MemoryTracker {
   public:
 
-    MemoryTracker(fhicl::ParameterSet const &, ActivityRegistry &) {
+    MemoryTracker(fhicl::ParameterSet const&, ActivityRegistry&) {
       mf::LogAbsolute("MemoryTracker") << "\n"
-                                       << "Service currently not supported for this operating system.\n"
+                                       << "The MemoryTracker service is not supported for this operating system.\n"
                                        << "If desired, please log an issue with:\n\n"
                                        << "https://cdcvs.fnal.gov/redmine/projects/cet-is/issues/new\n\n";
     }
+
+    // Module level
+    void preModule (ModuleDescription const&) {}
+    void postModule(ModuleDescription const&) {}
 
   };
 

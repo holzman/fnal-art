@@ -13,11 +13,6 @@ simple_plugin(Prescaler               "module")
 simple_plugin(ProvenanceCheckerOutput "module")
 simple_plugin(RandomNumberSaver       "module")
 
-art_dictionary(DICTIONARY_LIBRARIES art_Persistency_Common)
-
-add_subdirectory(detail)
-
-install_headers()
-install_source()
-
+install_headers(SUBDIRS detail)
+install_source(SUBDIRS detail)
 endif(ALT_CMAKE)

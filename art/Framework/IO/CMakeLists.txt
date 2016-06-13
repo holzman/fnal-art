@@ -21,5 +21,5 @@ add_subdirectory (Catalog)
 add_subdirectory (ProductMix)
 add_subdirectory (Root)
 add_subdirectory (Sources)
-
+add_subdirectory (detail)
 endif(ALT_CMAKE)
